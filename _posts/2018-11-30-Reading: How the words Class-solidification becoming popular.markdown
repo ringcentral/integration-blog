@@ -12,3 +12,5 @@ The Article is pretty realistic and insightful but not very persuasive due to th
 
 
 #### Reflection:
+I think we all should believe like the believe of holy bible, deep inside and without doubt. You can't change the outside world without change yourself first, so you gonna change yourself and the world will be changed itself. You have to believe yourself that you can do anything then you achieved it, that's the secret of success. There is a saying that why can't live a good life for knowing so many senses. The question is believe is far from enough, you have to convince yourself to believe, believed without doubts. We think we believe actually we are not, there are still doubts, questions, so we need self-cognition, to think what we think, to rebuild our congnition. 
+The world is what we think, so think.
