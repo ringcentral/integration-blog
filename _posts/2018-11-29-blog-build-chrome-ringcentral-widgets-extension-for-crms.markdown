@@ -5,8 +5,6 @@ date:   2018-11-29 13:31:07 +0800
 categories: blog
 ---
 
-# Build Chrome RingCentral widgets extension for CRMs
-
 ## Why is it need?
 
 - First, and the important reason, I guess, is Our clients need it, so for big CRM, like salesforce, we even build special app for it. For not that big CRMs, still have clients need it too, we may not build a special app for it. But we have the powerful widgets, so we can build a chrome extension easily.
