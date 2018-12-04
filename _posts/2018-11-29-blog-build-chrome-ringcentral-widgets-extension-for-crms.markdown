@@ -1,76 +1,76 @@
 ---
 layout: post
-title:  "Build Chrome RingCentral widgets extension for CRMs"
+title:  "Build Chrome extension for CRMs with RingCentral Embeddable widgets"
 date:   2018-11-29 13:31:07 +0800
 categories: blog
 ---
 
-## Why is it need?
+## About RingCentral Embeddable widgets
 
-- First, and the important reason, I guess, is Our clients need it, so for big CRM, like salesforce, we even build special app for it. For not that big CRMs, still have clients need it too, we may not build a special app for it. But we have the powerful widgets, so we can build a chrome extension easily.
-- Second, our RingCentral widgets is userful and powerful for these CRMs, we could greatly improve their work proccess.
+RingCentral Embeddable widgets is a powerful tool for CRMs, its core power is add click-to-call function, around this core function, it can extend CRM's communication workflow. And it can be easily integrated into CRM sites, even without official support, developer can still do the integration through building chrome extension.
 
-## What will we do in these extensions?
+## Features of these extensions could provide
 
-In general, All the third party features of our [ringcentral-embeddable](https://github.com/ringcentral/ringcentral-embeddable) supported and some content insert:
+With chrome extension, we could add click-to-call buttons/links etc and all the third party features of our ringcentral-embeddable supported:
 
-- For CRM contact list, we will add a hover-to-show tooltip to show click-to-call button.
+- For CRM contact list, extension could add hover-to-show tooltip to show click-to-call button.
 
 ![ ](https://github.com/zxdong262/ringcentral-embeddable-extension-factory/raw/master/screenshots/fac-2.png)
 
-- For CRM contact info page, we will add a click-to-call button in proper position.
+- For CRM contact info page, extension could add click-to-call button in proper positions.
 
 ![ ](https://github.com/zxdong262/ringcentral-embeddable-extension-factory/raw/master/screenshots/fac-3.png)
 
-- For CRM contact phone number text, we make it click-to-call link.
+- For CRM contact phone number text, extension could convert them to click-to-call link.
 
 ![ ](https://github.com/zxdong262/ringcentral-embeddable-extension-factory/raw/master/screenshots/fac-1.png)
 
-- Sync CRM contacts to our widgets after user authorize.
+- Sync CRM contacts to our widgets after user authorization.
 
 ![ ](https://github.com/zxdong262/insightly-embeddable-ringcentral-phone/raw/master/screenshots/insightly-4.png)
 
-- Sync call log to CRM automatticly or mannually.
+- Sync call log to CRM automatically or manually.
 
 ![ ](https://github.com/zxdong262/hubspot-embeddable-ringcentral-phone/raw/master/screenshots/hs6.png)
 
-- Check CRM conatct activities from our widgets.
+- Check CRM contact activities from our widgets.
 
 ![ ](https://github.com/zxdong262/hubspot-embeddable-ringcentral-phone/raw/master/screenshots/hs7.png)
 
-- Show CRM contact info panel when inbound/outbpund call with CRM contact.
+- Show CRM contact info panel when inbound/outbound call with CRM contact.
 
 ![ ](https://github.com/zxdong262/hubspot-embeddable-ringcentral-phone/raw/master/screenshots/hubspot1.png)
 
-## How do we do it
+## Create extension with CLI tool
 
-Ok, two steps, build a chrome extension, and add all the above features, with [Embbnux Ji](https://github.com/embbnux)'s tuturial:
- [Building Chrome Extension Integrations with RingCentral Embeddable](https://medium.com/ringcentral-developers/build-a-chrome-extension-with-ringcentral-embeddable-bb6faee808a3)
-and [third-party-service-in-widget document](https://github.com/ringcentral/ringcentral-embeddable/blob/master/docs/third-party-service-in-widget.md)
+To minimize the effort to create these extensions, I created the CLI tool: [ringcentral-embeddable-extension-factory](https://github.com/ringcentral/ringcentral-embeddable-extension-factory)
 
-Not hard, but still need more effort, so I created the [ringcentral-embeddable-extension-factory](https://github.com/zxdong262/ringcentral-embeddable-extension-factory) to minimize the work.
-
-We could simplify it like this.
+Use CLI tool to init a extension project will be like this:
 
 ```bash
 # make sure you have npm@5.2+ installed
 npx ringcentral-embeddable-extension-factory my-app
-# or install it first
-# npm i -g ringcentral-embeddable-extension-factory && reef my-app
-# then carefully answer all questions, then the my-app folder will be create
-cd my-app
-npm i
-npm start
-# Then just follow my-app/README.md's instruction
 ```
 
 ![ ](https://github.com/zxdong262/ringcentral-embeddable-extension-factory/raw/master/screenshots/cli.png)
 
-For more detail, read [https://github.com/zxdong262/ringcentral-embeddable-extension-factory](https://github.com/zxdong262/ringcentral-embeddable-extension-factory)
+Then just follow the instruction inmy-app/README.md to build, test and develop the extension.
 
-Still, this is just a skeleton, need developer efforts to make it a work, CLI tool can not know what css selector to use yet, do the crm support oauth or not, how to get the csrf token etc, not that smart. I do add some common module to do common task, developer could just set proper config to make it work.
+I have a demo video to show this process.
+
+[https://youtu.be/2njQSk8x2K4](https://youtu.be/2njQSk8x2K4)
+
+As you can see, before setting proper config/functions, it will work as a **Embeddable widgets** only, if you are satisfied with this, it is already done! If you want the extension to do the listed features above, you need more work to get there. The tutorial and examples would be a good place to start.
+
+## The Tutorial
+
+This detailed tutorial will walk you through the process of creating Chrome RingCentral widgets extension for CRM.
+
+[https://ringcentral-tutorials.github.io/build-chrome-ringcentral-widgets-extension-for-crm/](https://ringcentral-tutorials.github.io/build-chrome-ringcentral-widgets-extension-for-crm/)
 
 ## Realworld examples
+
+You may get some ideas from these codes.
 
 - [hubspot-embeddable-ringcentral-phone (spa)](https://github.com/zxdong262/hubspot-embeddable-ringcentral-phone)
 - [insightly-embeddable-ringcentral-phone (spa)](https://github.com/zxdong262/insightly-embeddable-ringcentral-phone)
