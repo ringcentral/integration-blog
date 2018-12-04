@@ -13,7 +13,9 @@ RingCentral Embeddable widgets is a powerful tool for CRMs, its core power is ad
 
 ## Advanced features of these extensions could provide
 
-With chrome extension, we could add click-to-call buttons/links etc and all the third party features of our ringcentral-embeddable supported:
+[Embbnux Ji](https://github.com/embbnux) has a tuturial: [Building Chrome Extension Integrations with RingCentral Embeddable](https://medium.com/ringcentral-developers/build-a-chrome-extension-with-ringcentral-embeddable-bb6faee808a3), with this tutorial, we could create Chrome extension for any site with RingCentral Embeddable.
+
+For CRM sites, we may want to add more advanced features, like click-to-call buttons/links and all the third party features of our ringcentral-embeddable supported:
 
 - For CRM contact list, extension could add hover-to-show tooltip to show click-to-call button.
 
