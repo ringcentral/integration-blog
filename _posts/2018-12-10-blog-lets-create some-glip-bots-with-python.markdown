@@ -11,7 +11,7 @@ This is a intro blog about my recent work: [ringcentral-chatbot-python](https://
 
 The project is part of our chatbot plan: Make writing a glip chatbot easy and fun. It is not mature enough for public yet, still need more documents and adding more features.
 
-It do works and is really easy to work with, you do not even need to know any python to get it running and talking. So ringcentral developers, let's create some chatbot with python.
+It do works and is really easy to work with, you do not even need to know any python to get it running and talking. So ringcentral developers, let's create some chatbot with python, and give some feedback.
 
 ## Table of contents <!-- omit in toc -->
 
