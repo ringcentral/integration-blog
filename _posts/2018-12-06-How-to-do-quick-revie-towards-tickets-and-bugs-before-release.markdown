@@ -9,15 +9,16 @@ As we all know, before GA, there are tickets or bugs that we need to decide if t
 
 Before we discuss this topic, I want to share my understanding toward the definition of Bug, P3 bug and improvement.
 
-In my opinion, bug means current flow or operation will cause customer do mistake during work, which means our product not only lowers customer's efficiency, but also leads to customer's trouble.
+In my opinion, bug means current flow or operation will cause customer making mistake during work, which means our product not only lowers customer's efficiency, but also makes customer's trouble.
 
-**The examples:**
+From this side, we can define below scenarios as bugs, because it lowers customer's efficiency.
+**Bug examples:**
   * user can not dial out a phone number
   * the task that user is editing is overwrote by us, or at call    
   * At Call History or Active Call List, our product displays wrong phone numbers or wrong call direction/duration.
 
 
-So following this definition, we can have a better understanding toward P3 bug and improvement.
+Following this definition, we can have a better understanding toward P3 bug and improvement.
 As we know, P3 bug means it is a bug but not so important.
 
 BUT what does 'not so important' mean?
@@ -41,7 +42,7 @@ We assume total points is 10, we take apart 10 points as 6 points and 4 points.
 Now we add functional point and UI display point, we can get a total point.
 * If the points >= 6, it means the ticket needs to fix at current release
 * If the points is in 4-5,  it means the ticket doesn't need to fix at current release(It can be put to feature release)
-* If the points is in 4-5,  it means the ticket doesn't need to fix at current release, and engineer can resolve this ticket as won’t fix directly
+* If the points is in 1-3,  it means the ticket doesn't need to fix at current release, and engineer can resolve this ticket as won’t fix directly
 
     
 In my opinion, if engineer, QA, PM can reach this agreement, maybe we can handle those tickets more efficently.
