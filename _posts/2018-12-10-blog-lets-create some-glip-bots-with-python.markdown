@@ -9,9 +9,9 @@ categories: blog
 
 This is a intro blog about my recent work: [ringcentral-chatbot-python](https://github.com/zxdong262/ringcentral-chatbot-python).
 
-The project is part of our chatbot plan: Make writing a glip chatbot easy and fun. It is not mature enough for public yet, still need more documents and adding more features.
+The project is part of our chatbot plan: make writing a glip chatbot easy and fun. It is not mature enough for public yet, still need to add more documents and features.
 
-It do works and is really easy to work with, you do not even need to know any python to get it running and talking. So ringcentral developers, let's create some chatbot with python, and give some feedback.
+It does work and is really easy to work with, you do not even need to know any python to get it running and talking. So ringcentral developers, let's create some chatbot with python, and give some feedback.
 
 ## Table of contents <!-- omit in toc -->
 
@@ -52,30 +52,26 @@ virtualenv venv --python=python3
 # use env
 source ./venv/bin/activate
 
-# install deps
+# install required modules
 pip install -r requirements.txt
-npm i
 
 # run ngrok proxy
 # since bot need https server,
 # so we need a https proxy for ringcentral to visit our local server
 ./bin/proxy
 # will show:
-# Forwarding https://xxxxx.ngrok.io -> localhost:8989
+# Forwarding https://xxxxx.ngrok.io -> localhost:9890
 
 # create env file
-cp .sample.env .env
-# then edit .env, set proper setting,
-# and goto your ringcentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot-oauth
+# .env already created from .sample.env
+# just edit .env, set proper setting,
 RINGCENTRAL_BOT_SERVER=https://xxxxx.ngrok.io
 
 ## for bots auth required, get them from your ringcentral app page
 RINGCENTRAL_BOT_CLIENT_ID=
 RINGCENTRAL_BOT_CLIENT_SECRET=
 
-# create custom bot config file
-# since all functions are optional, you could keep those you edited, delete others in config.py
-cp config.sample.py config.py
+# and goto your ringcentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot-oauth
 
 # run local dev server
 ./bin/start
@@ -89,9 +85,11 @@ cp config.sample.py config.py
 
 ## Let's write some bot logic
 
-let's write a bot that can tell server time/date as a hello world bot
+let's write a bot that can tell server time/date as a hello world bot.
 
-Edit `config.py`, like this:
+First, create bot config file by `cp config.sample.py config.py`
+
+Then Edit `config.py`, like this:
 
 ```py
 """
@@ -178,16 +176,16 @@ If you want to access user data, subscribe to user event, or use different datab
 
 ## Example bots
 
-- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot) : Simple ringcentral chatbot which can tell time/date.
-- [assistant-bot](https://github.com/zxdong262/ringcentral-assistant-bot) : Simple assistant Glip bot to show user/company information, this bot will show you how to access user data.
-- [survey-bot](https://github.com/zxdong262/ringcentral-survey-bot) : Example survey bot, this bot will show you how to create/use custom database wrapper.
+- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot): simple ringcentral chatbot that can tell server time/date.
+- [assistant-bot](https://github.com/zxdong262/ringcentral-assistant-bot): simple assistant Glip bot to show user/company information, this bot will show you how to access user data.
+- [survey-bot](https://github.com/zxdong262/ringcentral-survey-bot): example survey bot, this bot will show you how to create/use custom database wrapper.
 
 ## Deploy to AWS Lambda
 
-If you feel ok about the bot, time to deploy to production server, I would suggest AWS Lambda for these reasons:
+If you are satisfied with the bot, time to deploy to production server, I would suggest AWS Lambda for these reasons:
 
 1. Free tier gives 1000000 free run per month
-2. Https ready, do not need extra efforts to handle domain/https staff
+2. Https ready, do not need extra efforts to handle domain/https
 3. Very stable and reliable
 
 *Be aware that AWS Lambda **ONLY works in linux** on an x64 architecture. For **non-linux os**, we need **docker** to build dependencies, should [install docker](https://docs.docker.com/docker-for-mac/) first.
@@ -200,10 +198,10 @@ aws_access_key_id = <your aws_access_key_id>
 aws_secret_access_key = <your aws_secret_access_key>
 ```
 
-For more information, refer to https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html
+For more information, refer to [https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)
 
 ```bash
-cp dev/lambda/serverless.sample.yml devlambda/serverless.yml
+cp dev/lambda/serverless.sample.yml dev/lambda/serverless.yml
 ```
 
 Edit `dev/lambda/serverless.yml`, and make sure you set the proper name and required env.
@@ -248,13 +246,13 @@ bin/watch
 ```
 
 - Create API Gateway for your Lambda function, shape as `https://xxxx.execute-api.us-east-1.amazonaws.com/default/poc-your-bot-name-dev-bot/{action+}`
-- Make sure your Lambda function role has permission to read/write dynamodb(Set this from AWS IAM roles, could simply attach `AmazonDynamoDBFullAccess` and `AWSLambdaRole` policies to Lambda function's role)
-- Make sure your Lambda function's timeout more than 5 minutes
+- Make sure your Lambda function role has permission to read/write dynamodb(Set this from AWS IAM roles, could simply attach `AmazonDynamoDBFullAccess` and `AWSLambdaRole` policies to Lambda function's role).
+- Make sure your Lambda function's timeout is set to be more than 5 minutes.
 - Do not forget to set your RingCentral app's redirect URL to Lambda's API Gateway URL, `https://xxxx.execute-api.us-east-1.amazonaws.com/default/poc-your-bot-name-dev-bot/bot-oauth` for bot app.
 
 ## Use Extensions
 
-RingCentral Chatbot Framework for Python Extensions will extend bot command support with simple setting in `.env`.
+RingCentral Chatbot Framework for Python Extensions will extend bot command support with simple settings in `.env`.
 
 Just set like this in `.env`
 
@@ -270,7 +268,7 @@ You can search for more extension in [pypi.org](https://pypi.org) with keyword `
 
 ## Write a extension yourself
 
-Writing one extension will be simple, just check out [botinfo extension](https://github.com/zxdong262/ringcentral-chatbot-python-ext-bot-info) as an example, you just need to write one function `botGotPostAddAction` there.
+Writing extension is simple, just check out [botinfo extension](https://github.com/zxdong262/ringcentral-chatbot-python-ext-bot-info) as an example, you just need to write one function `botGotPostAddAction` there.
 
 Make sure you follow the naming rule: starts with `ringcentral_bot_framework_extension_` and publish to pypi.org and it is done!
 
@@ -318,4 +316,4 @@ def botGotPostAddAction(
 
 - The core bot framework logic is implanted from [ringcentral-ai-bot](https://github.com/ringcentral-tutorials/ringcentral-ai-bot) written by [@tylerlong](https://github.com/tylerlong)
 
-- Also check tyler's js bot framework [https://github.com/tylerlong/ringcentral-chatbot-js](https://github.com/tylerlong/ringcentral-chatbot-js)
+- Also check tyler's js bot framework [https://github.com/ringcentral/ringcentral-chatbot-js](https://github.com/ringcentral/ringcentral-chatbot-js)
