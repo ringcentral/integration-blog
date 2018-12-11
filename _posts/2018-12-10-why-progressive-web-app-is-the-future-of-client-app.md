@@ -8,7 +8,7 @@ author: Embbnux Ji
 
 ![ ](https://cdn-images-1.medium.com/max/1600/1*wf0nzvLDFABh3X60lgOQdw.png)
 
-As React.js and Vue.js become more and more popular, we have a lot single page web application now. They bring great user experience and technology advancements. But what's next. It is Progressive Web Apps. With Progressive Web Apps, you make your web app having great user experience as native app.
+As React.js and Vue.js become more and more popular, we have a lot of single page web applications now. They bring great user experience and technology advancements. But what's next. It is Progressive Web Apps. With Progressive Web Apps, you make your web app having great user experience as native app.
 
 ## Speed up web client
 
