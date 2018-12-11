@@ -11,7 +11,7 @@ This is a intro blog about my recent work: [ringcentral-chatbot-python](https://
 
 The project is part of our chatbot plan: make writing a glip chatbot easy and fun. It is not mature enough for public yet, still need to add more documents and features.
 
-It does work and is really easy to work with, you do not even need to know any python to get it running and talking. So ringcentral developers, let's create some chatbot with python, and give some feedback.
+It does work and is really easy to work with, you do not even need to know any python to get it running and talking. So RingCentral developers, let's create some chatbot with python, and give some feedback.
 
 ## Table of contents <!-- omit in toc -->
 
@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 # run ngrok proxy
 # since bot need https server,
-# so we need a https proxy for ringcentral to visit our local server
+# so we need a https proxy for RingCentral to visit our local server
 ./bin/proxy
 # will show:
 # Forwarding https://xxxxx.ngrok.io -> localhost:9890
@@ -67,11 +67,11 @@ pip install -r requirements.txt
 # just edit .env, set proper setting,
 RINGCENTRAL_BOT_SERVER=https://xxxxx.ngrok.io
 
-## for bots auth required, get them from your ringcentral app page
+## for bots auth required, get them from your RingCentral app page
 RINGCENTRAL_BOT_CLIENT_ID=
 RINGCENTRAL_BOT_CLIENT_SECRET=
 
-# and goto your ringcentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot-oauth
+# and goto your RingCentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot-oauth
 
 # run local dev server
 ./bin/start
@@ -79,7 +79,7 @@ RINGCENTRAL_BOT_CLIENT_SECRET=
 
 ## Test bot
 
-- Goto your ringcentral app's bot section, click 'Add to glip'
+- Goto your RingCentral app's bot section, click 'Add to glip'
 - Login to [https://glip-app.devtest.ringcentral.com](https://glip-app.devtest.ringcentral.com), find the bot by searching its name. Talk to the bot.
 - Edit config.py to change bot bahavior and test in [https://glip-app.devtest.ringcentral.com](https://glip-app.devtest.ringcentral.com)
 
@@ -176,7 +176,7 @@ If you want to access user data, subscribe to user event, or use different datab
 
 ## Example bots
 
-- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot): simple ringcentral chatbot that can tell server time/date.
+- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot): simple RingCentral chatbot that can tell server time/date.
 - [assistant-bot](https://github.com/zxdong262/ringcentral-assistant-bot): simple assistant Glip bot to show user/company information, this bot will show you how to access user data.
 - [survey-bot](https://github.com/zxdong262/ringcentral-survey-bot): example survey bot, this bot will show you how to create/use custom database wrapper.
 
@@ -210,7 +210,7 @@ Edit `dev/lambda/serverless.yml`, and make sure you set the proper name and requ
 # you can define service wide environment variables here
   environment:
     NODE_ENV: production
-    # ringcentral apps
+    # RingCentral apps
 
     ## bots
     RINGCENTRAL_BOT_CLIENT_ID:
