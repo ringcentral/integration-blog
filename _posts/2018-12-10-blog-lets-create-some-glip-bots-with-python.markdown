@@ -14,19 +14,6 @@ The project is part of our chatbot plan: make writing a glip chatbot easy and fu
 
 It does work and is really easy to work with, you do not even need to know any python to get it running and talking. So RingCentral developers, let's create some chatbot with python, and give some feedback.
 
-## Table of contents <!-- omit in toc -->
-
-- [author: Drake Zhao](#author-drake-zhao)
-- [Prerequisites](#prerequisites)
-- [Getting started](#getting-started)
-- [Test bot](#test-bot)
-- [Let's write some bot logic](#lets-write-some-bot-logic)
-- [Example bots](#example-bots)
-- [Deploy to AWS Lambda](#deploy-to-aws-lambda)
-- [Use Extensions](#use-extensions)
-- [Write a extension yourself](#write-a-extension-yourself)
-- [Credits](#credits)
-
 ## Prerequisites
 
 - Python3.6+ and Pip3
