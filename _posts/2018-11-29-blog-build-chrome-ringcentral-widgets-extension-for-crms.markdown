@@ -3,6 +3,7 @@ layout: post
 title:  "Build Chrome extension for CRMs with RingCentral Embeddable widgets"
 date:   2018-11-29 13:31:07 +0800
 categories: blog
+author: Drake Zhao
 ---
 
 ![ ](https://github.com/ringcentral/ringcentral-embeddable-extension-factory/raw/master/screenshots/bb.jpg)

@@ -3,6 +3,7 @@ layout: post
 title:  "Let's create some glip bots with python"
 date:   2018-12-10 13:31:07 +0800
 categories: blog
+author: Drake Zhao
 ---
 
 ![ ](https://github.com/zxdong262/ringcentral-chatbot-factory-py/blob/master/screenshots/wanted.jpg?raw=true)
@@ -15,7 +16,7 @@ It does work and is really easy to work with, you do not even need to know any p
 
 ## Table of contents <!-- omit in toc -->
 
-- [categories: blog](#categories-blog)
+- [author: Drake Zhao](#author-drake-zhao)
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
 - [Test bot](#test-bot)
