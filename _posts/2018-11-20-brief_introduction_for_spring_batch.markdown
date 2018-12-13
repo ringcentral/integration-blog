@@ -16,7 +16,7 @@ In RingCentral the Archiver is also a bulk processing system, to figure out whet
 ###### Business Scenarios 
  	•	Periodically : can be executed periodically 
  	•	Concurrent : can be processed in parallel lines 
- 	•	Staged, enterprise message-driven processing
+ 	•	Staged : enterprise message-driven processing
  	•	Massively : may have big amount of data to process 
  	•	Manual or scheduled : have multiple way to trigger 
  	•	Step by Step : sequential processing of dependent steps 
