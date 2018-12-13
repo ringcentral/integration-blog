@@ -3,6 +3,7 @@ layout: post
 title:  "Let's create some glip bots with python"
 date:   2018-12-10 13:31:07 +0800
 categories: blog
+author: Drake Zhao
 ---
 
 ![ ](https://github.com/zxdong262/ringcentral-chatbot-factory-py/blob/master/screenshots/wanted.jpg?raw=true)
@@ -12,19 +13,6 @@ This is a intro blog about my recent work: [ringcentral-chatbot-python](https://
 The project is part of our chatbot plan: make writing a glip chatbot easy and fun. It is not mature enough for public yet, still need to add more documents and features.
 
 It does work and is really easy to work with, you do not even need to know any python to get it running and talking. So RingCentral developers, let's create some chatbot with python, and give some feedback.
-
-## Table of contents <!-- omit in toc -->
-
-- [categories: blog](#categories-blog)
-- [Prerequisites](#prerequisites)
-- [Getting started](#getting-started)
-- [Test bot](#test-bot)
-- [Let's write some bot logic](#lets-write-some-bot-logic)
-- [Example bots](#example-bots)
-- [Deploy to AWS Lambda](#deploy-to-aws-lambda)
-- [Use Extensions](#use-extensions)
-- [Write a extension yourself](#write-a-extension-yourself)
-- [Credits](#credits)
 
 ## Prerequisites
 
