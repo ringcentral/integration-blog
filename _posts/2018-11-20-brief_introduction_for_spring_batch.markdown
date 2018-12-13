@@ -10,7 +10,7 @@ Also this article can be treat as a reading review of the "Spring Batch - Refere
 
 #### **BACKGROUND**
 Many applications within the enterprise require bulk processing to perform business operations. However, there has been a lack of such a Java-based batch processing framework for years. So, springSource and Accenture collaborated, try to standardized this area. 
-In RingCentral the Archiver is also a bulk processing system, to figure out whether Spring-Bath is suitable for Archiver we should know what kind of features that Spring-Batch supply. 
+In RingCentral the Archiver is also a bulk processing system, to figure out whether Spring-Batch is suitable for Archiver we should know what kind of features that Spring-Batch supply. 
 
 #### **SCENARIOS**
 ###### Business Scenarios 
