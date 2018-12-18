@@ -33,8 +33,8 @@ Performing code reviews(for reviewers)
 
 #### Reflection:
 
-Same with coding dojo, code review is a good way to share knowledge and improve code quality as well. Although code review benifits a lot, sometimes it might be a kind of pressure for reviewers and reviewees, what should we do when we want to new a PR or how to perform code reviews always confuse me.
+Same with coding dojo, code review is a good way to share knowledge and improve code quality as well. Although our project benifits a lot from code review, sometimes code review adds pressure to reviewers and reviewees, what should we do when we want to create a new PR or how to perform code reviews always confuse me.
 
 **Preparing code for review** is a good way to make the code easier to review which could save reviewers’ time and reduce the reviewing pressure.
 
-Besides this article gives a list of things a reviewer should pay attention to in a code review, this part is very useful and practicable for teams to perform. But I just list a part of them that are suitable for us.
+Furthermore, this article gives a list of things a reviewer should pay attention to in a code review, this is very useful and practicable for teams to perform. However, I only list out the ones that are suitable for us.
