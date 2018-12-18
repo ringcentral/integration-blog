@@ -34,7 +34,7 @@ Unit testing is a software testing method by which individual units of source co
 
 
 ## What's wrong with the general front-end testing?
-
+
 When we are evaluating the integrity of a test strategy, we try to validate it with some of the following criteria:
 
 * Pass acceptance criteria
