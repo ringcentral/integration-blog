@@ -10,7 +10,7 @@ author: Michael Lin
 
 ![test-strategy](https://raw.githubusercontent.com/unadlib/integration-blog/testing_strategy/_site/assets/test-strategy.jpg)
 
-> The assumption in this article is that we are continuously developing a relatively large front-end project, and we have adopted a domain-driven design, as well as an object-oriented programming model. The front-end business is split into **`domain modules`**/**`UI components`**. So we may need to have a more complete testing strategy to ensure such a front-end project.
+> The assumption in this article is that we are continuously developing a relatively large front-end project, and we have adopted a domain-driven design, as well as an object-oriented programming model. The front-end business logic is split into **`domain modules`**/**`UI components`**. So we may need to have a more complete testing strategy to assure such a front-end project.
 
 ## General front-end testing
 
@@ -44,21 +44,23 @@ When we are evaluating the integrity of a test strategy, we try to validate it w
 * Test writing costs and maintenance costs
 * Continuous refactoring risks
 
-A better test strategy should not be as consistent as possible with the above items.
+I think a better test strategy should be as common as possible with the above items.
 
-In the general testing strategy mentioned above, the problems posed by the problem, we may not be able to catch bugs as early as possible. Because the E2E test is most likely to run once in a relatively long period of time, rather than every PR or even every code commit, because the e2e run is usually slow and unstable, it is the most expensive automated test to run.
+In the general testing strategy mentioned above, E2E can override more AC conditions, but usually it runs less frequently; IT is run more frequently than E2E, but IT often includes an integrated app in almost the entire system, which is often more bloated in this case, and UT typically accounts for a larger proportion of such this strategy, although the logical coverage is good, but in a large refactoring usually UT will also change, of course, most of these UT is not too much of a problem.
+
+From the point of view of catching bugs as early as possible, does that mean that the general testing strategy can be better improved? Because the E2E test is most likely to run once in a relatively long period of time, rather than every PR or even every code commit, because the e2e run is usually slow and unstable, it is the most expensive automated test to run.
 
 Sometimes we have some integration tests that start a bloated integrated system, maybe it already includes a lot of mock, and you can keep running tests over and over again, but when there are more and more cases of integration testing, we can't even guarantee faster completion within each PR, and in a resource-constrained CI environment, it could be half an hour, or even longer.
 
-As a system becomes more complex, we need a complete testing strategy to tell us what cases failed in these tests, and we were able to catch bugs more efficiently through test reports. Whether it is network instability, back-end server APIs exceptions, front-end domain modules exceptions or UI components exceptions, and so on, we can quickly catch this bugs. Obviously, the general testing strategy can provide a limited amount of lookup bugs help. For example, UT has succeeded, IT has failed, and E2E has failed too. It is difficult for us to analyze clearer information from such test reports.
+As a system becomes more complex, we need a complete testing strategy to tell us what cases failed in these tests, and to enable us to catch bugs more efficiently through test reports. Whether it is network instability, back-end server APIs exceptions, front-end domain modules exceptions or UI components exceptions, and so on, we can quickly catch these bugs. Obviously, the general testing strategy can provide limited help in locating bugs. For example, UT has succeeded, IT has failed, and E2E has failed too. It is difficult for us to analyze clearer information from such test reports.
 
-The cost of writing test code should be balanced with a continuable delivery development model. When the AC definition is clear, it's just that our test code should be able to overwrite the information described by AC. In theory, if all AC is guaranteed by E2E, this will also enable the verification of AC. But obviously, this brings with it a highly unbalanced test instability and inefficient operation.
+The cost of writing test code should be balanced with a continuous delivery development model. When the AC definition is clear, it's just that our test code should be able to overwrite the information described by AC. In theory, if all AC is fully implemented by E2E, this will also enable the verification of AC. But obviously, this brings with it a highly unbalanced test instability and inefficient operation.
 
-If the unit tests are adequate enough, will this ensure that our AC can be accepted and become viable? This should depend on the maintenance cost of the unit test, our each refactoring will modify the code, as well as the unit tests involved in the code, then the code variability of the unit test means that we should need a higher level of testing than UT to ensure that we refactor the code logic.
+If the unit tests are adequate enough, will this ensure that our AC can be accepted and become viable? This should depend on the maintenance cost of the unit test, each time we refactor our code, we will have to modify the unit tests involved in these code as well, which means we need a higher level of test to ensure the quality and correctness of these code, despite their fast changing nature.
 
 ## What's the key to solving the problem?
 
-Among the issues we mentioned for some test strategies, based on our ATDD sustainable delivery development model, AC's assurance is clearly the most important, and a good test strategy should ensure that every refactoring is fully confident, while at the same time, there is a good balance between running speed, finding bugs, and maintaining the cost of test code. Among these additional elements, we very much do not recommend going in the extreme way, but rather a way of resembling the Cannikin Law to make our test strategy more complete.
+Among the issues we mentioned for some test strategies, based on our ATDD sustainable delivery development model, AC's assurance is clearly the most important, and a good test strategy should ensure that every refactoring is fully confident, while at the same time, there is a good balance between running speed, finding bugs, and maintaining the cost of test code. Among these additional elements, we very much do not recommend going in the extreme way, but rather a way of resembling the [Liebig's law][1] to make our test strategy more complete.
 
 ## Propose a more complete testing strategy
 
@@ -70,7 +72,7 @@ The E2E here should implement the most important AC parts, and it is best to sup
 
 - IT3
 
-IT3 is an integrated test of the overall system based on the mock service, which can run E2E code, but it does not actually start a browser to test, and all tests run in Node.js. Because it's a mock for back-end server APIs and the browser's real DOM, so it's faster than E2E, and it keeps running over and over again.
+IT3 is an integrated test of the overall system based on the mock service, which can run E2E code, but it does not actually start a browser to test, and all tests run in Node.js. Because it's a mock for back-end server APIs and the browser's real DOM, so it's faster than E2E, and it keeps running over and over again. In particular, it is important to note that IT3 is a fully reusable E2E code, and IT is the general testing strategy mentioned above that is often not able to reuse E2E code.
 
 - IT2
 
@@ -241,3 +243,7 @@ test(() => {
 ## Conclusion
 
 There are many factors we need to consider when developing a test strategy. From the point of view of correct verification based on AC, we should also consider the operation strategy, operating efficiency, writing and maintaining the cost of testing, bugs easy to find and refactoring assurance and other important factors, and should not go to extremes. In the case of ensuring a certain AC, we hope that this E2E/IT3/IT2/IT1/UT can be guaranteed in many ways to the quality of the code and the quality of the project engineering, while being agile enough for continuous delivery.
+
+
+
+[1]: https://en.wikipedia.org/wiki/Liebig%27s_law_of_the_minimum
