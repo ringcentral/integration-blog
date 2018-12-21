@@ -29,7 +29,7 @@ Working backwards typically has flow steps:
 
 It is the opposite of the traditional way. So, what’s the benefits of working backwards? 
 
-When we write press release, it will make us more clear towards what the product does and why it exists. Then comes FAQ, it’s another chance to define what the product is good for and consider questions our customer may ask. And writing code and testing is easy since we have know our goal unambiguous. Finally the user manual is natural to done.
+When we write press release, it will make us more clear towards what the product does and why it exists. Then comes FAQ, it’s another chance to define what the product is good for and consider questions our customer may ask. And writing code and testing is easy since we have know our goal unambiguous. Finally the user manual is done naturally.
 
 #### Reflection:
 So working backwards is goal-oriented and always focus on customer. It can help sort out our goals when we start a project. The importance of goal is self-evident, but most people or company forgot why to start when they go so far. Hope this 'working backwards' may inspire you in your work, thanks.
