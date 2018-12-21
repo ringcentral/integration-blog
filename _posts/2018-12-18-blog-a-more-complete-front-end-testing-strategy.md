@@ -44,7 +44,7 @@ When we are evaluating the integrity of a test strategy, we try to validate it w
 * Test writing costs and maintenance costs
 * Continuous refactoring risks
 
-I think a better test strategy should be as common as possible with the above items.
+I think a better test strategy should be as consistent as possible with the above items.
 
 In the general testing strategy mentioned above, E2E can override more AC conditions, but usually it runs less frequently; IT is run more frequently than E2E, but IT often includes an integrated app in almost the entire system, which is often more bloated in this case, and UT typically accounts for a larger proportion of such this strategy, although the logical coverage is good, but in a large refactoring usually UT will also change, of course, most of these UT is not too much of a problem.
 
@@ -54,7 +54,7 @@ Sometimes we have some integration tests that start a bloated integrated system,
 
 As a system becomes more complex, we need a complete testing strategy to tell us what cases failed in these tests, and to enable us to catch bugs more efficiently through test reports. Whether it is network instability, back-end server APIs exceptions, front-end domain modules exceptions or UI components exceptions, and so on, we can quickly catch these bugs. Obviously, the general testing strategy can provide limited help in locating bugs. For example, UT has succeeded, IT has failed, and E2E has failed too. It is difficult for us to analyze clearer information from such test reports.
 
-The cost of writing test code should be balanced with a continuous delivery development model. When the AC definition is clear, it's just that our test code should be able to overwrite the information described by AC. In theory, if all AC is fully implemented by E2E, this will also enable the verification of AC. But obviously, this brings with it a highly unbalanced test instability and inefficient operation.
+The cost of writing test code should be balanced with a continuous delivery development model. When the AC definition is clear, it's just that our test code should be able to align the information described by AC. In theory, if all AC is fully implemented by E2E, this will also enable the verification of AC. But obviously, this brings with it a highly unbalanced test instability and inefficient operation.
 
 If the unit tests are adequate enough, will this ensure that our AC can be accepted and become viable? This should depend on the maintenance cost of the unit test, each time we refactor our code, we will have to modify the unit tests involved in these code as well, which means we need a higher level of test to ensure the quality and correctness of these code, despite their fast changing nature.
 
