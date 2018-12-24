@@ -3,6 +3,7 @@ layout: post
 title:  "Reading Code Review Best Practices"
 date:   2018-12-10 13:31:07 +0800
 categories: blog
+author: Joy Zhang
 ---
 
 [Article Link](https://medium.com/palantir/code-review-best-practices-19e02780015f)
