@@ -1,15 +1,13 @@
 ---
 layout: post
-title:  "Building A continues data processing system"
+title:  "Building a continues data processing system"
 date:   2018-12-25 23:00:00 +0800
 categories: [blog]
 tags: [elixir, backend, back-pressure]
 author: Jun Lin
 ---
 
-# Building A continues data processing system
-
-## Archiver current status
+## A brief introduction to Archiver
 
 At RingCentral, we have a system called **Archiver**, which is a system automatically uploads customer’s call recordings, SMS and fax to their cloud storages.
 
