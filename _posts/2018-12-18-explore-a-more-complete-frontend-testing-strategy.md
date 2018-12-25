@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  "Explore a more complete front-end testing strategy"
