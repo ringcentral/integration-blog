@@ -72,46 +72,11 @@ Let’s see how to implement this system in GenStage.
 
 Fetcher:
 
-```elixir
-defmodule Archiver.Fetcher do
-  use GenStage
-
-  def start_link(args) do
-    GenStage.start_link(__MODULE__, args, name: __MODULE__)
-  end
-
-  def init(state), do: {:producer, state}
-
-  def handle_demand(demand, state) do
-    items = Database.get_items()
-
-    {:noreply, items, state}
-  end
-end
-```
+{% gist 3cf6275c8823310f7c33539753d9500a fetcher.ex %}
 
 Uploader:
 
-```elixir
-defmodule Archiver.Uploader do
-  use GenStage
-
-  def start_link(args) do
-    GenStage.start_link(__MODULE__, args, name: __MODULE__)
-  end
-
-  def init(_state) do
-    {:consumer, :the_state_does_not_matter, subscribe_to: [Archiver.Fetcher]}
-  end
-
-  def handle_events(items, _from, _state) do
-    items
-    |> Enum.map(&Task.start_link(Dropbox, :upload, [&1]))
-
-    {:noreply, [], :the_state_does_not_matter}
-  end
-end
-```
+{% gist 3cf6275c8823310f7c33539753d9500a uploader.ex %}
 
 When Unloader is started, it subscribes to the Fetcher and sends demand for items. The `handle_demand` callback is called, items are retrieved from the Database and passed over to `handle_events` in Uploader, which starts Tasks to process these items.
 
