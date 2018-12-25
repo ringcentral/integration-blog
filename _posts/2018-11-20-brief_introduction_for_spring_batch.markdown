@@ -3,6 +3,7 @@ layout: post
 title: A brief introduction of Spring-Batch in theory
 date: 2018-11-20 14:20:22 +0800
 tags: [JAVA, Archiver, Spring-Batch]
+author: Jakob He
 ---
 
 This article will briefly introduce the background, scenarios of Spring-Batch and principles of designing a general batch.  
