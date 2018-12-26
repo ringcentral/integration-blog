@@ -6,7 +6,7 @@ categories: readingnote
 author: Rukai Yu
 ---
 
-[Article Link](https://www.allthingsdistributed.com/2006/11/working_backwards.html)
+[Article Link](https://medium.freecodecamp.org/effective-use-of-typescript-with-react-3a1389b6072a)
 
 ![ ](https://cdn-images-1.medium.com/max/2000/1*qLgLDFCPLeZZlJ4v00jIOw.jpeg)
 
