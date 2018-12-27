@@ -36,9 +36,10 @@
   
   The app should keep the users engaged. A PWA provides features like push notification, home screen icon, full-screen and offline first app to glorify user engagement.
 
-  And not mater framework you use, PWA only needs the required components.
+  And not mater what framework you use, PWA only needs the required components.
 
-  There are three components as follow which are required to develop a PWA. 
+  There are three components required to develop a PWA as shown below:
+
   ![image](https://user-images.githubusercontent.com/24861316/50399596-8600f800-07bb-11e9-9087-b697a95376b1.png)
   
   The first component is the Service worker. Service worker works as a proxy between the browser and the network. It manages notifications pushing and helps to use web application in offline with the browser's cache API. 
@@ -49,8 +50,8 @@
 
   ### Reflection:
   
-  Progressive web application (PWA) is created to make web app provide a native-like experience with some components for users. Such as enabling to load when there is no network or network id poor, installing this app and show in the home screen, opening this app with full screen, having notification pushing and so on.
+  Progressive web application (PWA) is created to make web app provide a native-like experience with some components for users. Such as enabling to load when there is no network or network is poor, installing as app and show in the home screen, opening app in full screen, having notification pushing and so on.
 
-  As far as I am concerned, I think PWA can play a more and more important part in the unified application development. There are some reasons as follows. On the one hand, web is open and the mobile native application is closed. It causes users to search app with low efficiency in fixed app stores. On the other hand, Progressive web applications developed by a set of web technologies can work on different platforms. It can reduce lots of development cost. Of cause, the premise is that Progressive web applications should provide as good experience as native applications providing. And It almost did now in most scenarios.
+  I think PWA can play a more and more important part in the unified application development. On the one hand, web is open and the mobile native application is closed. It causes users to search app with low efficiency in fixed app stores. On the other hand, Progressive web applications developed by a set of web technologies can work on different platforms. It can reduce lots of development cost. Of cause, the premise is that Progressive web applications should provide as good experience as native applications providing. And It almost does now in most scenarios.
 
-  PWA deserves us to care because of the benefits.
+  PWA deserves our attention because of the benefits.
