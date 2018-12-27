@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>How to do quick-review of tickets and bugs before release? | Blog from RingCentral Integration</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="How to do quick-review of tickets and bugs before release?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As we all know, before GA, there are tickets or bugs that we need to decide if they should be fixed, have their priority lowered, or be converted to Improvement. This essay is for improving our efficiency toward review ticket." />
+<meta property="og:description" content="As we all know, before GA, there are tickets or bugs that we need to decide if they should be fixed, have their priority lowered, or be converted to Improvement. This essay is for improving our efficiency toward review ticket." />
+<link rel="canonical" href="http://localhost:4000/integration-blog/2018/12/06/How-to-do-quick-revie-towards-tickets-and-bugs-before-release.html" />
+<meta property="og:url" content="http://localhost:4000/integration-blog/2018/12/06/How-to-do-quick-revie-towards-tickets-and-bugs-before-release.html" />
+<meta property="og:site_name" content="Blog from RingCentral Integration" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-06T22:49:39+08:00" />
+<script type="application/ld+json">
+{"description":"As we all know, before GA, there are tickets or bugs that we need to decide if they should be fixed, have their priority lowered, or be converted to Improvement. This essay is for improving our efficiency toward review ticket.","@type":"BlogPosting","url":"http://localhost:4000/integration-blog/2018/12/06/How-to-do-quick-revie-towards-tickets-and-bugs-before-release.html","headline":"How to do quick-review of tickets and bugs before release?","dateModified":"2018-12-06T22:49:39+08:00","datePublished":"2018-12-06T22:49:39+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/integration-blog/2018/12/06/How-to-do-quick-revie-towards-tickets-and-bugs-before-release.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/integration-blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/integration-blog/feed.xml" title="Blog from RingCentral Integration" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/integration-blog/">Blog from RingCentral Integration</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/integration-blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to do quick-review of tickets and bugs before release?</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-06T22:49:39+08:00" itemprop="datePublished">Dec 6, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As we all know, before GA, there are tickets or bugs that we need to decide if they should be fixed, have their priority lowered, or be converted to Improvement.
+ This essay is for improving our efficiency toward review ticket.</p>
+
+<p>Before we discuss this topic, I want to share my understanding toward the definition of bug, p3 bug and improvement.</p>
+
+<p>In my opinion, bugs are what prevent user from finishing his journey in our app.
+Bug means current flow or operation will cause customer to have difficulties at work, which means our product not only lowers customer’s efficiency, but also makes customer’s trouble.</p>
+
+<p>From this side, we can define below scenarios as bugs, because it lowers customer’s efficiency.
+<strong>Bug examples:</strong></p>
+<ul>
+  <li>user can not dial out a phone number</li>
+  <li>the task that user is editing is overwrote by us</li>
+  <li>At call history or active call list, our product displays wrong phone numbers or wrong call direction/duration.</li>
+</ul>
+
+<p>Following this definition, we can have a better understanding toward P3 bug and improvement.
+As we know, p3 bug means it is a bug but not so important.</p>
+
+<p>BUT what does ‘not so important’ mean?
+It means it will cause difficulties for users but frequency of mistakes is low.
+To be more specific, if this bug is not main feature flow, there is another workround to resolve user’s issue, or the frequency of reproducing this issue is very low, we can define it as a p3 bug.</p>
+
+<p>Improvement means it will not cause difficulties for users but if we have this improvement, we can save user’s time and improve user’s efficiency.
+So if UI is probably not so beautiful, the feature is not so fancy, but it doesn’t effect user’s usage of this feature, it should belong to an improvement not a bug.</p>
+
+<p>According to above definitions, we can have a rough estimation towards those tickets.
+We assume total points is 10, we take apart 10 points as 6 points and 4 points.
+6 points aim to feature, 4 points aim to UI. ( Because we think functionality is more important than UI display.)</p>
+
+<p><strong>From functional point,</strong> We will evaluate a ticket as</p>
+<ul>
+  <li>5-6 points if this function/feature is very important to user</li>
+  <li>3-4 points if this function/feature is nice to have</li>
+  <li>1-2 points if this function/feature bring little effect</li>
+</ul>
+
+<p><strong>From UI display,</strong> We will evaluate a ticket as</p>
+<ul>
+  <li>3-4 points if this UI display effects user’s usage</li>
+  <li>1-2 points if this UI display doesn’t effect user’s usage</li>
+</ul>
+
+<p>Now we add functional point and UI display point, we can get a total point.</p>
+<ul>
+  <li>If the points &gt;= 6, it means the ticket needs to fix at current release</li>
+  <li>If the points is in 4-5,  it means the ticket doesn’t need to fix at current release(It can be put to feature release)</li>
+  <li>If the points is in 1-3,  it means the ticket doesn’t need to fix at current release, and engineer can resolve this ticket as won’t fix directly</li>
+</ul>
+
+<p>And there are other situations we need to consider: 
+If some scenarios we don’t include at AC discussion, what should we do?
+I think converting those tickets we didn’t consider to improvements is what we need to do.</p>
+
+<p>In a word, if engineer, QA, PM can reach this agreement, maybe we can handle those tickets more efficently.</p>
+
+  </div><a class="u-url" href="/integration-blog/2018/12/06/How-to-do-quick-revie-towards-tickets-and-bugs-before-release.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/integration-blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog from RingCentral Integration</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Blog from RingCentral Integration</li><li><a class="u-email" href="mailto:integration.dev@ringcentral.com">integration.dev@ringcentral.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is the place where RingCentral Integration team shares their ideas about things,  not just in tech, but everything.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

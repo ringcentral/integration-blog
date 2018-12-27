@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Explore a more complete front-end testing strategy | Blog from RingCentral Integration</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Explore a more complete front-end testing strategy" />
+<meta name="author" content="Michael Lin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is the place where RingCentral Integration team shares their ideas about things, not just in tech, but everything." />
+<meta property="og:description" content="This is the place where RingCentral Integration team shares their ideas about things, not just in tech, but everything." />
+<link rel="canonical" href="http://localhost:4000/integration-blog/blog/2018/12/18/explore-a-more-complete-frontend-testing-strategy.html" />
+<meta property="og:url" content="http://localhost:4000/integration-blog/blog/2018/12/18/explore-a-more-complete-frontend-testing-strategy.html" />
+<meta property="og:site_name" content="Blog from RingCentral Integration" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-18T12:30:00+08:00" />
+<script type="application/ld+json">
+{"description":"This is the place where RingCentral Integration team shares their ideas about things, not just in tech, but everything.","author":{"@type":"Person","name":"Michael Lin"},"@type":"BlogPosting","url":"http://localhost:4000/integration-blog/blog/2018/12/18/explore-a-more-complete-frontend-testing-strategy.html","headline":"Explore a more complete front-end testing strategy","dateModified":"2018-12-18T12:30:00+08:00","datePublished":"2018-12-18T12:30:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/integration-blog/blog/2018/12/18/explore-a-more-complete-frontend-testing-strategy.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/integration-blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/integration-blog/feed.xml" title="Blog from RingCentral Integration" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/integration-blog/">Blog from RingCentral Integration</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/integration-blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Explore a more complete front-end testing strategy</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-18T12:30:00+08:00" itemprop="datePublished">Dec 18, 2018
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Michael Lin</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="https://raw.githubusercontent.com/unadlib/integration-blog/testing_strategy/_site/assets/test-strategy.jpg" alt="test-strategy" /></p>
+
+<blockquote>
+  <p>The assumption in this article is that we are continuously developing a relatively large front-end project, and we have adopted a domain-driven design, as well as an object-oriented programming model. The front-end business logic is split into <strong><code class="highlighter-rouge">domain modules</code></strong>/<strong><code class="highlighter-rouge">UI components</code></strong>. So we may need to have a more complete testing strategy to assure such a front-end project.</p>
+</blockquote>
+
+<h2 id="general-front-end-testing">General front-end testing</h2>
+
+<p>Whether it’s a traditional test model or a continuous delivery model, we typically define the following three types of tests:</p>
+
+<p><img src="https://raw.githubusercontent.com/unadlib/integration-blog/testing_strategy/_site/assets/generic-test.png" alt="generic-test" /></p>
+
+<ul>
+  <li>E2E</li>
+</ul>
+
+<p>End-to-end testing involves ensuring that the integrated components of an application function as expected. The entire application is tested in a real-world scenario such as communicating with the database, network, hardware and other applications.</p>
+
+<ul>
+  <li>IT</li>
+</ul>
+
+<p>Integration testing is a key software development life cycle strategy. Generally, small software systems are integrated and tested in a single phase, whereas larger systems involve several integration phases to build a complete system, such as integrating modules into low-level subsystems for integration with larger subsystems. Integration testing encompasses all aspects of a software system’s performance, functionality and reliability.</p>
+
+<ul>
+  <li>UT</li>
+</ul>
+
+<p>Unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use.</p>
+
+<h2 id="whats-wrong-with-the-general-front-end-testing">What’s wrong with the general front-end testing?</h2>
+
+<p>When we are evaluating the integrity of a test strategy, we try to validate it with some of the following criteria:</p>
+
+<ul>
+  <li>Pass acceptance criteria</li>
+  <li>Catch bugs as early as possible</li>
+  <li>Faster running speed, especially at the top level of testing</li>
+  <li>Find bugs efficiently</li>
+  <li>Test writing costs and maintenance costs</li>
+  <li>Continuous refactoring risks</li>
+</ul>
+
+<p>I think a better test strategy should be as consistent as possible with the above items.</p>
+
+<p>In the general testing strategy mentioned above, E2E can override more AC conditions, but usually it runs less frequently; IT is run more frequently than E2E, but IT often includes an integrated app in almost the entire system, which is often more bloated in this case, and UT typically accounts for a larger proportion of such this strategy, although the logical coverage is good, but in a large refactoring usually UT will also change, of course, most of these UT is not too much of a problem.</p>
+
+<p>From the point of view of catching bugs as early as possible, does that mean that the general testing strategy can be better improved? Because the E2E test is most likely to run once in a relatively long period of time, rather than every PR or even every code commit, because the e2e run is usually slow and unstable, it is the most expensive automated test to run.</p>
+
+<p>Sometimes we have some integration tests that start a bloated integrated system, maybe it already includes a lot of mock, and you can keep running tests over and over again, but when there are more and more cases of integration testing, we can’t even guarantee faster completion within each PR, and in a resource-constrained CI environment, it could be half an hour, or even longer.</p>
+
+<p>As a system becomes more complex, we need a complete testing strategy to tell us what cases failed in these tests, and to enable us to catch bugs more efficiently through test reports. Whether it is network instability, back-end server APIs exceptions, front-end domain modules exceptions or UI components exceptions, and so on, we can quickly catch these bugs. Obviously, the general testing strategy can provide limited help in locating bugs. For example, UT has succeeded, IT has failed, and E2E has failed too. It is difficult for us to analyze clearer information from such test reports.</p>
+
+<p>The cost of writing test code should be balanced with a continuous delivery development model. When the AC definition is clear, it’s just that our test code should be able to align the information described by AC. In theory, if all AC is fully implemented by E2E, this will also enable the verification of AC. But obviously, this brings with it a highly unbalanced test instability and inefficient operation.</p>
+
+<p>If the unit tests are adequate enough, will this ensure that our AC can be accepted and become viable? This should depend on the maintenance cost of the unit test, each time we refactor our code, we will have to modify the unit tests involved in these code as well, which means we need a higher level of test to ensure the quality and correctness of these code, despite their fast changing nature.</p>
+
+<h2 id="whats-the-key-to-solving-the-problem">What’s the key to solving the problem?</h2>
+
+<p>Among the issues we mentioned for some test strategies, based on our ATDD sustainable delivery development model, AC’s assurance is clearly the most important, and a good test strategy should ensure that every refactoring is fully confident, while at the same time, there is a good balance between running speed, finding bugs, and maintaining the cost of test code. Among these additional elements, we very much do not recommend going in the extreme way, but rather a way of resembling the <a href="https://en.wikipedia.org/wiki/Liebig%27s_law_of_the_minimum">Liebig’s law</a> to make our test strategy more complete.</p>
+
+<h2 id="propose-a-more-complete-testing-strategy">Propose a more complete testing strategy</h2>
+
+<p><img src="https://raw.githubusercontent.com/unadlib/integration-blog/testing_strategy/_site/assets/new-test-strategy.png" alt="new-test-strategy" /></p>
+
+<ul>
+  <li>E2E</li>
+</ul>
+
+<p>The E2E here should implement the most important AC parts, and it is best to support smoke testing/UI testing/multi-browser compatibility testing.</p>
+
+<ul>
+  <li>IT3</li>
+</ul>
+
+<p>IT3 is an integrated test of the overall system based on the mock service, which can run E2E code, but it does not actually start a browser to test, and all tests run in Node.js. Because it’s a mock for back-end server APIs and the browser’s real DOM, so it’s faster than E2E, and it keeps running over and over again. In particular, it is important to note that IT3 is a fully reusable E2E code, and IT is the general testing strategy mentioned above that is often not able to reuse E2E code.</p>
+
+<ul>
+  <li>IT2</li>
+</ul>
+
+<p>IT2 is an integrated test of the minimum set of UI and the minimum set of domain modules, and it is also based on the mock service (including server APIs/DOM/BOM), because it is the module that starts the minimum set, so its test run speed and the operational performance of the minimum set can be guaranteed, it is faster than IT3. At the same time, it IT3 and has a good partition, IT2 is responsible for the minimum set, and IT3 is responsible for the overall collection. In addition to the minimum set, writing IT2 and IT3 is not very different, it can satisfy the mapping relationship through AC. Of course, unless there is a problem with the non-dependent module at the bottom, it is actually easier for us to pass the IT2/IT3 test report to bugs’s positioning.</p>
+
+<ul>
+  <li>IT1</li>
+</ul>
+
+<p>IT1 is just the minimum set of modules integration tests, it only requires the mock back-end server APIs, because it only starts the minimum set domain modules, so it is faster than IT2 run. One or more steps in AC are capable of being converted into IT2 tests. Through IT1/IT2/IT3 ‘s test report, it is also easier to infer the location or cause of bugs.</p>
+
+<ul>
+  <li>UT</li>
+</ul>
+
+<p>In IT2 talking about testing problems with the underlying modules (less dependent modules or non-dependent modules), we recommend that such modules be suitable for more complete UT, especially core functions, and that the core modules of other modules, or helper functions, can be considered for unit testing, and that in many cases, Can help AC cover more examples. It is an important addition to IT1/IT2/IT3.</p>
+
+<p><img src="https://raw.githubusercontent.com/unadlib/integration-blog/testing_strategy/_site/assets/it-cover.png" alt="it-cover" /></p>
+
+<p>Among the different test types, the test factors covered are also different. Then we hope that with such a test strategy can be more complete and efficient to meet the various factors of testing: The E2E test covers almost all of the test factors, IT3 is less than E2E real server APIs and real browsers, IT2 is less than T3 a number of non-essential modules and UI components, IT1 has fewer UI components than IT2, and UT only covers a small number of core logical parts.</p>
+
+<p>In such a test strategy, we can develop a better strategy to run the test code, we can run ut/it1 when submitting commit, we can run PR when we submit the UT/IT1/IT2 or even IT3, And at the time of our return or when we run the E2E regularly (a week or a few days). In such a operating system, we can ensure that the AC is guaranteed to be verified, but also to ensure a certain degree of operational efficiency balance, while different types of test reports will also contribute to the positioning of the bugs.</p>
+
+<h2 id="how-to-implement-building-this-more-complete-test">How to implement building this more complete test</h2>
+
+<p>Example for business code:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="p">@</span><span class="nd">Module</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="nx">_x</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//No dependent module core logic</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Module</span><span class="p">({</span> <span class="na">dependences</span><span class="p">:[</span><span class="s1">'Foo'</span><span class="p">]</span> <span class="p">})</span>
+<span class="kd">class</span> <span class="nx">Bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">b</span><span class="p">()</span> <span class="p">{}</span>
+     <span class="nx">_y</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//No dependent module core logic</span>
+    <span class="p">}</span>
+    <span class="kd">get</span> <span class="nx">name</span><span class="p">(){}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Module</span><span class="p">({</span> <span class="na">dependences</span><span class="p">:[</span><span class="s1">'Foo'</span><span class="p">,</span> <span class="s1">'Bar'</span><span class="p">]</span> <span class="p">})</span>
+<span class="kd">class</span> <span class="nx">Foobar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="kd">get</span> <span class="nx">name</span><span class="p">(){}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span>
+    <span class="c1">//...factory module</span>
+<span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">FoobarContainer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">foobar</span><span class="p">.</span><span class="nx">c</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">foobar</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">BarContainer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">bar</span><span class="p">.</span><span class="nx">b</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">bar</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="p">);</span>
+
+<span class="kd">class</span> <span class="nx">App</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">foobar</span> <span class="p">?</span> <span class="p">(</span>
+                <span class="o">&lt;</span><span class="nx">FoobarContainer</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="p">):</span> <span class="kc">null</span> <span class="p">}</span>
+            <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">bar</span> <span class="p">?</span> <span class="p">(</span>
+                <span class="o">&lt;</span><span class="nx">BarContainer</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="p">):</span> <span class="kc">null</span> <span class="p">}</span>
+        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">render</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">App</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">,
+</span>    <span class="nx">mountNode</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Example for acceptance criteria</p>
+
+<div class="language-cucumber highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">Feature</span><span class="p">:</span> AC
+
+  <span class="kn">Scenario Outline</span><span class="p">:</span>
+    <span class="nf">Given </span>User saw 'b' node
+    <span class="nf">When </span>User click 'b'
+    <span class="nf">Then </span>User should see 'b' changed
+    <span class="nf">When </span>User click 'f'
+    <span class="nf">Then </span>User should see 'f' changed
+
+  <span class="kn">Scenario Outline</span><span class="p">:</span>
+    <span class="nf">Given </span>User saw 'c' node
+    <span class="nf">When </span>User click 'c'
+    <span class="nf">Then </span>User should see 'c' changed
+    <span class="nf">When </span>User click 'e'
+    <span class="nf">Then </span>User should see 'e' changed
+
+</code></pre></div></div>
+
+<p>Example for testing</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// E2E &amp; IT3</span>
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">getApp</span><span class="p">();</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelectorB</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue1</span><span class="p">);</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelectorF</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue2</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">getApp</span><span class="p">();</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelectorC</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue1</span><span class="p">);</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelectorE</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue2</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// IT2</span>
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">barContainer</span> <span class="o">=</span> <span class="nx">getMinimalSet</span><span class="p">(</span><span class="nx">BarContainer</span><span class="p">);</span>
+    <span class="nx">barContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelector</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue2</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">foobarContainer</span> <span class="o">=</span> <span class="nx">getMinimalSet</span><span class="p">(</span><span class="nx">FoobarContainer</span><span class="p">);</span>
+    <span class="nx">foobarContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">nodeSelector</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue1</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+<span class="c1">// IT1</span>
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">getMinimalSet</span><span class="p">(</span><span class="nx">Bar</span><span class="p">);</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">b</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">getMinimalSet</span><span class="p">(</span><span class="nx">Foobar</span><span class="p">);</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">c</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// UT</span>
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_x</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">Bar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_y</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expectedValue</span><span class="p">);</span> 
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There are many factors we need to consider when developing a test strategy. From the point of view of correct verification based on AC, we should also consider the operation strategy, operating efficiency, writing and maintaining the cost of testing, bugs easy to find and refactoring assurance and other important factors, and should not go to extremes. In the case of ensuring a certain AC, we hope that this E2E/IT3/IT2/IT1/UT can be guaranteed in many ways to the quality of the code and the quality of the project engineering, while being agile enough for continuous delivery.</p>
+
+
+  </div><a class="u-url" href="/integration-blog/blog/2018/12/18/explore-a-more-complete-frontend-testing-strategy.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/integration-blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog from RingCentral Integration</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Blog from RingCentral Integration</li><li><a class="u-email" href="mailto:integration.dev@ringcentral.com">integration.dev@ringcentral.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is the place where RingCentral Integration team shares their ideas about things,  not just in tech, but everything.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
