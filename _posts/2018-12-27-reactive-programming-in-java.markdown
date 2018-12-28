@@ -28,4 +28,19 @@ To use RxJava in our Maven project, we’ll need to add the following dependency
     <version>${rx.java.version}</version>
 </dependency>
 ```
+There are two key types to understand when working with RxJava:
 
+- Observable represents any object that can get data from a data source and whose state may be of interest in a way that other objects may register an interest
+- An observer is any object that wishes to be notified when the state of another object changes
+An observer subscribes to an Observable sequence. The sequence sends items to the observer one at a time.
+
+The observer handles each one before processing the next one. If many events come in asynchronously, they must be stored in a queue or dropped.
+
+In Rx, an observer will never be called with an item out of order or called before the callback has returned for the previous item.
+Create Observable like below:
+```
+Observable<String> observable = Observable.just("Hello");
+observable.subscribe(s -> result = s);
+  
+assertTrue(result.equals("Hello"));
+```
