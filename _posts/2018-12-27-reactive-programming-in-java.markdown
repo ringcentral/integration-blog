@@ -44,3 +44,14 @@ observable.subscribe(s -> result = s);
   
 assertTrue(result.equals("Hello"));
 ```
+The example on three different methods on the observer interface: OnNext, OnError, and OnCompleted
+```
+String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+Observable<String> observable = Observable.from(letters);
+observable.subscribe(
+  i -> result += i,  //OnNext
+  Throwable::printStackTrace, //OnError
+  () -> result += "_Completed" //OnCompleted
+);
+assertTrue(result.equals("abcdefg_Completed"));
+```
