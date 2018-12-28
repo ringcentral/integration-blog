@@ -79,7 +79,7 @@ Observable.fromIterable(words)
 ```
 with the result:
 ```
-1. a
+ 1. a
  2. b
  3. c
  4. d
@@ -106,3 +106,5 @@ with the result:
 25. y
 26. z
 ```
+### Conclusion
+We've talked about the concept of reactive programming, the benefit, how can we use it and different implementation and take RxJava as the example. Basically, the reactive programming is a concept and methodology, different people or group might have different view or interpretation on it. 
