@@ -21,6 +21,11 @@ There are different implementation on Java for reactive programming, like:
 
 Here I would like to take RxJava as an example. 
 To use RxJava in our Maven project, we’ll need to add the following dependency to our pom.xml:
-> test
-> test2
+```
+<dependency>
+    <groupId>io.reactivex</groupId>
+    <artifactId>rxjava</artifactId>
+    <version>${rx.java.version}</version>
+</dependency>
+```
 
