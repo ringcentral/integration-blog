@@ -107,4 +107,4 @@ with the result:
 26. z
 ```
 ### Conclusion
-We've talked about the concept of reactive programming, the benefit, how can we use it and different implementation and take RxJava as the example. Basically, the reactive programming is a concept and methodology, different people or group might have different view or interpretation on it. 
+We've talked about the concept of reactive programming, the benefit, how can we use it and different implementation and take RxJava as the example. Basically, the reactive programming is a concept and methodology, different people or group might have different view or interpretation on it but one simple word on the purpose is to make the application more responsive to provide the high performance to our users
