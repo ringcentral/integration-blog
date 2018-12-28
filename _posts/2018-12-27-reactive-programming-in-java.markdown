@@ -17,5 +17,10 @@ In software programming, Reactive Extensions is a set of tools allowing imperati
 There are different implementation on Java for reactive programming, like:
 - Java 9 Flow API
 - RxJava
-- Reactor
+- Reactor 
+
 Here I would like to take RxJava as an example. 
+To use RxJava in our Maven project, we’ll need to add the following dependency to our pom.xml:
+> test
+> test2
+
