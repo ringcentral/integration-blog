@@ -32,4 +32,4 @@ But I also agreed that in a big project, it is worth discussing that we cannot d
 * Is the DEV team ready for it? Not everyone is suitable with TypeScript. It means you have to change your thought, coding style, usual practice from a dynamic language to a static (or static-like) one, and many other constraints that you don't have in pure JS development. As someone who has backend development experience, it could be more smooth to fit this.
 * If we adopt Typescript, we should aim for long term use! It is not usable nor valuable for project to change main framework and architecture frequently. That means if we moved to TypeScript, we keep the future in mind. We also could obtain more experiences.
 
-To summarize, I welcome/enjoy to TS development, but we need time to make it a smooth transition.
+To summarize, I welcome/enjoy to TS development, but we need time to make the transition smoother.
