@@ -23,7 +23,7 @@ Here to discuss a tool Lighthouse which I investigative recently.
 
 ### How to use Lighthouse
 
-The lists below is some ways to use Lighthouse
+The list below is some ways to use Lighthouse
 
 - **Chrome extension** Install Chrome extension of Lighthouse is a easy way to use it.
 - **Chrome DevTools** If you have a recent versions Chrome browser, you can easily use Lighthouse by open browser's dev tools.
@@ -31,12 +31,11 @@ The lists below is some ways to use Lighthouse
 
 ### Who should use it
 
-Lighthouse can be used in various ways by developers and non-technical audience. you are you always can get corresponding information by using it.
+Lighthouse can be used in various ways by developers and non-technical audience. you are always can get corresponding information by using it.
 
 ### What we can get from Lighthouse
 
-At present, Audits are conducted in a few key areas — `performance`, `accessibility`, `best practices`, `progressive web applications` and 
-`seo`. For every area, the report will give you the test 
+At present, Audits are conducted in a few key areas — `performance`, `accessibility`, `best practices`, `progressive web applications` and `seo`. For every area, the report will give you the test 
  result and some actionable advice.
  
 #### Related to our project
