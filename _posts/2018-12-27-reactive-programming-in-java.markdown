@@ -30,7 +30,7 @@ To use RxJava in our Maven project, we’ll need to add the following dependency
 ```
 There are two key types to understand when working with RxJava:
 
-- Observable represents any object that can get data from a data source and whose state may be of interest to the other objects may register an interest
+- An observable represents any object that can get data from a data source and whose state may be of interest to the other objects may register an interest
 - An observer is any object that wishes to be notified when the state of another object changes
 An observer subscribes to an Observable sequence. The sequence sends items to the observer one at a time.
 
