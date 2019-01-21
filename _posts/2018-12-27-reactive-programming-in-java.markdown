@@ -11,7 +11,7 @@ In the traditional programming model, there is one dilemma we need to face: ***B
 The key expected benefit of reactive and non-blocking is the ability to scale with a small, fixed number of threads and less memory. That makes applications more resilient under load because they scale in a more predictable way. It allows you to treat streams of asynchronous events with the same sort of simple, composable operations that you use for collections of data items like arrays. It frees you from tangled webs of callbacks, and thereby makes your code more readable and less prone to bugs.
 
 ### Reactive extension
-In software programming, Reactive Extensions is a set of tools allowing imperative programming languages to operate on sequences of data regardless of whether the data is synchronous or asynchronous. It provides a set of sequence operators that operate on each item in the sequence. Like ReactiveX, it's not only a API but provide the library for composing asynchronous and event-based programs by using observable sequences. it includes a set of lanuage implementation like RxJava, RxJS, RxCPP, etc. 
+In software programming, Reactive Extensions is a set of tools allowing imperative programming languages to operate on sequences of data regardless of whether the data is synchronous or asynchronous. It provides a set of sequence operators that operate on each item in the sequence. Like ReactiveX, it's not only a API but provide the library for composing asynchronous and event-based programs by using observable sequences. It includes a set of lanuage implementation like RxJava, RxJS, RxCPP, etc. 
 
 ### Introduction to RxJava
 There are different implementation on Java for reactive programming, like:
