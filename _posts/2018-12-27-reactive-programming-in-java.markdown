@@ -31,7 +31,7 @@ To use RxJava in our Maven project, we’ll need to add the following dependency
 There are two key types to understand when working with RxJava:
 
 - An observable represents any object that can get data from a data source and whose state may be of interest to the other objects may register an interest
-- An observer is any object that wishes to be notified when the state of another object changes
+- An observer is any object that wishes to be notified when the state of another object changes.
 An observer subscribes to an Observable sequence. The sequence sends items to the observer one at a time.
 
 The observer handles each one before processing the next one. If many events come in asynchronously, they must be stored in a queue or dropped.
@@ -55,7 +55,7 @@ observable.subscribe(
 );
 assertTrue(result.equals("abcdefg_Completed"));
 ```
-The samle for itertor:
+The sample for itertor:
 ```
 List<String> words = Arrays.asList(
  "the",
@@ -107,4 +107,4 @@ with the result:
 26. z
 ```
 ### Conclusion
-We've talked about the concept of reactive programming, the benefit, how can we use it and different implementation and take RxJava as the example. Basically, the reactive programming is a concept and methodology, different people or group might have different view or interpretation on it but one simple word on the purpose is to make the application more responsive to provide the high performance to our users
+We've talked about the concept of reactive programming, the benefits, how we can use it, and different implementations using RxJava as the example. Basically, reactive programming is a concept and methodology, different people or groups might have different views or interpretations on it but one simple word on the purpose is to make the application more responsive to provide the high performance to our users
