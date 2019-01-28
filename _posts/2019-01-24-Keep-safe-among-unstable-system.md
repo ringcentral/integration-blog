@@ -6,7 +6,6 @@ categories: blog
 author: Joe Zhang
 ---
 
-![ ](https://cdn-images-1.medium.com/max/1600/1*wf0nzvLDFABh3X60lgOQdw.png)
 When we develop on a distributed systems, generally we need to rely on functions/interfaces provided by other systems, since most large systems will split into many smaller systems and expose a restful API or RPC services to be used by other systems. we use such technique because it will make our system more flexible and easy to maintain. 
 In such background, If some services break down or have high latency, it will affect other services. what's more, it will block user request and may cause the whole system broken down.
 In order to resolve this problem, one solutino is to use Circuit Breaker.
