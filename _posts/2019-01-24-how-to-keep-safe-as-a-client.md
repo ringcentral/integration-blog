@@ -9,9 +9,6 @@ author: Joe Zhang
 [Artical Link](https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247486481&idx=1&sn=87aee20e301d87030be2636cd0a124b7&chksm=9bd0a189aca7289f0a5e8a91907d21e32bd367341251c713e76c2fd97f6f64c06379ad7c4f93&scene=21#wechat_redirect): 
 
 Previously I worked on a project which use many third party services, These third party services exposed restful APIs and my project will act as a client.
-
-![](https://github.com/BarkZhang/integration-blog/blob/master/assets/2019-01-24-how-to-keep-safe-as-a-client/transcript_sample.png)
-
 In such background, If some services were broken or having high latency, It will affect our system. what's more, It will block user request and may cause the whole system broken down.
 In order to resolve such problem, one solution is using Circuit Breaker.
 
@@ -47,7 +44,7 @@ limitCount = 10;
 if(success){
   return success;
 }else{
-  errorCount++;
+  errorCount ++;
   if(errorCount >= limitCount){
     isOpenCircuitBreaker = true;
   }
@@ -86,14 +83,14 @@ isHalfOpen = true;
 
 if(success){
   if(isHalfOpen){
-    successCount++;
+    successCount ++;
     if(successCount == threshold){
       isOpenCircuitBreaker = false;
     }
   }
   return success;
 }else{
-  errorCount++;
+  errorCount ++;
   if(errorCount == threshold){
     isOpenCircuitBreaker = true;
   }
