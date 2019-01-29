@@ -35,7 +35,7 @@ We define such state in two ways.
 - Threshold, for example, if system occures 100 "unable to access" response within 10 seconds or have 100 times latency within 5 seconds.
 - Percentage, for example, about 30% of request can't get response or have a latency.
 
-We can use pseudo code to express above definitions:
+We can use pseudo code to express above definitions:
 
 ```python
 errorCount = 0;
