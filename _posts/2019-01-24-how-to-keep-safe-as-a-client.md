@@ -6,18 +6,20 @@ categories: blog
 author: Joe Zhang
 ---
 
-Recently I am working on a project called transcript, It will use many third party services, generally third party services will expose restful APIs and my project will act as a client.
+[Artical Link](https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247486481&idx=1&sn=87aee20e301d87030be2636cd0a124b7&chksm=9bd0a189aca7289f0a5e8a91907d21e32bd367341251c713e76c2fd97f6f64c06379ad7c4f93&scene=21#wechat_redirect): 
+
+Previously I worked on a project which use many third party services, These third party services exposed restful APIs and my project will act as a client.
 
 ![](https://github.com/BarkZhang/integration-blog/blob/master/assets/2019-01-24-how-to-keep-safe-as-a-client/transcript_sample.png)
 
-In such background, If some services broken down or having high latency, It will affect our system. what's more, It will block user request and may cause the whole system broken down.
+In such background, If some services were broken or having high latency, It will affect our system. what's more, It will block user request and may cause the whole system broken down.
 In order to resolve such problem, one solution is using Circuit Breaker.
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/oB5bd6W6hI31YcnTS8xgHlND7GJnk9vSd4AzVWGyFNonEC5CuA1A09St2nUJ20ViaT2CPWl9GEBzuiazRoasZiaKQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## What is Circuit Breaker
 
-Circuit Breaker is a protection mechanism. Like switch blade in electronic system, If there are something wrong with one part, Circuit breaker will open and cut off electric. A Circuit Breaker in a system means: if downstream service is broken down for some reason, upsrteam system will cut off connections with downsream services.
+Circuit Breaker is a protection mechanism. Like switch blade in electronic system, If there are something wrong with one part, Circuit breaker will open and cut off electric. A Circuit Breaker in a system means: if downstream service is broken for some reason, upsrteam system will cut off connections with downstream services.
 
 ## How to implement a Circuit Breaker
 
@@ -25,7 +27,7 @@ Every system has a limitation because hardware has a upper bound, this is a basi
 
 ### Define abnormal state
 
-Abnormal state means the system is broken down or having a high latency. Generally how to define a abnormal state based on two points:
+Abnormal state means the system is broken or having a high latency. Generally how to define a abnormal state based on two points:
 - Can we access the system
 - Do we spend much more time than usual when we invoke a interface
 
@@ -55,7 +57,7 @@ if(success){
 
 ### Cut off connection
 
-Once our downstram system is broken down, we need to cut off connection instantly, This action can both reduce useless remote call and reduce downstream system's load.
+Once our downstram system is broken, we need to cut off connection instantly, This action can both reduce useless remote call and reduce downstream system's load.
 for example, we use RPC framework to communicate between systems.
 ![](https://mmbiz.qpic.cn/mmbiz_png/oB5bd6W6hI31YcnTS8xgHlND7GJnk9vS47MgWD0aWMEqAYpvxibphTppSvBia6tRo3wpDgBgTKys8MqtgzwcqWXw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 ServiceA is a client, If we find ServiceB is unavailable, we can return failed response within ServiceA and do not invoke ServiceB
@@ -72,11 +74,11 @@ if(isOpenCircuitBreaker == true){
 ```
 ### Try to reconnect
 
-After cut off connections, We need to recover as soon as possbile, Because currently the system is not complete. In order to automatically recover connection we need to define a standard, like previously how we judge a system is unavailable, we need to define whether a system is abaliable again.
-- Threshold, for example, there are 100 success request within 5 seconds.
-- Percentage, for example, there are 95% success request within 10 seconds.
+After cut off connections, We need to recover as soon as possbile, Because currently the system is not complete. In order to automatically recover connection we need to define a standard, like previously how we judge a system is unavailable, we need to define whether a system is avaliable again.
+- Threshold, for example, there are 100 success requests within 5 seconds.
+- Percentage, for example, there are 95% success requests within 10 seconds.
 
-It also contains time window, threshold and percentage. But there is a slight difference: most of the time, the system will keep unavailable for a momment, So we can check in a fixed times(30s for example).
+It also contains time window, threshold and percentage. But there is a slight difference: most of the time, the system will keep unavailable for a moment, So we can check in a fixed times(30s for example).
 
 ```python
 successCount = 0;
@@ -100,7 +102,7 @@ if(success){
 ```
 However reconnect may failed, In a large system we can't use all servers to try reconnecting. We can take these measures:
 - 1.Use a few servers to check
-- 2.Add a health check interface to judge system conditions: CPU, IO for example.
+- 2.Add a health check interface to check system conditions: CPU, IO for example.
 
 ### recover
 
