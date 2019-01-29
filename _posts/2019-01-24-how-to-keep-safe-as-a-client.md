@@ -8,7 +8,7 @@ author: Joe Zhang
 
 Recently I am working on a project called transcript, It will use many third party services, generally third party services will expose restful APIs and my project will act as a client.
 
-![transcript](/integration-blog/assets/2019-01-24-keep-safe-among-distributed-systems/transcript_sample.png)
+![transcript](/integration-blog/assets/2019-01-24-how-to-keep-safe-as-a-client/transcript_sample.png)
 
 In such background, If some services broken down or having high latency, It will affect our system. what's more, It will block user request and may cause the whole system broken down.
 In order to resolve such problem, one solution is using Circuit Breaker.
