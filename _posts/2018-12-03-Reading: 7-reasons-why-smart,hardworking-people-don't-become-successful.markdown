@@ -5,7 +5,7 @@ date:   2018-12-02 19:31:07 +0800
 categories: readingnote
 ---
 
-[Article Link](2018-12-02-Reading: 7 reasons why smart, hardworking people don't become successful)
+[Video Link](2018-12-02-Reading: https://www.youtube.com/watch?v=cqINcpbcZqs)
 
 #### Summary:
 1、You don't reach out to new people.
