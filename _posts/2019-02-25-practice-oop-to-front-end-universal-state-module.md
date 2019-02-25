@@ -9,7 +9,7 @@ author: Michael Lin
 
 ![architecture](/integration-blog/assets/2019-02-25-practice-oop-to-front-end-universal-state-module/architecture.jpg)
 
-> If you are interested in how to better OOP design such as Redux/MobX/Vuex. And then this article will propose a complete universal solution for the front-end state library's OOP design.
+> If you are interested in how to better OOP design such as Redux/MobX/Vuex, this article will propose a complete universal solution for the front-end state library's OOP design.
 
 ## Motivation
 
