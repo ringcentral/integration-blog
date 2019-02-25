@@ -39,7 +39,7 @@ In addition, Universal JavaScript is more for JavaScript's perform environment i
 
 ## Propose the solution
 
-Based on the concept of universalization, we propose a new universal state module of the library —— **[usm](https://github.com/unadlib/usm)**。
+Based on the concept of universalization, we propose a new universal state module of the library —— **[usm](https://github.com/unadlib/usm)**.
 
 Firstly, it should be able to solve the OOP design based on the Redux/MobX/Vuex and other state libraries.
 
