@@ -23,7 +23,7 @@ Normally, object-oriented programming (OOP) is commonly used in the architecture
   * Is it Redux or MobX more suitable for React?
   * Is Redux suitable for OOP?
   * How does MobX's observable weigh the pros and cons in React?
-  * How do Vuex OOPin Vue?
+  * How do Vuex OOP in Vue?
   * etc.
 
 In addition, Universal JavaScript is more for JavaScript's perform environment in most cases, and once a architecture design selects a state library, it will mean that this architecture is difficult to disengage from the use of this state library, and any system based on this architecture will be based on such a state library. But a better front-end architecture would include more flexible options and scalability, especially the front-end parts of generic requirements such as typical integration business, which can be reflected in the choice of view render libraries and even the availability of state libraries, such as in mainstream scenarios React+Redux/React+MobX/Vue+Vuex/Angular and so on have a choice, then it brings the problem is how to solve universal state module.
