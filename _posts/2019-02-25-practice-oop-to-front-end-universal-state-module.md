@@ -9,22 +9,25 @@ author: Michael Lin
 
 ![architecture](/integration-blog/assets/2019-02-25-practice-oop-to-front-end-universal-state-module/architecture.jpg)
 
-> If you are interested in how to better OOP design such as Redux/MobX/Vuex, this article will propose a complete universal solution for the front-end state library's OOP design.
+> This is a proposal of an universal state management module design rooted in the OOP paradigm.
 
 ## Motivation
 
 
-As front-end single-page application development becomes increasingly complex, when we use React/Vue, we have to use some state management or state containers (collectively referred to as state library) in order to develop complex apps, and we  need a model design that is easier to modularize. And the front-end state library is very prosperous, whether it is Redux/MobX/Vuex and Angular self-contained state management, the modularization of the state library has been a new requirement in the field of front-end development in complex systems in recent years. Of course, Angular this requirement has been implemented by the angular framework itself already, but it is a very important problem for other libraries, so this article tries to explore a set of OOP modular designs that are universal to popular state libraries.
+As front-end single-page application development becomes increasingly complex, we have to use some state management or state containers (collectively referred to as state library) in order to develop complex apps, and we need a model design that is easier to modularize.
+
+State management libraries are quite abundant in the front-end space, there are [Redux](https://github.com/reduxjs/redux), [MobX](https://github.com/mobxjs/mobx), [Vuex](https://github.com/vuejs/vuex), and the self-contained state management that comes with [Angular](https://github.com/angular/angular) to name a few. Redux is a predictable state container with immutable data structure. MobX is a observable state management. Vuex is centralized state management with observable pattern for Vue.js. As for modularization, Angular has its own implementations already, but the rest of the state management libraries only started to deal with this new requirement in complex systems in recent years.
+
+In this article, let's explore an OOP modular design that has universal support for popular state management libraries.
 
 ## Universal state module
 
-Normally, object-oriented programming (OOP) is commonly used in the architecture design of large projects in the front-end, and questions such as which front-end state libraries are often turned into controversial focal points:
+Commonly, object-oriented programming (OOP) is used in the architecture design of large projects in the front-end. The following questions are often asked when deciding on a state management library:
 
   * Is it Redux or MobX more suitable for React?
   * Is Redux suitable for OOP?
-  * How does MobX's observable weigh the pros and cons in React?
-  * How do Vuex OOP in Vue?
-  * etc.
+  * What are the pros and cons of using MobX's observable in React?
+  * How to design the OOP with Vuex?
 
 In addition, Universal JavaScript is more for JavaScript's perform environment in most cases, and once a architecture design selects a state library, it will mean that this architecture is difficult to disengage from the use of this state library, and any system based on this architecture will be based on such a state library. But a better front-end architecture would include more flexible options and scalability, especially the front-end parts of generic requirements such as typical integration business, which can be reflected in the choice of view render libraries and even the availability of state libraries, such as in mainstream scenarios React+Redux/React+MobX/Vue+Vuex/Angular and so on have a choice, then it brings the problem is how to solve universal state module.
 
@@ -166,5 +169,5 @@ In other words, if you use `usm` for OOP architecture design, your system can no
 
 Finally, we can ask a question worth thinking about:
 
-> Is it really important to choose the front-end State Library from OOP's way?
+> Is it really important to choose a front-end state library from OOP's way?
 
