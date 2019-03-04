@@ -22,34 +22,34 @@ In this article, let's explore an OOP modular design that has universal support 
 
 ## Universal state module
 
-Commonly, object-oriented programming (OOP) is used in the architecture design of large projects in the front-end. The following questions are often asked when deciding on a state management library:
+Object-oriented programming(OOP) is commonly used in the architecture design of large projects in the front-end. The following questions are often asked when deciding on a state management library:
 
   * Is it Redux or MobX more suitable for React?
   * Is Redux suitable for OOP?
   * What are the pros and cons of using MobX's observable in React?
-  * How to design the OOP with Vuex?
+  * How to do object-oriented programming with Vuex?
 
-In addition, Universal JavaScript is more for JavaScript's perform environment in most cases, and once a architecture design selects a state library, it will mean that this architecture is difficult to disengage from the use of this state library, and any system based on this architecture will be based on such a state library. But a better front-end architecture would include more flexible options and scalability, especially the front-end parts of generic requirements such as typical integration business, which can be reflected in the choice of view render libraries and even the availability of state libraries, such as in mainstream scenarios React+Redux/React+MobX/Vue+Vuex/Angular and so on have a choice, then it brings the problem is how to solve universal state module.
+Typically front-end architectures are tightly coupled with state management. Once a state management library is selected, it is difficult to switch to another without major refactoring. So any system that uses such architecture will also have to use the same state library. 
 
-## Specific issues that need to be solved
+Better front-end architecture design should be flexible and scalable. Especially for designs that aim to fulfill integration purposes, where adapting to the target environments and sdk architectures is very important. In order to create modules that work with popular frameworks like React+Redux, React+MobX, Vue+Vuex, and Angular, we need an universal state module design.
 
+## Design Goals
 
-* The design of OOP based on state libraries such as Redux/MobX/Vuex, which is also the most important, especially for React/Vue.
-* Whether the encapsulated OOP design is simple enough and easy to use, while they are quite flexible.
-* From DDD's way, the dependencies between complex domain modules require IoC, and the startup logic between them is dependent, so there must be a similar event mechanism or the introduction of the module lifecycle.
+* The design of OOP based on state libraries such as Redux/MobX/Vuex, which is also the most important.
+* Whether the encapsulated OOP design is simple and flexible.
+* Dependency detection and module lifecycle.
 
-> to solve these issues, universal of the OOP encapsulation and module standardization lifecycle or event mechanism becomes indispensable.
+## Proposal
 
-## Propose the solution
-
-Based on the concept of universalization, we propose a new universal state module of the library —— **[usm](https://github.com/unadlib/usm)**.
+**Based on the concept of universalization, we propose a new universal state module of the library —— [usm](https://github.com/unadlib/usm).**
 
 Firstly, it should be able to solve the OOP design based on the Redux/MobX/Vuex and other state libraries.
-
 
 This is a typical example of Redux's counter:
 
 ```js
+import { createStore } from 'redux';
+
 function counter(state = 0, action) {
   switch (action.type) {
     case 'INCREMENT':
@@ -63,13 +63,11 @@ function counter(state = 0, action) {
 
 const store = createStore(counter)
 
-store.subscribe(() => console.log(store.getState()))
-
 store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DECREMENT' })
 ```
 
-And this is an example of counter based on `usm`:
+And Compare another example of counter based on `usm`:
 
 ```js
 import Module, { state, action } from 'usm';
@@ -87,14 +85,19 @@ class Counter extends Module {
     state.count -= 1;
   }
 }
+
+const counter = Counter.create();
+
+counter.increase();
+counter.decrease();
 ```
 
-I have to admit that Redux is definitely one of the best libraries in the immutable type of state libraries, where I have no intention of discussing some of Redux's defects, and we want to explore how to use Redux for better OOP design. We want the Redux-based model to be more intuitive and concise, just like the OO example of ES6+ 'class' counter mentioned above, if such an OO paradigm is also a generic state model, a better unified state library encapsulation, This will undoubtedly lead to a more flexible and friendly development experience for developers (of course, include easy to read/maintain, etc.).
+And then I have to admit that Redux is definitely one of the best libraries in the immutable type of state libraries, where I have no intention of discussing some of Redux's defects, and we want to explore how to use Redux for better OOP design. We want the Redux-based model to be more intuitive and concise, just like the OO example of ES6+ 'class' counter mentioned above, if such an OO paradigm is also a generic state model, a better unified state library encapsulation, This will undoubtedly lead to a more flexible and friendly development experience for developers (of course, include easy to read/maintain, etc.).
 
-**`usm` just solved these problems, and `usm` currently supports Redux/MobX/Vuex/Angular.**
+**Finally, `usm` just solved these problems, and `usm` currently supports Redux/MobX/Vuex/Angular.**
 
 
-## USM‘s Features
+### USM‘s Features
 
 - Universal State Management
 - Standardized module lifecycle
@@ -127,7 +130,6 @@ In particular, `usm` provides a lifecycle because in most complex domain module 
 
 ![flow chart](/integration-blog/assets/2019-02-25-practice-oop-to-front-end-universal-state-module/flow_chart.png)
 
-
 In a complex front-end module system, this may be a more typical modular architecture design that contains the following sections:
 
 - Lifecycle
@@ -139,7 +141,7 @@ In a complex front-end module system, this may be a more typical modular archite
 
 Of course, here is just a scenario, perhaps some architecture using the scenario may be the design of the model's scaling.
 
-## Simple example about Todo
+## An example of Todo based on `usm`
 
 ```js
 // if necessary, you can use `usm-redux`/`usm-mobx`/`usm-vuex` with states.
