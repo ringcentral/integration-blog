@@ -27,7 +27,7 @@ Object-oriented programming(OOP) is commonly used in the architecture design of 
   * Is it Redux or MobX more suitable for React?
   * Is Redux suitable for OOP?
   * What are the pros and cons of using MobX's observable in React?
-  * How to do object-oriented programming with Vuex?
+  * How to do OOP with Vuex?
 
 Typically front-end architectures are tightly coupled with state management. Once a state management library is selected, it is difficult to switch to another without major refactoring. So any system that uses such architecture will also have to use the same state library. 
 
