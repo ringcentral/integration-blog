@@ -96,13 +96,12 @@ And then I have to admit that Redux is definitely one of the best libraries in t
 
 **Finally, `usm` just solved these problems, and `usm` currently supports Redux/MobX/Vuex/Angular.**
 
-
 ### USM‘s Features
 
 - Universal State Management
-- Standardized module lifecycle
+- Standardized Module Lifecycle
 - Optional Event System
-- Support stateless minimization model
+- Support Stateless Model
 - Support React/Vue/Angular
 
 ### USM‘s decorators
