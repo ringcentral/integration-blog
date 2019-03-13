@@ -35,17 +35,15 @@ Better front-end architecture design should be flexible and scalable. Especially
 
 ## Design Goals
 
-* The design of OOP based on state libraries such as Redux/MobX/Vuex, which is also the most important.
-* Whether the encapsulated OOP design is simple and flexible.
-* Dependency detection and module lifecycle.
+* Object Oriented
+* Simple & Flexible
+* Dependency Detection & Module Lifecycle
 
 ## Proposal
 
-**Based on the concept of universalization, we propose a new universal state module of the library —— [usm](https://github.com/unadlib/usm).**
+**Based on the concept of universalization, we propose a new `Universal State Module` library —— [usm](https://github.com/unadlib/usm).**
 
-Firstly, it should be able to solve the OOP design based on the Redux/MobX/Vuex and other state libraries.
-
-This is a typical example of Redux's counter:
+Let's start with a typical Redux example of a counter:
 
 ```js
 import { createStore } from 'redux';
@@ -67,7 +65,7 @@ store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DECREMENT' })
 ```
 
-And Compare another example of counter based on `usm`:
+Here is the same counter using `usm`:
 
 ```js
 import Module, { state, action } from 'usm';
@@ -92,11 +90,70 @@ counter.increase();
 counter.decrease();
 ```
 
-And then I have to admit that Redux is definitely one of the best libraries in the immutable type of state libraries, where I have no intention of discussing some of Redux's defects, and we want to explore how to use Redux for better OOP design. We want the Redux-based model to be more intuitive and concise, just like the OO example of ES6+ 'class' counter mentioned above, if such an OO paradigm is also a generic state model, a better unified state library encapsulation, This will undoubtedly lead to a more flexible and friendly development experience for developers (of course, include easy to read/maintain, etc.).
+We want the Redux-based model to be more intuitive and concise, just like the OO example of ES6+ 'class' counter mentioned above, if such an OO paradigm is also a generic state model, a better unified state library encapsulation, This will undoubtedly lead to a more flexible and friendly development experience for developers (of course, include easy to read/maintain, etc.).
 
-**Finally, `usm` just solved these problems, and `usm` currently supports Redux/MobX/Vuex/Angular.**
+USM has four sub-packages, which are `usm`, `usm-redux`, `usm-mobx` and `usm-vuex`. In this example, it mainly uses `usm-redux`. `usm-redux` is mainly based on Redux and [Immer](https://github.com/mweststrate/immer). Immer is mainly used in mutable modifying created to get immutable state.
 
-### USM‘s Features
+The following is the connector section using `usm-redux`:
+
+```js
+// index.js
+const counter = Counter.create();
+
+ReactDOM.render(
+  <Provider store={counter.store}>
+    <App counter={counter} />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+```js
+// app.js
+import { connect } from 'react-redux';
+
+export default connect(
+  state => ({ ount: state.count })
+)( props => 
+  <div>
+    <button onClick={() => props.counter.increase()}>+</button>
+    {props.count}
+    <button onClick={() => props.counter.decrease()}>-</button>
+  </div>
+);
+```
+
+And here is the same counter `View` connector using `usm-mobx`:
+
+```js
+// index.js
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+
+```js
+// app.js
+import { observer } from 'mobx-react';
+
+const counter = Counter.create();
+
+export default observer(() =>
+  <div>
+    <button onClick={() => counter.increase()}>+</button>
+    {counter.count}
+    <button onClick={() => counter.decrease()}>-</button>
+  </div>
+);
+```
+
+In the `usm-redux` and `usm-mobx` examples, in addition to some differences in the View connector, the state module part is in accord, and this is the universal state module that we had proposed.
+
+** USM currently supports Redux, MobX, Vuex and Angular.**
+
+### Features
 
 - Universal State Management
 - Standardized Module Lifecycle
@@ -104,13 +161,27 @@ And then I have to admit that Redux is definitely one of the best libraries in t
 - Support Stateless Model
 - Support React/Vue/Angular
 
-### USM‘s decorators
+### Decorators
 
-`usm` provides decorator `@state` to wrap a variable with a state, and decorator `@action` is used to wrap a function that changes state (the last parameter passed in by the function is always the current state object), which is no different from the OO module of a normal `class`.
+`usm` provides decorator `@state` to wrap a variable with a state, and decorator `@action` is used to wrap a function that changes state (the last parameter passed in by the function is always the current state object).
 
-### USM‘s module lifecycle
+```js
+class Shop extends Module {
+  @state goods = [];
+  @state status = 'close';
 
-If necessary, `usm` provides five lifecycles that support asynchronous:
+  @action
+  operate(item, status, state) {
+    state.goods.push(item);
+    state.status = status;
+  }
+  // call function -> this.operate({ name: 'fruits', amount: 10 }, 'open');
+}
+```
+
+### Module lifecycle
+
+`usm` provides these lifecycle events:
 
 - `moduleWillInitialize`
 - `moduleWillInitializeSuccess`
@@ -122,14 +193,60 @@ The order in which they are run is shown in the following flow chart:
 
 ![lifecycle](/integration-blog/assets/2019-02-25-practice-oop-to-front-end-universal-state-module/usm_lifecycle.png)
 
+These module lifecycles can be used to coordinate module initialization dependencies.
 
-In particular, `usm` provides a lifecycle because in most complex domain module scenarios, startup dependencies between modules are often necessary, but when they are not necessary, their settings can be omitted without having to use them.
+```js
+class TodoList extends Module {  
+  async moduleWillInitialize() {
+    console.log('TodoList -> moduleWillInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+
+  async moduleWillInitializeSuccess() {
+    console.log('TodoList -> moduleWillInitializeSuccess', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+
+  async moduleDidInitialize() {
+    console.log('TodoList -> moduleDidInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+}
+
+
+class App extends Module{
+  async moduleWillInitialize() {
+    console.log('App -> moduleWillInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+
+  async moduleWillInitializeSuccess() {
+    console.log('App -> moduleWillInitializeSuccess', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+
+  async moduleDidInitialize() {
+    console.log('App -> moduleDidInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+  }
+}
+
+const todoList = new TodoList();
+
+const app = App.create({
+  modules: [todoList]
+});
+```
+console.log reulst:
+
+```
+App -> moduleWillInitialize pendding: false ready: false
+TodoList -> moduleWillInitialize pendding: false ready: false
+TodoList -> moduleWillInitializeSuccess pendding: true ready: false
+App -> moduleWillInitializeSuccess pendding: true ready: false
+TodoList -> moduleDidInitialize pendding: false ready: true
+App -> moduleDidInitialize pendding: false ready: true
+```
 
 ### An ideal architecture
 
 ![flow chart](/integration-blog/assets/2019-02-25-practice-oop-to-front-end-universal-state-module/flow_chart.png)
 
-In a complex front-end module system, this may be a more typical modular architecture design that contains the following sections:
+In a complex front-end application, this may be a more typical modular architecture design that contains the following sections:
 
 - Lifecycle
 - Store Subscriber
@@ -138,26 +255,39 @@ In a complex front-end module system, this may be a more typical modular archite
 - Dependency Modules
 - Domain Models
 
-Of course, here is just a scenario, perhaps some architecture using the scenario may be the design of the model's scaling.
-
-## An example of Todo based on `usm`
+## Example
 
 ```js
 // if necessary, you can use `usm-redux`/`usm-mobx`/`usm-vuex` with states.
 import Module, { state, action } from 'usm'; 
 
-class Todos extends Module {
+class TodoList extends Module {
   @state list = [];
 
   @action
-  addTodo(text, state){
-    state.list.push({text});
+  add(text, state){
+    state.list.push({ text, completed: false });
   }
 
   @action
-  toggle(id, state){
-    const todo = state.list.find(item => item.id === id);
-    todo.completed = !todo.completed;
+  toggle(index, state){
+    const _todo = state.list[index];
+    _todo.completed = !_todo.completed;
+  }
+  
+  @action
+  edit(text, index, state) {
+    state.list[index].text = text;
+  }
+
+  @action
+  remove(index, state) {
+    state.list.splice(index, 1);
+  }
+
+  @action
+  clearAllCompleted(state) {
+    state.list = state.list.filter(({ completed }) => !completed);
   }
 }
 ```
@@ -172,3 +302,4 @@ Finally, we can ask a question worth thinking about:
 
 > Is it really important to choose a front-end state library from OOP's way?
 
+USM's repo: [https://github.com/unadlib/usm](https://github.com/unadlib/usm)
