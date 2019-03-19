@@ -21,11 +21,11 @@ The seven reasons the auther have offered us is:
 #### Reflection:
 The video is really refreshing and there are really some areas I need to improve.
 
-Firstly, make new friends especially from different areas, have different life experience or have different ideas. Start by say hi to strangers, welcoming different ideas, opinions or even unique perspective etc.
+Firstly, make new friends, especially from different areas, with different life experiences or have different ideas. Start by say hi to strangers, welcoming different ideas, opinions, or even unique perspective.
 
-Secondly, go to different public event, try new things or go experience different life-style.
+Secondly, go to different public event, try new things, or go experience different life-style.
 
-Thirdly, take risks, don't fear risks, when you take more responsibility it means you will always learn more and be able to take even more responsibility. Looking back in 10 years time, you will be grateful for the biggest risk you have taken, so be more courageous, don't be afraid, there are really nothing to fear.
+Thirdly, take risks, don't fear risks, when you take more responsibilities it means you will always learn more and be able to take even more responsibility. Looking back in 10 years time, you will be grateful for the biggest risk you have taken, so be more courageous, don't be afraid, there are really nothing to fear.
 
 Start doing what you are supposed to do and finish what you have started.
 
