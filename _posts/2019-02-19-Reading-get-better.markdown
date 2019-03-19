@@ -20,6 +20,8 @@ Practice 2: Carry your own weather.
 At the foundation of carrying your own weather is the ablility to pasuse between stimulus and response. We have the ability to see and evaluate our own thoughts. We pause, step back, and see ourselves along with the paradigms we adopt and use. In effect, it gives us the freedom to proactively choose our response.
 
 Practice 3: Behave your way to credibility.
+Increasing competence often requires that we step outside our comfort zone. Transitory actions may build confidence in others, but trust only comes from seeing the consistency of such actions over time. So we need to take the long-term view.
+
 Practice 4: Play your roles well.
 Practice 5: See the tree, not just the seeding
 
