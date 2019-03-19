@@ -22,4 +22,7 @@ At the foundation of carrying your own weather is the ablility to pasuse between
 Practice 3: Behave your way to credibility.
 Practice 4: Play your roles well.
 Practice 5: See the tree, not just the seeding
+
 #### Practice:
+
+to be continued...
