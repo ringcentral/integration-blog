@@ -23,8 +23,18 @@ Practice 3: Behave your way to credibility.
 Increasing competence often requires that we step outside our comfort zone. Transitory actions may build confidence in others, but trust only comes from seeing the consistency of such actions over time. So we need to take the long-term view.
 
 Practice 4: Play your roles well.
-Practice 5: See the tree, not just the seeding
 
+Practice 5: See the tree, not just the seeding
+Practice 6: Avoid the Pinball Syndrome
+Practice 7: Think we, not me
+Practice 8: Take stock of your emotional bank accounts
+Practice 9: Examine your real motives
+Practice 10: Talk less, listen more
+Practice 11: Get your volume right
+Practice 12: Extend trust
+Practice 13: Make it safe to tell the truth
+Practice 14: Align inputs with outputs
+Practice 15: Start with humility
 #### Practice:
 
 to be continued...
