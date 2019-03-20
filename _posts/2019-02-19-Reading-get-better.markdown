@@ -46,8 +46,10 @@ Few strategies to prevent us from getting sucked into people-created urgencies.
 3. Be ready for drop-ins.
 
 Practice 7: Think we, not me
+At FranklinCovey, we teach about three levels of maturity: dependence, independence, and interdependence. We define our thoughts respectfully, and consideration as our willingness and ability to seek and listen to others' thoughts and feelings with respects. Too much consideration without enough courage can turn you into a so-called pushover or doormat. Too much courage without enough consideration can turn you into a bully. So we need maintain a balance of both in every situation and make sure you'ar not dramatically weighted toward one side or the other.
 
 Practice 8: Take stock of your emotional bank accounts
+
 Practice 9: Examine your real motives
 Practice 10: Talk less, listen more
 Practice 11: Get your volume right
