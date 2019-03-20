@@ -23,10 +23,30 @@ Practice 3: Behave your way to credibility.
 Increasing competence often requires that we step outside our comfort zone. Transitory actions may build confidence in others, but trust only comes from seeing the consistency of such actions over time. So we need to take the long-term view.
 
 Practice 4: Play your roles well.
+A nurse lists the top five deathbed regrets as:
+1. I wish I'd had the courage to live a life true to myself, not the life others expect of me.
+2. I wish I hadn't worked so hard.
+3. I wish I had stayed in touch with my friends.
+4. I wish that I had let myself be happier.
+Our roles are never just about what we do but are ways through which we express our values and who we are at our core.
+To get better at playing your roles well, you need to first identify them, then determine the real contribution you want to make in each one. Once you've identified your most meaningful roles, you're able to determine how and when you want to show up in those roles.
 
 Practice 5: See the tree, not just the seeding
+To see the potential in others requires us to believe that the seed, with the right kind of nourishment, will become the mighty oak. When you believe in the potential of others, you help them see more clearly what they are capable of, enage their strengths and talents that may be lying dormant, and ultimately allow them to become the people they want to be.
+
 Practice 6: Avoid the Pinball Syndrome
+Important things are those that contribute to our values and align to our highest goals. The nature of the pinball syndrome is to confuse urgency with importance. 
+Here are two suggestions for delay gratification and take the long-term view.
+1. set goals that matter.
+2. Choose your weekly priorities carefully.
+
+Few strategies to prevent us from getting sucked into people-created urgencies.
+1. Block your schedule.
+2. Reflect on your day.
+3. Be ready for drop-ins.
+
 Practice 7: Think we, not me
+
 Practice 8: Take stock of your emotional bank accounts
 Practice 9: Examine your real motives
 Practice 10: Talk less, listen more
