@@ -49,10 +49,23 @@ Practice 7: Think we, not me
 At FranklinCovey, we teach about three levels of maturity: dependence, independence, and interdependence. 
 We define our thoughts respectfully, and consideration as our willingness and ability to seek and listen to others' thoughts and feelings with respects. Too much consideration without enough courage can turn you into a so-called pushover or doormat. Too much courage without enough consideration can turn you into a bully. So we need maintain a balance of both in every situation and make sure you'ar not dramatically weighted toward one side or the other.
 
-Practice 8: Take stock of your emotional bank accounts
+Practice 8: Take stock of your Emotional Bank Accounts
+The goal of the EBA is to only make depposits and build trust with others. Emotional Bank Accounts don't allow for automated deposits. High trust, good will, and full engagement are the ultimate outcome of the EBA. 
+When we make deposits into an EBA, it requires that we're deliberate and consistent. Relationships grow in security and trust when they are built with intentional, meaningful, ongoing contributions rather than the occasional making grand gesture. Many people get so good at consistently making small deposits that doing so becomes a part of who they are. This stockpile of good can be invaluable when we go through th inevitable trials life presents.
 
 Practice 9: Examine your real motives
+Motives are the underlying reasons for the actions you take and the words you say. There are healthy and unhealthy motives:
+Healthy motive: any motive that uplifts the human condition in ourselves and others.
+Unhealthy motives: any motive that degrades the human condition in ourselves and others.
+We need examine our motives on a regular basis, otherwise, our motives can end up being unhealty, driven by fear, anger, or sadness in the one moment and, in the next, by an unfulfilled need for acceptance, power, or safety.
+There are three things will help you examine your real motives:
+1. Use the 5 Whys.
+2. Choose abundance.
+3. Declare your intent.
+
 Practice 10: Talk less, listen more
+One of the most profound gifts you can give another human being is your sincere understanding.
+
 Practice 11: Get your volume right
 Practice 12: Extend trust
 Practice 13: Make it safe to tell the truth
