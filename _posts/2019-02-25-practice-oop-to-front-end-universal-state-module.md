@@ -65,10 +65,10 @@ store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DECREMENT' })
 ```
 
-Here is the same counter using `usm`:
+Here is the same counter using `usm-redux`:
 
 ```js
-import Module, { state, action } from 'usm';
+import Module, { state, action } from 'usm-redux';
 
 class Counter extends Module {
   @state count = 0;
@@ -98,11 +98,11 @@ The following is the connector section using `usm-redux`:
 
 ```js
 // index.js
-const counter = Counter.create();
+export const counter = Counter.create();
 
 ReactDOM.render(
   <Provider store={counter.store}>
-    <App counter={counter} />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
@@ -111,14 +111,15 @@ ReactDOM.render(
 ```js
 // app.js
 import { connect } from 'react-redux';
+import { counter } from './';
 
 export default connect(
   state => ({ ount: state.count })
 )( props => 
   <div>
-    <button onClick={() => props.counter.increase()}>+</button>
+    <button onClick={() => counter.increase()}>+</button>
     {props.count}
-    <button onClick={() => props.counter.decrease()}>-</button>
+    <button onClick={() => counter.decrease()}>-</button>
   </div>
 );
 ```
@@ -127,6 +128,9 @@ And here is the same counter `View` connector using `usm-mobx`:
 
 ```js
 // index.js
+
+export const counter = Counter.create();
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')
@@ -137,8 +141,7 @@ ReactDOM.render(
 ```js
 // app.js
 import { observer } from 'mobx-react';
-
-const counter = Counter.create();
+import { counter } from './';
 
 export default observer(() =>
   <div>
@@ -198,30 +201,48 @@ These module lifecycles can be used to coordinate module initialization dependen
 ```js
 class TodoList extends Module {  
   async moduleWillInitialize() {
-    console.log('TodoList -> moduleWillInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'TodoList -> moduleWillInitialize',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+    );
   }
 
   async moduleWillInitializeSuccess() {
-    console.log('TodoList -> moduleWillInitializeSuccess', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'TodoList -> moduleWillInitializeSuccess',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+      );
   }
 
   async moduleDidInitialize() {
-    console.log('TodoList -> moduleDidInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'TodoList -> moduleDidInitialize',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+      );
   }
 }
 
 
 class App extends Module{
   async moduleWillInitialize() {
-    console.log('App -> moduleWillInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'App -> moduleWillInitialize',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+    );
   }
 
   async moduleWillInitializeSuccess() {
-    console.log('App -> moduleWillInitializeSuccess', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'App -> moduleWillInitializeSuccess',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+    );
   }
 
   async moduleDidInitialize() {
-    console.log('App -> moduleDidInitialize', `pendding: ${this.pending}`, `ready: ${this.ready}`);
+    console.log(
+      'App -> moduleDidInitialize',
+      `pendding: ${this.pending}`, `ready: ${this.ready}`
+    );
   }
 }
 
@@ -254,43 +275,6 @@ In a complex front-end application, this may be a more typical modular architect
 - State
 - Dependency Modules
 - Domain Models
-
-## Example
-
-```js
-// if necessary, you can use `usm-redux`/`usm-mobx`/`usm-vuex` with states.
-import Module, { state, action } from 'usm'; 
-
-class TodoList extends Module {
-  @state list = [];
-
-  @action
-  add(text, state){
-    state.list.push({ text, completed: false });
-  }
-
-  @action
-  toggle(index, state){
-    const _todo = state.list[index];
-    _todo.completed = !_todo.completed;
-  }
-  
-  @action
-  edit(text, index, state) {
-    state.list[index].text = text;
-  }
-
-  @action
-  remove(index, state) {
-    state.list.splice(index, 1);
-  }
-
-  @action
-  clearAllCompleted(state) {
-    state.list = state.list.filter(({ completed }) => !completed);
-  }
-}
-```
 
 ## Conclusion
 
