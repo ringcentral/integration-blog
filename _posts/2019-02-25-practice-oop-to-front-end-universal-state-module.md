@@ -65,7 +65,7 @@ store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DECREMENT' })
 ```
 
-Here is the same counter using `usm-redux`:
+USM supports Redux, MobX, Vuex and Angular. It provides `usm`, `usm-redux`, `usm-mobx` and `usm-vuex` packages. Here is the same counter using `usm-redux`:
 
 ```js
 import Module, { state, action } from 'usm-redux';
