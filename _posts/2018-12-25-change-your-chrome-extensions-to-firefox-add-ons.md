@@ -67,11 +67,12 @@ Chinese Version:
 
 Chrome 扩展插件开发非常流行，现在也存在很多受欢迎的 Chrome 浏览器插件。但是如果想开发 Firefox 浏览器插件，又该如何？WebExtension API 正是你所需要的。这是用来构建 Firefox 插件的标准 API，同样也能够帮助构建跨浏览器插件。
 
-## 什么是 WebExtension？
+## 一、什么是 WebExtension？
 
-WebExtension 是为现代浏览器（比如 Chrome, Firefox 和 Opera）用于构建跨浏览器插件的 API。依据这个 API，可以实现只开发一次插件，到处安装。
+WebExtension 是现代浏览器（比如 Chrome, Firefox 和 Opera）用于构建跨浏览器插件的 API。依据这个 API，可以实现只开发一次插件，到处安装。
 
-## 在 Firefox 和 Chrome 上的区别
+
+## 二、在 Firefox 和 Chrome 上的区别
 
 Firefox 插件对 WebExtension API 是完全兼容的。对于 Chrome 浏览器还是有一些区别。
 
@@ -97,7 +98,8 @@ Chrome extension 和 Firefox add-on 都用 `manifest.json` 来定义 extension �
 
 可以在这个[页面](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Porting_a_Google_Chrome_extension)找到详细的差别。
 
-## 可以用来助力构建 Extension 的库
+
+## 三、可以用来助力构建 Extension 的库
 
 Mozilla 提供了 `webextension-polyfill` 这个[库](https://github.com/mozilla/webextension-polyfill) 可以用来帮助我们构建标准的 Web Extension. 使用这个库在 Chrome 和 Firefox 中都可以使用 `browser` 关键字来调用浏览器 API。
 
