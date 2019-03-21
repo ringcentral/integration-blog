@@ -34,13 +34,13 @@ In some cases, you want users to have access to an object, but limit their acces
 
 #### Control Access to Records
 
-As just said, you can let particular users view specific fields in a specific object by set profiles and permission sets. But how to restrict the individual records they're allowed to see?
+As I mentioned before, you can let particular users view specific fields in a specific object by setting profiles and permission sets. But how to restrict individual records that they're allowed to see?
 
-In Salesforce you control record-level access in four ways, `Org-wide defaults`, `Role hierarchies`, `Sharing rules` and `Manual sharing`.
+In Salesforce you control record-level access in four ways, `org-wide defaults`, `role hierarchies`, `sharing rules` and `manual sharing`.
 
 ![](/integration-blog/assets/2019-02-26-data-security-of-salesforce/data_security_records.jpeg)
 
-`org-wide` specify the default level of access each records, if you defined this setting with *public*, All users can view on the record, but if you set with *private*, users except for the record owner whether can see it was controlled by `Role hierarchies` and `Sharing rules`.
+`org-wide` specify the default level of access for each records, if you set this to *public*, all users can view these records. However, if you set this to *private*, whether the users other than the record owner can see the records is controlled by `role hierarchies` and `sharing rules`.
 
 `Role hierarchies` ensure managers have access to the same records as their subordinates. Each role in the hierarchy represents the level of data access for a user or a group of users.
 
