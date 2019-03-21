@@ -64,9 +64,14 @@ There are three things will help you examine your real motives:
 3. Declare your intent.
 
 Practice 10: Talk less, listen more
-One of the most profound gifts you can give another human being is your sincere understanding.
+Making quick decisions and judgment calls will often lead to misdiagnosed solutions, faulty assumptions, narrow perspectives, and misunderstood facts. As a result, we deprive others of the opportunity to solve problems on their own. When we fail to take time to truly listen, we threaten trust.
+Being truly present provides a safe environment in which people can learn to listen to themselves, assess their own behavior, diagnose their own problems, and come up with their own solutions.
+One of the most profound gifts you can give another human being is your sincere understanding. With people, fast is slow and slow is fast.
 
 Practice 11: Get your volume right
+We all have natural strengths. Strengths may like influence, power, intensity, and potency. Utilizing and nurturing our quique bundle of strengths is a fundamental part of who we are. Whether as talents we were born with or skills we developed over time, our strengths are often our go-to way for getting things done. 
+However, we grow accustomed to using certain strengths and rely on those even more. And which can start working against us if we have its volume turned too high.
+
 Practice 12: Extend trust
 Practice 13: Make it safe to tell the truth
 Practice 14: Align inputs with outputs
