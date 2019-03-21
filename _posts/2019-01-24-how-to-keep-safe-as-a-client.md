@@ -97,9 +97,9 @@ if(success){
 }
 
 ```
-Since the reconnection can still fail, we cannot use all servers to try to reconnect in a large system.. We can take these measures:
+Since the reconnection can still fail, we cannot use all servers to try to reconnect in a large system. We can take these measures:
 - 1. Use a few servers to check
-- 2. Add a health check interface to check system conditions: CPU, IO etc.
+- 2. Add a health check interface to check system conditions: CPU, IO, etc.
 
 ### recover
 
@@ -125,5 +125,5 @@ Circuit Breaker is not perfect, we need to pay attention to two things.
 
 ## Conclusion
 
-Circuit Breaker can be implemented before the actual function or after the actual function. It meets the AOP(aspect-oriented programming) concept, so generally, most circuit breaker frameworks use AOP(aspect-oriented programming) as an implemented strategy.
+Circuit Breaker can be implemented before the actual function or after the actual function. It meets the AOP(aspect-oriented programming) concept, so generally, most circuit breaker frameworks use AOP as an implemented strategy.
 The Circuit breaker is a shell that protects the system when the error occurs. But in the long run, it is better to have regular pressure tests and a better understanding of the limitations of our system. We should try "fallbacks" or "rate limits" before we implement circuit breakers.
