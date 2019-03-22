@@ -77,9 +77,25 @@ If you trust, you will be disappointed occasionally, but if you mistrust, you wi
 There is risk in everything. You can get burned by people to whom you've extended great trust, but there's so much more to be gained by leading with trust over suspicion.
 
 Practice 13: Make it safe to tell the truth
+Why do we resist feedback? Why don't we have the courage to ask for it in the first place? For most of us, setting ourselves up to receive what we see as criticism is unpleasant at best, and confidence-deflating at worst. So we choose not to create opportunities for what we assume will be negative feedback from others. We all know how hard it is to give ourselves feedback, but it can be overwhelming, even paralyzing, to get it from someone else.
+
+There are four ways to make it safer to let others to tell your the truth.
+1. Assume good intent.
+2. Ask for feedback.
+3. Evaluate the feedback.
+4. Act on it.
 
 Practice 14: Align inputs with outputs
-Practice 15: Start with humility
-#### Practice:
+While many inputs might contribute to the desired output, identifying the right inputs can make all the difference. 
+A five-step process we can employ:
+1. Describe the output you want.
+2. Assess the current reality.
+3. Examine the inputs.
+4. Pick the 'lead measure' inputs you think will most likely achieve the desired output.
+5. Analyze the result. 
 
-to be continued...
+Practice 15: Start with humility
+Above all other character qualities, humility is foundational. 
+Those who are humble have a secure sense of self-their validation doesn't come from something external, but is based on their true nature. To be humble means to shed one's ego, because the authentic self is much greater than looking good, needing to have all the answers, or being recognized by one's peers. As a result, those who have cultivated humility as an attribute have far greater energy to devote to others. They go from being consumed with themselves to looking for ways to contribute and help others. Humility is key to building solid character and strong, meaningful connections.
+Humility keeps me curious-in a state of continuous learning. Humility is why I treat the front receptionist with the same respect as I treat the CEO. Humility helps me forgive. Humility tells me there are many right solutions to solving the same problem. Humility invites me to pay it forward. Humility makes me feel grateful for who I am and what I have. Humility prompts me to ask for help when I need it. Humility helps me stop worrying about myself and start thinking about others. Humility allows me to let go of a hurt feeling. Humility gives me courage to be honst with a co-worker in a respctful way. Humility is the wisdom needed to accurately assess my strengths and weaknesses. Humility reminds me to be patient with myself and others, and to know that we are all in the process of getting better. Humility tells me that while I'm important, I'm only one part of a much bigger picture.
+#### Practice:
