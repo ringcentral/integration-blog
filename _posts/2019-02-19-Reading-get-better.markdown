@@ -73,7 +73,11 @@ We all have natural strengths. Strengths may like influence, power, intensity, a
 However, we grow accustomed to using certain strengths and rely on those even more. And which can start working against us if we have its volume turned too high.
 
 Practice 12: Extend trust
+If you trust, you will be disappointed occasionally, but if you mistrust, you will be miserable all the time.
+There is risk in everything. You can get burned by people to whom you've extended great trust, but there's so much more to be gained by leading with trust over suspicion.
+
 Practice 13: Make it safe to tell the truth
+
 Practice 14: Align inputs with outputs
 Practice 15: Start with humility
 #### Practice:
