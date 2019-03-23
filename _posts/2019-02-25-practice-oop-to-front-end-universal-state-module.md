@@ -249,7 +249,9 @@ class App extends Module{
 const todoList = new TodoList();
 
 const app = App.create({
-  modules: [todoList]
+  modules: {
+    todoList
+  }
 });
 ```
 console.log reulst:
