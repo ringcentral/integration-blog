@@ -153,7 +153,7 @@ export default observer(() =>
 );
 ```
 
-The use of `usm-redux` and `usm-mobx` to connect with `react-redux` and `mobx-react` respectfully demonstrated that the core implementations of the state module is the same even when the connectors used is different. This is the core principle of the Universal State Module that we propose.
+The use of `usm-redux` and `usm-mobx` to connect with `react-redux` and `mobx-react` respectfully demonstrated that the core implementations of the state module is the same even when the connectors used are different. This is the core principle of the Universal State Module that we propose.
 
 ** USM currently supports Redux, MobX, Vuex and Angular.**
 
