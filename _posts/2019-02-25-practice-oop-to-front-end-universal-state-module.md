@@ -281,7 +281,7 @@ In a complex front-end application, a typical modular architecture may contain t
 
 ## Conclusion
 
-`usm` is a module design that wants to bridge together the differences of using Redux, Mobx, and Vuex in conjuction with different view layers such as React, Vue and Angular. It is designed to help you build libraries that will work with any front-end architecture.
+`usm` is a module design that wants to bridge together the differences of using Redux, Mobx, and Vuex in conjunction with different view layers such as React, Vue and Angular. It is designed to help you build libraries that will work with any front-end architecture.
 
 Modules built with `usm` should be free of boilerplates, especially the type that is introduced by state libraries like Redux. More importantly, the object-oriented nature of `usm` makes modules simple and intuitive. `usm` also makes your modules compatible with various state libraries and view layers, allowing you to share your business logic libraries across projects regardless of the frameworks they are using.
 
