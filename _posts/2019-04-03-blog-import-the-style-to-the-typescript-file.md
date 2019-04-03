@@ -8,7 +8,7 @@ author: Jeff Wu
 
 ![](/integration-blog/assets/2019-04-03-blog-import-the-style-to-the-typescript-file/babel-ts-scss.jpg)
 
-### TypeScript show the error when import style file like `scss` or `css`
+### TypeScript show the error when import style file like scss or css
 
 After the success of migrating to TypeScript development from JavaScript,  we can get more confident in building an incredible product. But the challenge will not stop. When I import a style file to TypeScript file, the editor shows an error said that could not find the module. To overcome the issue about the style file importing is the next challenge we need to face.
 
