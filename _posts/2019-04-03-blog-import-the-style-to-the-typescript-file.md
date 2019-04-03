@@ -100,7 +100,7 @@ declare module "*.svg" {
 
 ### Conclusion
 
-Using the TypeScript server plugin is a good way for the solution by import the style files that TypeScript can understand. It also not generates the definition file to the project and keeping the repository clean. Furthermore, we can enjoy the benefit of intellisense for CSS selector.
+Using the TypeScript server plugin is a good way for the solution that imports the style files which TypeScript can understand. It does not generate the definition file to the project and keeping the repository clean. Furthermore, we can enjoy the benefit of intellisense for CSS selector.
 
 
 
