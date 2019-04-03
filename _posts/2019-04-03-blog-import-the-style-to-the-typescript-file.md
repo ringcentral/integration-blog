@@ -6,7 +6,7 @@ categories: blog
 author: Jeff Wu
 ---
 
-![](/integration-blog/assets/2018-12-25-blog-typescript-intro-and-migrating/babel-ts-scss.jpg)
+![](/integration-blog/assets/2019-04-03-blog-import-the-style-to-the-typescript-file/babel-ts-scss.jpg)
 
 ### TypeScript show the error when import style file like `scss` or `css`
 
@@ -88,7 +88,7 @@ But this option is only setable for users setting. It's not convinient for copor
 }
 ```
 
-Besides, we found the issue about import not only style file but also other files like SVG in TypeScript. It will show the error like: "Cannot find module '../../assets/images/logo.svg'.ts(2307)". To resolve the issue that unable to import the SVG file in TypeScript, we can create a definition file named "custom.d.ts" and add the following code and add the file path to the includes field of the `tsconfig.json`: 
+Besides, we found the issue about import not only style file but also other files like SVG in TypeScript. It will show the error like: "Cannot find module '../../assets/images/logo.svg'.ts(2307)". To resolve the issue that unable to import the SVG file in TypeScript, we can create a definition file named "custom.d.ts" and add the following code and add the file path to the includes field of the `tsconfig.json`:
 ```typescript
 declare module "*.svg" {
   const content: any;
@@ -100,7 +100,7 @@ Using the TypeScript server plugin is a good way for the solution by import the 
 
 
 
-### References: 
+### References:
 
 - [Github: Typescript Plugin CSS Modules](https://github.com/mrmckeb/typescript-plugin-css-modules)
 - [Github: Typings For CSS Modules Loader](https://github.com/Jimdo/typings-for-css-modules-loader)
