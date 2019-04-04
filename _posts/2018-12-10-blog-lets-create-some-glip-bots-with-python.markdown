@@ -50,6 +50,8 @@ pip install -r requirements.txt
 # Forwarding https://xxxxx.ngrok.io -> localhost:9890
 
 # create env file
+cp .sample.env .env
+
 # .env already created from .sample.env
 # just edit .env, set proper setting,
 RINGCENTRAL_BOT_SERVER=https://xxxxx.ngrok.io
@@ -119,7 +121,8 @@ def botGotPostAddAction(
   user,
   text,
   dbAction,
-  handledByExtension
+  handledByExtension,
+  event
 ):
   """
   bot got group chat message: text
@@ -163,9 +166,9 @@ If you want to access user data, subscribe to user event, or use different datab
 
 ## Example bots
 
-- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot): simple RingCentral chatbot that can tell server time/date.
-- [assistant-bot](https://github.com/zxdong262/ringcentral-assistant-bot): simple assistant Glip bot to show user/company information, this bot will show you how to access user data.
-- [survey-bot](https://github.com/zxdong262/ringcentral-survey-bot): example survey bot, this bot will show you how to create/use custom database wrapper.
+- [date-time-chatbot](https://github.com/zxdong262/ringcentral-date-time-chatbot): Simple RingCentral chatbot that can tell server time/date.
+- [assistant-bot](https://github.com/zxdong262/ringcentral-assistant-bot): Simple assistant Glip bot to show user/company information, this bot will show you how to access user data.
+- [poll-bot](https://github.com/zxdong262/ringcentral-poll-bot): Glip poll bot, this bot will show you how to create/use custom database wrapper.
 
 ## Deploy to AWS Lambda
 
@@ -258,12 +261,12 @@ Do not forget to set your RingCentral app's redirect URL to Lambda's API Gateway
 
 ## Use Extensions
 
-RingCentral Chatbot Framework for Python Extensions will extend bot command support with simple settings in `.env`.
+RingCentral Chatbot Framework for Python Extensions will extend bot command support.
 
-Just set like this in `.env`
-
-```bash
-EXTENSIONS=ringcentral_bot_framework_extension_botinfo,ringcentral_bot_framework_extension_some_other_extension
+```python
+import ringcentral_bot_framework_extension_botinfo as botinfo
+import ringcentral_bot_framework_extension_world_time as wt
+framework = frameworkInit(conf, [botinfo, wt])
 ```
 
 And install these exetnsions by `pip install ringcentral_bot_framework_extension_botinfo ringcentral_bot_framework_extension_some_other_extension`, it is done.
@@ -316,6 +319,43 @@ def botGotPostAddAction(
     return True
   else:
     return False
+
+
+def route(event, framework):
+  '''
+  custom route example
+  handle '/ext-custom'
+  '''
+  action = ''
+  try:
+    action = event['pathParameters']['action']
+    if not action == 'ext-custom':
+      return None
+
+    listBots = framework.dbAction('bot', 'get', None)
+    return {
+      'statusCode': 200,
+      'body': json.dumps(listBots)
+    }
+
+  except Exception as e:
+    print(e)
+    return None
+
+def defaultEventHandler(
+  bot,
+  groupId,
+  creatorId,
+  user,
+  text,
+  dbAction,
+  handledByExtension,
+  event
+):
+  """
+  default event handler, for event not match any above
+  """
+  return
 ```
 
 ## Credits
