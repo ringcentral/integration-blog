@@ -121,7 +121,7 @@ public DefaultTokenServices tokenServices() {
 4. The authenticationManager() function is defining the token verify logic. This class will be use to check the user authentication when a token is refreshed.
 
 ##### IV. Optional: custome token authority verification logic
-If the default token manager does not meet your requirement, which is happening all the time, you assign you own authenticationProvider by following code.
+If the default token manager does not meet your requirement, which is happening all the time, you could assign you own authenticationProvider by following code.
 ```java
 @Override
 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -154,7 +154,7 @@ public Authentication authenticate(Authentication authentication) throws Authent
 }
 ```
 ##### V. Optional: custome verify chain
-If the authenticate() function throws any exception, we may to handle it or just record it in the database. To implement it we can just assign tokenValidSuccessHandler and tokenValidFailureHandler. In the handler, all you need to do is to rewrite onAuthenticationSuccess and onAuthenticationFailure.
+If the authenticate() function throws any exception, we may to handle it or just record it in the database. To implement it we can just set tokenValidSuccessHandler and tokenValidFailureHandler. In the handler, you can rewrite onAuthenticationSuccess and onAuthenticationFailure with your own logic.
 ```java
 ...
     .and()
@@ -175,8 +175,9 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
 
 ##### VI. UserDetailService
 UserDetailService is the core interface which loads user-specific data. We mast realize loadUserByUsername() function to locate user and user's role.
+
 ##### VII. Rest APIs
-Once all authoritioin configure finished, you can enjoy your developing. To control your role and access you can simply add @PreAuthorize("hasAuthority('ADMIN_USER')") in your rest api declaration.
+Once all authoritioin configure has been finished, you can enjoy your developing. To control your role and access you can simply add @PreAuthorize("hasAuthority('ADMIN_USER')") in your rest api declaration.
 ```java
 @RequestMapping(value = "/users", method = RequestMethod.GET)
 @PreAuthorize("hasAuthority('ADMIN_USER')") //user with ADMIN_USER role have this access.
@@ -186,6 +187,7 @@ public ResponseEntity<List<User>> getUsers() {
 ```
 
 #### **Demo**
+
 ##### I. Apply for a token
 Client end can either use postman or curl to get a token.
 
@@ -197,6 +199,7 @@ You will get:
 ```json
 {"access_token":"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsic3ByaW5nLXNlY3VyaXR5LWRlbW8tcmVzb3VyY2UtaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTU0ODQ0NTQxLCJhdXRob3JpdGllcyI6WyJTVEFOREFSRF9VU0VSIiwiQURNSU5fVVNFUiJdLCJqdGkiOiI4MTM3Y2Q4OS0wMWMyLTRkMTgtYjA4YS05MjNkOTcxYjNhYzQiLCJjbGllbnRfaWQiOiJjbGllbnQtaWQifQ.1t_4xVT8xaAtisHaNT_nMRBLKfpiI0SZQ2bbEGxu6mk","token_type":"bearer","expires_in":43199,"scope":"read write","jti":"8137cd89-01c2-4d18-b08a-923d971b3ac4"}
 ```
+
 ##### II. Use the token in role control
 Then use the token above to post a request which need authorition.
 ```sh
@@ -206,10 +209,11 @@ It will return:
 ```json
 [{"id":1,"username":"jakob.he","firstName":"Jakob","lastName":"He","roles":[{"id":1,"roleName":"STANDARD_USER","description":"Standard User"}]},{"id":2,"username":"admin.admin","firstName":"Admin","lastName":"Admin","roles":[{"id":1,"roleName":"STANDARD_USER","description":"Standard User"},{"id":2,"roleName":"ADMIN_USER","description":"Admin User"}]}]
 ```
-##### III. Verify the token by in JWT
+
+##### III. Verify the token by JWT
 Put your token and signing key in [jwt.io](https://jwt.io), you will get following result.
 ![jwt-verification.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
 
 
-Let’s quickly go over, we have introduce what is Spring-Security, why we need to use it, and after all We have also realize a complete Spring-Security application including token management, token distribution, and rest APIs that requiring web authorization. 
-Hope it helps.
+Let’s quickly go over, we have introduced what is Spring-Security, why we need to use it, and after all we have also realize a complete Spring-Security application including token management, token distribution, and rest APIs that requiring web authorization. 
+I hope it helps.
