@@ -8,11 +8,11 @@ author: Embbnux Ji
 
 ![clicktodial](https://user-images.githubusercontent.com/7036536/51652788-d2627200-1fcb-11e9-8ba3-9e50baeaf8a6.png)
 
-Rencently, we publish RingCentral C2D library to help developers integrate RingCentral Click To Dial in browser. This library is built with Webpack 4 and Typescript. This article will share how to build a JS library which support CDN and NPM ways by introducing how we build RingCentral C2D.
+Rencently, we published RingCentral C2D library to help developers integrate RingCentral Click-To-Dial in browsers. This library is built with Webpack 4 and Typescript. This article demonstrates how to build a JS library which support CDN and NPM ways by introducing how we build RingCentral C2D library.
 
-## Introduction about RingCentral C2D
+## RingCentral C2D
 
-RingCentral C2D aims to help developers to get phone numbers in web page and pass it to our RingCentral integration app.
+RingCentral C2D aims to help developers to find phone numbers in web page and pass it to our RingCentral integration app.
 
 #### Project Links:
 
@@ -28,7 +28,7 @@ RingCentral C2D aims to help developers to get phone numbers in web page and pas
 
 ### Output option
 
-Webpack 4 provides very easy way to build JS library with several options:
+Webpack 4 provides a very easy way to build JS library with several options:
 
 ```js
 // webpack config object
@@ -41,7 +41,7 @@ config.ouput = {
 }
 ```
 
-In output config, `filename` and `path` define where to output your library. `config.library` and `config.libraryTarget` property tells webpack you are building a library not an app. And with `umd`, this library will support to used with CommonJS, AMD and as global variable. When this library is used with CDN script, it will export `RingCentralC2DInject` as global variable.
+In the output config, `filename` and `path` define where to the output of your library will be generated. The `config.library` and `config.libraryTarget` properties tell webpack that you are building a library not an app. With `umd` as the library target, this library will support being used with CommonJS, AMD and as global variable. When this library is used as CDN hosted script, it will export `RingCentralC2DInject` as global variable.
 
 With `libraryExport: 'default'`, webpack will add `default` in module exports. So you can use as `import RingCentralC2D from 'ringcentral-c2d'`.
 
@@ -80,7 +80,7 @@ config.externals = {
 
 We allow developers to import `libphonenumber-js` with CommonJS, AMD and global variable.
 
-So developers can use our library with `libphonenumber-js` CDN version:
+So developers can use the CDN hosted version of `libphonenumber-js` with our library:
 
 ```
 <script src="https://unpkg.com/libphonenumber-js@1.7.7/bundle/libphonenumber-min.js"></script>
@@ -93,7 +93,7 @@ If developers use our npm package with webpack, `libphonenumber-js` will be inst
 
 #### NPM
 
-Now we have our library ready, so we need to publish it to make developer easy to install it. [NPM](https://www.npmjs.com/) is package manager for javascript. We can use `npm publish` command to publish our package with `package.json`. Before we publish, we need to make sure our codes in `NPM` is compiled.
+Now we have our library ready, so we need to publish it to make it easy for developer to install it. [NPM](https://www.npmjs.com/) is the package manager for javascript. We can use `npm publish` command to publish our package with `package.json`. Before we publish, we need to make sure our code is compiled.
 
 Add `prepublish` script in `package.json`:
 
@@ -109,7 +109,7 @@ Add `prepublish` script in `package.json`:
 
 #### CDN
 
-For CDN version, we can use [UNPKG](https://unpkg.com/). If you publish your package in `NPM`, you will get `UNPKG` URL like:
+For CDN version, we can use [UNPKG](https://unpkg.com/). If you publish your package in `NPM`, you will get `UNPKG` URL similar to:
 
 ```
 unpkg.com/:package@:version/:file
@@ -119,4 +119,4 @@ For example, our CDN version script URI: `https://unpkg.com/ringcentral-c2d@0.0.
 
 ## Summary
 
-In this article, we share about how to build and publish a JS library. For more, you can also get full codes in this [repo](https://github.com/ringcentral/ringcentral-c2d).
+In this article, we demonstrated how to build and publish a JS library. If you want to find out more, you can also get the full [repo](https://github.com/ringcentral/ringcentral-c2d) with all the code.
