@@ -212,6 +212,7 @@ It will return:
 
 ##### III. Verify the token by JWT
 Put your token and signing key in [jwt.io](https://jwt.io), you will get following result.
+
 ![jwt-verification.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
 
 
