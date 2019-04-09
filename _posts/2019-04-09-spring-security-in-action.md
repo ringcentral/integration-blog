@@ -10,28 +10,30 @@ author: Jakob He
 [Source Code](https://github.com/jakob-lewei/spring-security-demo)
 
 #### **What is Spring-Security?**
-Spring-Security is a highly customizable authentication and access-control framework for java applications. Especially for spring based applications. This is wildly using in Java developing field. 
+Spring-Security is a highly customizable authentication and access-control framework for java applications. Especially for spring based applications. This is wildly used in Java developing field. 
 
 #### **Why we need to use Spring-Security?**
-Spring-Security is highly integrated with the most popular framework spring-boot. And it support both Authentication and Authorization which is also the most popular way to deal with the security issues between server and client end. Like all Spring based projects, the real power of Spring-Security is found in how easily it can be extended to meet custom requirements.
+Spring-Security is highly integrated with the most popular framework Spring-Boot. And it support both Authentication and Authorization which is also the most popular way to deal with the security issues between server and client end. Like all Spring based projects, the real power of Spring-Security is found in how easily it can be extended to meet customer requirements.
 
 #### **Spring-Security in action**
-In this example we will go through the the very basic usage of Spring-Security. There are four important classes to introduce (HttpSecurity, WebSecurityConfigurer, UserDetailsService, AuthenticationManager). And the final application will cover following features. 
+In this example we will go through a very basic Spring-Security application. There are four important classes to be introduced (HttpSecurity, WebSecurityConfigurer, UserDetailsService, AuthenticationManager). And the final application will cover following features. 
 1. username and password verification
 2. role control
-3. token distribution
-4. token verification - using JWT
+3. token distribution - using JWT
+4. token verification
 5. password crypto
 
-Within the process of realization we may cover some fundamental principle of Spring-Security.
+![spring-security-scope.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/spring-security-scope.jpg)
 
-##### 1. Include Spring-Security dependencies 
+Within the process of realization, we may cover some fundamental principle of Spring-Security.
+
+##### I. Include Spring-Security dependencies 
 ```s
 compile "org.springframework.boot:spring-boot-starter-security"
 ```
 
-##### 2. Token distrubtion
-In the first place we need to defin a way to grant tokens. There are servel ways including "password", "authorization_code", "implicit", "client_credentials". In our example we are using "password" as the grant_type.
+##### II. Token distrubtion
+In the first place we need to define a way to grant tokens. There are servel ways including "password", "authorization_code", "implicit", "client_credentials". In our example we are using "password" as the grant_type.
 
 ```java
 @Override
@@ -45,54 +47,19 @@ public void configure(ClientDetailsServiceConfigurer configurer) throws Exceptio
             .resourceIds(resourceIds);
 }
 ```
-Most of the time we don't user in memory id and secret. In the real product, we can config as below.
+Most of the time we don't user in memory client id and secret. In the real production, we can config as below to read all clients from database.
 ```java
 configurer.jdbc()
 ```
 
-Then we need to config all token settings. Make sure all settings must be the same as token verication (next point).
-```java
-@Override
-public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-    TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-    enhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter));
-    endpoints.tokenStore(tokenStore)
-            .accessTokenConverter(accessTokenConverter)
-            .tokenEnhancer(enhancerChain)
-            .authenticationManager(authenticationManager);
-}
-```
-##### 3. Token verication
-Now you are able to realize you own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions base on our requirements.
-1. passwordEncoder() function define the way to encode and compare the passwords.
-2. configure(HttpSecurity http) function is to set resource strategy. All handlers and filters are configuring here.
-```java
-@Override
-public void configure(HttpSecurity http) throws Exception {
-    //@formatter:off
-    http
-            .requestMatchers()
-        .and()
-            .authorizeRequests()
-            .antMatchers("/public/**").permitAll()
-            .antMatchers("/demo/**").authenticated();
-    //@formatter:on
-}
-```
+Then we need to config token settings including 
+1. Token store
+2. token converter
+3. token manager 
+4. enhancer chain. 
 
-3. configure(ResourceServerSecurityConfigurer resources) is to defin security strategy. 
-In this config() function we need to assign a token service to explain tokens. A typical token service is defining as below. 
-```java
-@Bean
-@Primary
-public DefaultTokenServices tokenServices() {
-    DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-    defaultTokenServices.setTokenStore(tokenStore());
-    defaultTokenServices.setSupportRefreshToken(true);
-    return defaultTokenServices;
-}
-```
-4. JWT supplies convience apis that intergrated with Spring-Security closly. A converter to convert token and decode token all you need to do is to set a SigningKey. And use it in the security enhancer.
+In this example we are using JWT to manage our tokens. JWT supplies convience apis that intergrated with Spring-Security closly. There is a converter to convert token and decode token. All you need to do is to set a signing key and then set them in the config(AuthorizationServerEndpointsConfigurer endpoints) function.
+
 ```java
 @Bean
 public JwtAccessTokenConverter accessTokenConverter() {
@@ -109,7 +76,7 @@ public TokenStore tokenStore() {
 
 ```java
 @Override
-public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
     TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
     enhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter));
     endpoints.tokenStore(tokenStore)
@@ -118,9 +85,42 @@ public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws E
             .authenticationManager(authenticationManager);
 }
 ```
-5. authenticationManager() function is defining the token verify logic. This class will be use to check the user authentication when a token is refreshed.
+Remember the tokenService and authenticationManager must be the same one in token verication, so that the token can be decode properly.
 
-##### 4. Optional: custome token authority verification logic
+##### III. Token verication
+Now you are able to realize you own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions base on customer's requirement. Three important functions are as below.
+1. The passwordEncoder() function define the way to encode and compare the passwords.
+2. The configure(HttpSecurity http) function is to set resource strategy.
+```java
+@Override
+public void configure(HttpSecurity http) throws Exception {
+    //@formatter:off
+    http
+            .requestMatchers()
+        .and()
+            .authorizeRequests()
+            .antMatchers("/public/**").permitAll() //no authorization required here
+            .antMatchers("/demo/**").authenticated(); //need authorization
+    //@formatter:on
+}
+```
+
+3. The configure(ResourceServerSecurityConfigurer resources) function is to defin security strategy. 
+In this config() function we need to assign a token service to explain tokens. A typical token service is defining as below. 
+```java
+@Bean
+@Primary
+public DefaultTokenServices tokenServices() {
+    DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+    defaultTokenServices.setTokenStore(tokenStore());
+    defaultTokenServices.setSupportRefreshToken(true);
+    return defaultTokenServices;
+}
+```
+
+4. The authenticationManager() function is defining the token verify logic. This class will be use to check the user authentication when a token is refreshed.
+
+##### IV. Optional: custome token authority verification logic
 If the default token manager does not meet your requirement, which is happening all the time, you assign you own authenticationProvider by following code.
 ```java
 @Override
@@ -153,7 +153,7 @@ public Authentication authenticate(Authentication authentication) throws Authent
     return new JwtAuthenticationToken(user, jwt, user.getAuthorities());
 }
 ```
-##### 5. Optional: custome verify chain
+##### V. Optional: custome verify chain
 If the authenticate() function throws any exception, we may to handle it or just record it in the database. To implement it we can just assign tokenValidSuccessHandler and tokenValidFailureHandler. In the handler, all you need to do is to rewrite onAuthenticationSuccess and onAuthenticationFailure.
 ```java
 ...
@@ -173,9 +173,9 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
 }
 ```
 
-##### 6. UserDetailService
+##### VI. UserDetailService
 UserDetailService is the core interface which loads user-specific data. We mast realize loadUserByUsername() function to locate user and user's role.
-##### 7. Rest APIs
+##### VII. Rest APIs
 Once all authoritioin configure finished, you can enjoy your developing. To control your role and access you can simply add @PreAuthorize("hasAuthority('ADMIN_USER')") in your rest api declaration.
 ```java
 @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -186,7 +186,7 @@ public ResponseEntity<List<User>> getUsers() {
 ```
 
 #### **Demo**
-##### 1. Apply for a token
+##### I. Apply for a token
 Client end can either use postman or curl to get a token.
 
 ```sh
@@ -197,7 +197,7 @@ You will get:
 ```json
 {"access_token":"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsic3ByaW5nLXNlY3VyaXR5LWRlbW8tcmVzb3VyY2UtaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTU0ODQ0NTQxLCJhdXRob3JpdGllcyI6WyJTVEFOREFSRF9VU0VSIiwiQURNSU5fVVNFUiJdLCJqdGkiOiI4MTM3Y2Q4OS0wMWMyLTRkMTgtYjA4YS05MjNkOTcxYjNhYzQiLCJjbGllbnRfaWQiOiJjbGllbnQtaWQifQ.1t_4xVT8xaAtisHaNT_nMRBLKfpiI0SZQ2bbEGxu6mk","token_type":"bearer","expires_in":43199,"scope":"read write","jti":"8137cd89-01c2-4d18-b08a-923d971b3ac4"}
 ```
-##### 2. Use the token in role control
+##### II. Use the token in role control
 Then use the token above to post a request which need authorition.
 ```sh
 curl http://localhost:8080/demo/users -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsic3ByaW5nLXNlY3VyaXR5LWRlbW8tcmVzb3VyY2UtaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTU0ODQ0NTQxLCJhdXRob3JpdGllcyI6WyJTVEFOREFSRF9VU0VSIiwiQURNSU5fVVNFUiJdLCJqdGkiOiI4MTM3Y2Q4OS0wMWMyLTRkMTgtYjA4YS05MjNkOTcxYjNhYzQiLCJjbGllbnRfaWQiOiJjbGllbnQtaWQifQ.1t_4xVT8xaAtisHaNT_nMRBLKfpiI0SZQ2bbEGxu6mk"
@@ -206,10 +206,10 @@ It will return:
 ```json
 [{"id":1,"username":"jakob.he","firstName":"Jakob","lastName":"He","roles":[{"id":1,"roleName":"STANDARD_USER","description":"Standard User"}]},{"id":2,"username":"admin.admin","firstName":"Admin","lastName":"Admin","roles":[{"id":1,"roleName":"STANDARD_USER","description":"Standard User"},{"id":2,"roleName":"ADMIN_USER","description":"Admin User"}]}]
 ```
-##### 3. Verify the token by in JWT
+##### III. Verify the token by in JWT
 Put your token and signing key in [jwt.io](https://jwt.io), you will get following result.
 ![jwt-verification.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
 
 
-Let’s quickly go over, we have introduce what is Spring-Security, why we need to use it, and after all We have also realize a simple Spring-Security application. 
+Let’s quickly go over, we have introduce what is Spring-Security, why we need to use it, and after all We have also realize a complete Spring-Security application including token management, token distribution, and rest APIs that requiring web authorization. 
 Hope it helps.
