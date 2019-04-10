@@ -8,7 +8,7 @@ author: Embbnux Ji
 
 ![clicktodial](https://user-images.githubusercontent.com/7036536/51652788-d2627200-1fcb-11e9-8ba3-9e50baeaf8a6.png)
 
-Rencently, we published RingCentral C2D library to help developers integrate RingCentral Click-To-Dial in browsers. This library is built with Webpack 4 and Typescript. This article demonstrates how to build a JS library which support CDN and NPM ways by introducing how we build RingCentral C2D library.
+Rencently, we published RingCentral C2D library to help developers integrate RingCentral Click-To-Dial in browsers. This library is built with Webpack 4 and Typescript. This article demonstrates how to build a JS library which supports NPM and CDN hosted script by introducing how we built RingCentral C2D library.
 
 ## RingCentral C2D
 
