@@ -218,7 +218,7 @@ Put your token and signing key in [jwt.io](https://jwt.io), you will get followi
 Let’s quickly go over, we have introduced what is Spring-Security, why we need to use it, and after all we have also realize a complete Spring-Security application including token management, token distribution, and rest APIs that requiring web authorization. 
 I hope it helps.
 
-#### **lins**
+#### **Links**
 -   [Spring Security](https://spring.io/projects/spring-security)
 -   [JWT](https://jwt.io/)
 -   [Source Code](https://github.com/jakob-lewei/spring-security-demo)
