@@ -10,14 +10,14 @@ author: Jeff Wu
 
 ### TypeScript show the error when import style file like scss or css
 
-After the success of migrating to TypeScript development from JavaScript,  we can get more confident in building an incredible product. But the challenge will not stop. When I import a style file to TypeScript file, the editor shows an error said that could not find the module. To overcome the issue about the style file importing is the next challenge we need to face.
+After the success of migrating to TypeScript development from JavaScript,  we can get more confident in building an incredible product. But the challenge will not stop. When I import a style file to TypeScript file, the editor shows an error saying that could not find the module. To overcome the issue of importing style files is the next challenge we need to face.
 
-I am researching the solution to avoid the problem that the error message showed due to the TS compile do not know about that when importing the style file. Currently, I found some solution and need to clarify which one is the better choice.
+I was researching for the solution to avoid the problem that TS compiler would show errors when importing style files because it does not know what types to expect from those files. I found some solutions but need to evaluate which one is the better choice.
 
 
 
 ### Using the "typings-for-css-modules-loader"
-It's a Webpack loader make our style file like SCSS can have intellisense by generating a TypeScript definition (d.ts). If you have using the "css-loader" you can easily set up the Webpack configuration by the following:
+This is a Webpack loader that make our style files like SCSS to support intellisense by generating a TypeScript definition file (d.ts). If you have been using the "css-loader" already, you can easily set up the Webpack configuration like the following:
 
 ```javascript
 {
@@ -31,13 +31,13 @@ It's a Webpack loader make our style file like SCSS can have intellisense by gen
     }
 }
 ```
-However, it has some flaw. The process of the definition file generator need always start a watch by a command like `yarn start`. It also makes our size of the repository become a bigger one although the intellisense is convenient for us.
+However, this method has some flaws. The process of generating the definition files need a `watch` process to be started by command line (by scripting it to `yarn start`, for example). It would also make the size of the repository bigger, even though the intellisense support is convenient.
 
 
 
 ### Using the "require" syntax instead of using import.
 
-Using the different style or syntax for import may make our project become a mess, we should keep a consistent form of the import, so maybe there were have a better solution that I not found yet.
+Using different syntax for importing modules may make our project messy, we should keep the syntax consistent. So maybe a different solution should be considered.
 
 
 
@@ -52,7 +52,7 @@ This plugin is a TypeScript plugin was inspired by this [create-react-app issue]
 }
 ```
 
-The match pattern default is `\\.module\\.(sa|sc|c)ss$`. We can custom set other pattern by the property.
+The match pattern default is `\\.module\\.(sa|sc|c)ss$`. We can customize the pattern like the following:
 
 ```json
 {
@@ -69,7 +69,7 @@ The match pattern default is `\\.module\\.(sa|sc|c)ss$`. We can custom set other
   }
 }
 ```
-After the setting, we also have to change the version of TypeScript. By default, VSCode will use its own version of TypeScript. To make it work correctly with this plugin, there have two options:
+After configurations, we also have to change the version of TypeScript used by VSCode. By default, VSCode comes with its own version of TypeScript. However, we can specify the TS version by two different ways:
 
 1. Add this plugin to "typescript.tsserver.pluginPaths" in settings.
 ```json
@@ -77,10 +77,10 @@ After the setting, we also have to change the version of TypeScript. By default,
   "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
 }
 ```
-But this option is only setable for users setting. It's not convinient for coporation. The next option is more useful for us.
+But this option is only available for user settings, and is not convenient for collaborative work. The next option is more suitable for us.
 
-2. Use our workspace's version of TypeScript
-  The workspace's version which will load the plugins from our tsconfig.json` file. We can add the config to the workspace setting.
+2. Use the version of TypeScript specified in our workspace
+    We can add the following configuration to the workspace settings to force VSCode to use the TypeScript engine specified in our work space, which will load the plugins from our tsconfig.json.
 
 ```json
 {
@@ -88,7 +88,7 @@ But this option is only setable for users setting. It's not convinient for copor
 }
 ```
 
-Besides, we found the issue about import not only style file but also other files like SVG in TypeScript. It will show the error like: "Cannot find module '../../assets/images/logo.svg'.ts(2307)". To resolve the issue that unable to import the SVG file in TypeScript, we can create a definition file named "custom.d.ts" and add the following code and add the file path to the includes field of the `tsconfig.json`:
+Aside from style files, we also run into the same issue for other files like SVG. It will show errors like: "Cannot find module '../../assets/images/logo.svg'.ts(2307)". To resolve this issue with loading SVG files, we can create a definition file named "custom.d.ts" with the code shown below, and add the file path to the "includes" field in the `tsconfig.json` file.
 ```typescript
 declare module "*.svg" {
   const content: any;
@@ -100,7 +100,7 @@ declare module "*.svg" {
 
 ### Conclusion
 
-Using the TypeScript server plugin is a good way for the solution that imports the style files which TypeScript can understand. It does not generate the definition file to the project and keeping the repository clean. Furthermore, we can enjoy the benefit of intellisense for CSS selector.
+Using TypeScript server plugin is a good solution for importing style files and assets in TypeScript. It does not generate definition files into the project so that the repository is kept clean. Furthermore, we can also enjoy the benefits of intellisense for CSS selectors.
 
 
 
