@@ -135,7 +135,7 @@ window.addEventListener('message', (e) => {
 });
 ```
 
-We will pass request message from widget to extension background, and background will handle and response.
+We will pass request messages from widget to extension background, and background will handle and respond.
 
 ### Init message response service in background.js
 
@@ -178,7 +178,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 ### Integrate Google related feature
 
-After injecting RingCentral Embeddable widget into webpage, we also want to integrate third party service into RingCentral Embeddable. In this section, we will integration Google Authorization, Google Contacts, Google Calendar and Gmail into widget.
+After injecting RingCentral Embeddable widget into webpage, we also want to integrate third party services into RingCentral Embeddable. In this section, we will integrate Google Authorization, Google Contacts, Google Calendar, and Gmail into widget.
 
 ![ringcentral embeddable integrate with gsuit](https://user-images.githubusercontent.com/7036536/55455660-0e8f0000-5617-11e9-89be-17c008c7d3f4.png)
 
@@ -233,7 +233,7 @@ async function onAuthorize(authorized) {
 }
 ```
 
-You can get full google client code in here. Firstly, we register authorize path when we register service. Then we build a message listener to response authorize request.
+You can get full google client code in here. Firstly, we register a authorize path when we register the service. Then we build a message listener to respond the authorize request.
 
 ### Integrate Google contacts into widget
 
@@ -295,7 +295,7 @@ async function onGetContacts(request, sendResponse) {
 
 Firstly, we register a contact path when we register the service. Then we respond to contacts request.
 
-For more feature integration and details, you can get the full code in [here](https://github.com/ringcentral/ringcentral-embeddable-for-google-firefox-addon).
+For more feature integrations and details, you can get the full code in [here](https://github.com/ringcentral/ringcentral-embeddable-for-google-firefox-addon).
 
 We also provide the CRM Firefox extension factory CLI tool to help developers build Firefox extensions. You can get it [here](https://github.com/ringcentral/ringcentral-embeddable-extension-factory). Just run it and select Firefox extension, and you can get it to work.
 
