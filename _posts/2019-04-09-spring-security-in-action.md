@@ -88,7 +88,7 @@ Remember that the tokenService and authenticationManager must be the same one in
 
 ### III. Token Verification
 Now you are able to implement your own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions based on customer's requirements. Listed below are the important functions:
-1. The passwordEncoder() function define the way to encode and compare the passwords.
+1. The passwordEncoder() function defines the way to encode and compare the passwords.
 2. The configure(HttpSecurity http) function sets the resource strategy.
 ```java
 @Override
