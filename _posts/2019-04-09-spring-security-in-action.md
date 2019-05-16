@@ -9,12 +9,12 @@ author: Jakob He
 ---
 
 ## **What is Spring-Security?**
-Spring-Security is a highly customizable authentication and access-control framework for java applications. Especially for spring based applications. This is wildly used in Java developing field. 
+Spring-Security is a highly customizable authentication and access-control framework for java applications. Especially for spring based applications. This is widely used in Java developing field. 
 
-## **Why we need to use Spring-Security?**
-Spring-Security is highly integrated with the most popular framework Spring-Boot. And it support both Authentication and Authorization which is also the most popular way to deal with the security issues between server and client end. Like all Spring based projects, the real power of Spring-Security is found in how easily it can be extended to meet customer requirements.
+## **Why do we need to use Spring-Security?**
+Spring-Security is highly integrated with the most popular framework Spring-Boot. It supports both Authentication and Authorization, which are also the most popular ways to deal with the security issues between server and client end. Like all Spring based projects, the real power of Spring-Security is found in how easily it can be extended to meet customer requirements.
 
-## **Spring-Security in action**
+## **Spring-Security in Action**
 In this example we will go through a very basic Spring-Security application. There are four important classes to be introduced (HttpSecurity, WebSecurityConfigurer, UserDetailsService, AuthenticationManager). And the final application will cover following features. 
 1. username and password verification
 2. role control
@@ -24,15 +24,15 @@ In this example we will go through a very basic Spring-Security application. The
 
 > ![spring-security-scope.jpg](integration-blog/assets/2019-04-09-spring-security-in-action/spring-security-scope.jpg)
 
-Within the process of realization, we may cover some fundamental principle of Spring-Security.
+Through the process of implementation, we will cover some fundamental principles of Spring-Security.
 
-### I. Include Spring-Security dependencies 
+### I. Include Spring-Security Dependencies 
 ```s
 compile "org.springframework.boot:spring-boot-starter-security"
 ```
 
-### II. Token distrubtion
-In the first place we need to define a way to grant tokens. There are servel ways including "password", "authorization_code", "implicit", "client_credentials". In our example we are using "password" as the grant_type.
+### II. Token Distrubtion
+The first thing to do is to define a way to grant tokens. There are several grant types to accomplish this, including "password", "authorization_code", "implicit", and "client_credentials". In our example, we used "password" as the grant type.
 
 ```java
 @Override
@@ -46,18 +46,18 @@ public void configure(ClientDetailsServiceConfigurer configurer) throws Exceptio
             .resourceIds(resourceIds);
 }
 ```
-Most of the time we don't user in memory client id and secret. In the real production, we can config as below to read all clients from database.
+Normally, we don't use in-memory client id and secret. In production, we can configure to read all clients from database as shown below:
 ```java
 configurer.jdbc()
 ```
 
-Then we need to config token settings including 
+After that, we need to configure token settings, including:
 1. Token store
-2. token converter
-3. token manager 
-4. enhancer chain. 
+2. Token converter
+3. Token manager 
+4. Enhancer chain. 
 
-In this example we are using JWT to manage our tokens. JWT supplies convience apis that intergrated with Spring-Security closly. There is a converter to convert token and decode token. All you need to do is to set a signing key and then set them in the config(AuthorizationServerEndpointsConfigurer endpoints) function.
+In this example we are using JWT to manage our tokens. JWT provides convenient APIs that intergrated with Spring-Security closely. There is a converter to convert and decode tokens. All you need to do is to set a signing key and then set them in the config(AuthorizationServerEndpointsConfigurer endpoints) function.
 
 ```java
 @Bean
@@ -84,12 +84,12 @@ public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
             .authenticationManager(authenticationManager);
 }
 ```
-Remember the tokenService and authenticationManager must be the same one in token verication, so that the token can be decode properly.
+Remember that the tokenService and authenticationManager must be the same one in token verication, so that the token can be decoded properly.
 
-### III. Token verication
-Now you are able to realize you own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions base on customer's requirement. Three important functions are as below.
+### III. Token Verification
+Now you are able to implement your own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions based on customer's requirements. Listed below are the important functions:
 1. The passwordEncoder() function define the way to encode and compare the passwords.
-2. The configure(HttpSecurity http) function is to set resource strategy.
+2. The configure(HttpSecurity http) function sets the resource strategy.
 ```java
 @Override
 public void configure(HttpSecurity http) throws Exception {
@@ -104,7 +104,7 @@ public void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-3. The configure(ResourceServerSecurityConfigurer resources) function is to defin security strategy. 
+3. The configure(ResourceServerSecurityConfigurer resources) function defines the security strategy. 
 In this config() function we need to assign a token service to explain tokens. A typical token service is defining as below. 
 ```java
 @Bean
@@ -117,10 +117,10 @@ public DefaultTokenServices tokenServices() {
 }
 ```
 
-4. The authenticationManager() function is defining the token verify logic. This class will be use to check the user authentication when a token is refreshed.
+4. The authenticationManager() function defines the token verification logic. This class will be use to check the user authentication when a token is refreshed.
 
-### IV. Optional: custome token authority verification logic
-If the default token manager does not meet your requirement, which is happening all the time, you could assign you own authenticationProvider by following code.
+### IV. Optional: Custom Token Authorization Verification Logic
+If the default token manager does not meet your requirements, which is happening all the time, you could use your own authenticationProvider by using the code below:
 ```java
 @Override
 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -152,8 +152,8 @@ public Authentication authenticate(Authentication authentication) throws Authent
     return new JwtAuthenticationToken(user, jwt, user.getAuthorities());
 }
 ```
-### V. Optional: custome verify chain
-If the authenticate() function throws any exception, we may to handle it or just record it in the database. To implement it we can just set tokenValidSuccessHandler and tokenValidFailureHandler. In the handler, you can rewrite onAuthenticationSuccess and onAuthenticationFailure with your own logic.
+### V. Optional: Custom Verification Chain
+If the authenticate() function throws any exception, we may handle it or just record it in the database. To implement it we can just set tokenValidSuccessHandler and tokenValidFailureHandler. In the handler, you can rewrite onAuthenticationSuccess and onAuthenticationFailure with your own logic.
 ```java
 ...
     .and()
@@ -173,10 +173,10 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
 ```
 
 ### VI. UserDetailService
-UserDetailService is the core interface which loads user-specific data. We mast realize loadUserByUsername() function to locate user and user's role.
+UserDetailService is the core interface which loads user-specific data. We must realize loadUserByUsername() function to locate user and user's role.
 
-### VII. Rest APIs
-Once all authoritioin configure has been finished, you can enjoy your developing. To control your role and access you can simply add @PreAuthorize("hasAuthority('ADMIN_USER')") in your rest api declaration.
+### VII. REST APIs
+Once all the authorization configurations have been finished, you can start to enjoy developing your project. To control your role and access you can simply add @PreAuthorize("hasAuthority('ADMIN_USER')") in your rest api declaration.
 ```java
 @RequestMapping(value = "/users", method = RequestMethod.GET)
 @PreAuthorize("hasAuthority('ADMIN_USER')") //user with ADMIN_USER role have this access.
@@ -210,13 +210,13 @@ It will return:
 ```
 
 ### III. Verify the token by JWT
-Put your token and signing key in [jwt.io](https://jwt.io), you will get following result.
+Put your token and signing key in [jwt.io](https://jwt.io), you will get the following result.
 
 > ![jwt-verification.jpg](integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
 
 
-Let’s quickly go over, we have introduced what is Spring-Security, why we need to use it, and after all we have also realize a complete Spring-Security application including token management, token distribution, and rest APIs that requiring web authorization. 
-I hope it helps.
+Let's quickly go over what we have done: we have introduced what is Spring-Security and why we need to use it. We have also implemented a complete Spring-Security application that included token management, token distribution, and REST APIs that are required for web authorization.
+I hope this article is helpful.
 
 #### **Links**
 -   [Spring Security](https://spring.io/projects/spring-security)
