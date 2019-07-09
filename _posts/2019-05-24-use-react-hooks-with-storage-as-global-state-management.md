@@ -8,7 +8,7 @@ author: Embbnux Ji
 
 ![react hooks with storage](https://cdn-images-1.medium.com/max/800/1*b9_KoH-ShP-JQROsrQANjw.png)
 
-React Hooks give us a new way to manage state in React. But how to manage global state as redux and how to persist state? This article will show how to use hook as global state management by storage.
+React Hooks give us a new way to manage state in React. But how to manage global state as redux and how to persist state? This article will show how to use hook for global state management with storage.
 
 Reference the following GitHub repos for additional code:
 
@@ -20,7 +20,7 @@ Reference the following GitHub repos for additional code:
 
 [Hooks](https://reactjs.org/docs/hooks-intro.html) was added in React 16.8. With hooks, we can use state and other React features without writing a class.
 
-With `useState`, we can read and setState in function component:
+With `useState`, we can read and set state in function components:
 
 ```js
 import React, { useState } from 'react';
@@ -89,7 +89,7 @@ For more details, please check the project [repo](https://github.com/embbnux/rt-
 
 ## Use storage hook
 
-So let’s start to create a customized react hook with global storage. Following is the core source code of [use-global-storage](https://github.com/embbnux/use-global-storage):
+So let’s start to create a customized react hook with global storage. The following is the core source code of [use-global-storage](https://github.com/embbnux/use-global-storage):
 
 ```js
 import { useState, useEffect } from 'react';
@@ -129,9 +129,9 @@ export default function useGlobalStorage({ storageOptions } : { storageOptions: 
 };
 ```
 
-It will return a hook function which allow user to set state into storage and sync for other components and tabs. setData function will set state into react state and save data into storage. And we use `useEffect` to subscribe storage changed event.
+It will return a hook function which allow user to set state into storage and sync with other components and tabs. `setData` function will set state into react state and save data into storage. And we use `useEffect` to subscribe storage changed event.
 
-Example to use `use-global-storage` hook in project:
+Example of using `use-global-storage` hook in project:
 
 ```js
 import useGlobalStorage from 'use-global-storage';
@@ -156,8 +156,8 @@ const Counter = () => {
 };
 ```
 
-It is very simple to use it. Just get `state` and `setState` from `useStorage` hook, and your component is connected with storage data. You can get the online demo page [here](https://embbnux.github.io/use-global-storage-demo/). To get full code in this Github [repo](https://github.com/embbnux/use-global-storage-demo).
+It is very simple to use hooks. Just get `state` and `setState` from `useStorage` hook, and your component is connected with storage data. You can get the online demo page [here](https://embbnux.github.io/use-global-storage-demo/). To get full code, refer to this Github [repo](https://github.com/embbnux/use-global-storage-demo).
 
 ## Conclusion
 
-This article provides a new way to manage global state with react hook and storage. Hope you will like this library: [use-global-storage](https://github.com/embbnux/use-global-storage).
+This article provides a new way to manage global state with react hooks and storage. Hope you will like this library: [use-global-storage](https://github.com/embbnux/use-global-storage).
