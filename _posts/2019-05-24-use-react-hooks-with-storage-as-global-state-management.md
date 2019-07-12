@@ -8,7 +8,7 @@ author: Embbnux Ji
 
 ![react hooks with storage](https://cdn-images-1.medium.com/max/800/1*b9_KoH-ShP-JQROsrQANjw.png)
 
-React Hooks give us a new way to manage state in React. But how to manage global state as redux and how to persist state? This article will show how to use hook for global state management with storage.
+React Hooks give us a new way to manage state in React. But how to manage global state as redux and how to persist state? This article will show how to use hooks for global state management with storage.
 
 Reference the following GitHub repos for additional code:
 
