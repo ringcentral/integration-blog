@@ -22,12 +22,12 @@ In this example we will go through a very basic Spring-Security application. The
 4. token verification
 5. password crypto
 
-> ![spring-security-scope.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/spring-security-scope.jpg)
+![d7ad5cb8850f9b5eea612a87561f3f56.jpeg](evernotecid://E20C5695-6034-43F8-A690-5BD6C60E4DD6/appyinxiangcom/1657811/ENResource/p52)
 
 Through the process of implementation, we will cover some fundamental principles of Spring-Security.
 
 ### I. Include Spring-Security Dependencies 
-```s
+```sh
 compile "org.springframework.boot:spring-boot-starter-security"
 ```
 
@@ -46,6 +46,7 @@ public void configure(ClientDetailsServiceConfigurer configurer) throws Exceptio
             .resourceIds(resourceIds);
 }
 ```
+
 Normally, we don't use in-memory client id and secret. In production, we can configure to read all clients from database as shown below:
 ```java
 configurer.jdbc()
@@ -212,8 +213,7 @@ It will return:
 ### III. Verify the token by JWT
 Put your token and signing key in [jwt.io](https://jwt.io), you will get the following result.
 
-> ![jwt-verification.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
-
+![43b1c95fb45b525fa23b77d1c7d9c6eb.jpeg](evernotecid://E20C5695-6034-43F8-A690-5BD6C60E4DD6/appyinxiangcom/1657811/ENResource/p44)
 
 Let's quickly go over what we have done: we have introduced what is Spring-Security and why we need to use it. We have also implemented a complete Spring-Security application that included token management, token distribution, and REST APIs that are required for web authorization.
 I hope this article is helpful.
