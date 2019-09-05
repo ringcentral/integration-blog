@@ -12,7 +12,7 @@ This is just a thought that came to me during day to day code reviews and I want
 
 ## A trivial example
 
-Consider you want to implement a simple algorism that show the balance in foreign currency whenever you spend it. We will do this in `Typescipt` and ignore the float point issue of ECMAScript for the sake of simplicity.
+Consider you want to implement a simple algorism that show the balance in foreign currency whenever you spend it. We will do this in `Typescript` and ignore the float point issue of ECMAScript for the sake of simplicity.
 
 So the algorism just needs 3 arguments: a balance, how much you spent, and an exchange rate. And the out is a number.
 
