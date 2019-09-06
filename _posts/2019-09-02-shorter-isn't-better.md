@@ -10,13 +10,13 @@ author: Lex Huang
 
 This is just a thought that came to me during day to day code reviews and I want to share the idea with you.
 
-## A trivial example
+## A Trivial Example
 
 Consider you want to implement a simple algorism that show the balance in foreign currency whenever you spend it. We will do this in `Typescript` and ignore the float point issue of ECMAScript for the sake of simplicity.
 
-So the algorism just needs 3 arguments: a balance, how much you spent, and an exchange rate. And the out is a number.
+So the algorism needs 3 arguments: a balance, how much you spent, and an exchange rate. And the result is a number.
 
-### A naive Solution
+### A Naive Solution
 
 ### Compositionality
 
