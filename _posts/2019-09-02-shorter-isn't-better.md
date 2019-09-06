@@ -8,19 +8,73 @@ author: Lex Huang
 
 # Shorter functions aren't always better
 
-This is just a thought that came to me during day to day code reviews and I want to share the idea with you.
+This is just a thought that came to me during day to day code reviews and I want to share the idea with you. My point is that for functions, readability, understandability and maintainability is much more important the length and the abstraction level.
 
 ## A Trivial Example
 
-Consider you want to implement a simple algorism that show the balance in foreign currency whenever you spend it. We will do this in `Typescript` and ignore the float point issue of ECMAScript for the sake of simplicity.
+Consider you want to implement a simple algorism that show the balance in foreign currency given a list of incomes and outcomes. I will do this in `Typescript`. For the sake of simplicity, I will **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
 
-So the algorism needs 3 arguments: a balance, how much you spent, and an exchange rate. And the result is a number.
+So the algorism needs 3 arguments: a balance, list of numbers as income in positive number and outcome in negative number, and an exchange rate. And the result is a number.
 
 ### A Naive Solution
 
+```Typescript
+function getBalanceInFC (
+    balance: number = 0, costs:number[], exchangeRate:number
+) {
+    return costs.reduce((acc, flow) => acc + flow, balance) / costs;
+}
+```
+
 ### Compositionality
 
+The code above actually is composited of two arithmetic operations: accumulating and dividing. Both of them has their corresponding meaning in the domain of banking and accounting.
+
+So, in terms of single responsibility principle, reusability and readability, it would be nice if we decompose the function:
+
+```Typescript
+const getBalance = (balance: number, costs:number[]) => costs.reduce((acc, flow) => acc + flow, balance);
+
+const getFC = (accounting: number, exchangeRate: number) => accounting / exchangeRate;
+
+const getBalanceInFC = (
+    balance: number = 0, costs:number[], exchangeRate:number
+) => getFC(getBalance(balance, costs), exchangeRate);
+```
+
 ### Point-free Style
+
+The code above is readable, simple and maintainable enough since each of functions has only one responsibility and pure. But the abstraction can go higher: we can eliminate the arguments which called `point-free style`.
+
+The `point-free style` comes from math, like in geometry it emphasis the surface/space over individual points. In programming, it simply means functions that never mentioning the actual arguments they will be applied to.
+
+One way to achieve this is by using `eta conversion`:
+
+> Given `z` is a single parameter function, then:
+>
+>> x => z(x)
+>
+> is equal to:
+>
+>> z
+>
+> itself.
+
+But we need one more ingredients since javascript lack of a build-in `combinator` we call `after` in `Haskell`:
+> Expression
+>
+>> f(g(x))
+>
+> can be written as:
+>
+>> f.g
+>
+> in haskell, read as `f after g`
+> which can be translated into a prefix operator:
+>
+>> after(f)(g)
+
+I would use the curried version of `compose` in `Ramda` as my `after`.
 
 ## Conclusion
 
