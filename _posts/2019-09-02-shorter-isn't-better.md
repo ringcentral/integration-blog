@@ -35,10 +35,10 @@ So, in terms of single responsibility principle, reusability and readability, it
 ```Javascript
 const getBalance = (balance = 0, costs = []) => costs.reduce((acc, flow) => acc + flow, balance);
 
-const getFC = (balance = 0, exchangeRate = 1) => accounting / exchangeRate;
+const getFC = (balance = 0, exchangeRate = 1) => balance / exchangeRate;
 
 const getBalanceInFC = (
-    balance: number = 0, costs:number[], exchangeRate = 1
+    balance: number = 0, costs = [], exchangeRate = 1
 ) => getFC(getBalance(balance, costs), exchangeRate);
 ```
 
@@ -80,6 +80,8 @@ Here I will give a version of `curry` and `after`:
 
 ```Javascript
 const curry = f => {
+    // Need to remove the default value for `f`
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length#Description
 	const subCurry = (args) => args.length === f.length ? f.apply(null, args) : (x) => subCurry([...args, x]);
 	return x => subCurry([x]);
 }
@@ -130,7 +132,7 @@ Now we are ready to go point-free, I will do this by equation reasoning:
     ```Javascript
     const pfGetBalanceInFC 
         // = (balance = 0) => after(after(cGetFC))(cGetBalance)(balance);
-        after(after(cGetFC))(cGetBalance);
+        = after(after(cGetFC))(cGetBalance);
     ```
 
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! And for languages that has built-in `after` and `curry` like `Haskell` the issue unreadability gets even worse:
@@ -139,6 +141,22 @@ So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalan
 -- | Suppose we have implemented getBalance and getFC in Haskell
 getBalanceInFC = getBalance ... getFC
 ```
+
+Even though the point free style does has its advatages, if we extract the pattern into:
+
+```Javascript
+const blackBird = f => g => after(after(f))(g);
+```
+Then the `blackBird` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
+
+```Javascript
+const f = (x, y, z) => x + y + z;
+const g = (x, y) => x / y;
+const p = (w, x, y, z) => f((g(w, x)), y, z);
+const blackBirdP = blackBird(curry(f))(curry(p)); 
+```
+
+Which means given same parameters, the execution result of `p` and `blackBirdP` is always the same. This does provide maintanability but still, hard to read and understand.
 
 ## Conclusion
 
