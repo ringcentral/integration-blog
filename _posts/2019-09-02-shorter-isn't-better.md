@@ -12,15 +12,15 @@ This is just a thought that came to me during day to day code reviews and I want
 
 ## A Trivial Example
 
-Consider you want to implement a simple algorism that show the balance in foreign currency given a list of incomes and outcomes. I will do this in `Typescript`. For the sake of simplicity, I will **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
+Consider you want to implement a simple algorism that show the balance in foreign currency given a list of incomes and outcomes. I will do this in `Javascript`. For the sake of simplicity, I will **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
 
 So the algorism needs 3 arguments: a balance, list of numbers as income in positive number and outcome in negative number, and an exchange rate. And the result is a number.
 
 ### A Naive Solution
 
-```Typescript
+```Javascript
 function getBalanceInFC (
-    balance: number = 0, costs:number[], exchangeRate:number
+    balance = 0, costs = [], exchangeRate = 1
 ) {
     return costs.reduce((acc, flow) => acc + flow, balance) / costs;
 }
@@ -32,13 +32,13 @@ The code above actually is composited of two arithmetic operations: accumulating
 
 So, in terms of single responsibility principle, reusability and readability, it would be nice if we decompose the function:
 
-```Typescript
-const getBalance = (balance: number, costs:number[]) => costs.reduce((acc, flow) => acc + flow, balance);
+```Javascript
+const getBalance = (balance = 0, costs = []) => costs.reduce((acc, flow) => acc + flow, balance);
 
-const getFC = (accounting: number, exchangeRate: number) => accounting / exchangeRate;
+const getFC = (balance = 0, exchangeRate = 1) => accounting / exchangeRate;
 
 const getBalanceInFC = (
-    balance: number = 0, costs:number[], exchangeRate:number
+    balance: number = 0, costs:number[], exchangeRate = 1
 ) => getFC(getBalance(balance, costs), exchangeRate);
 ```
 
@@ -74,7 +74,71 @@ But we need one more ingredients since javascript lack of a build-in `combinator
 >
 >> after(f)(g)
 
-I would use the curried version of `compose` in `Ramda` as my `after`.
+Noticed that the `after` is `curried`.
+
+Here I will give a version of `curry` and `after`:
+
+```Javascript
+const curry = f => {
+	const subCurry = (args) => args.length === f.length ? f.apply(null, args) : (x) => subCurry([...args, x]);
+	return x => subCurry([x]);
+}
+
+const after = f => g => x => f(g(x));
+```
+
+Then in order to do the eta-conversion, we also need curried version of `getBalance` and `getFC`:
+
+```Javascript
+const cGetBalance = curry(getBalance);
+const cGetFC = curry(getFC);
+```
+Now we are ready to go point-free, I will do this by equation reasoning:
+1. writing a curried version of `getBalanceInFC`:
+
+    ```Javascript
+    const pfGetBalanceInFC = (balance = 0) => (costs = []) => (exchangeRate = 1) => getFC(getBalance(balance, costs), exchangeRate)
+        // = (balance = 0) => (costs = []) => (exchangeRate = 1) => cGetFC(getBalance(balance, costs))(exchangeRate);
+    ```
+
+2. replacing the `getFC` using its curried version:
+
+    ```Javascript
+    const pfGetBalanceInFC = (balance = 0) => (costs = []) => (exchangeRate = 1) => cGetFC(getBalance(balance, costs))(exchangeRate);
+    ```
+
+3. cancelling the `exchangeRate` parameter using eta-conversion:
+
+    ```Javascript
+    const pfGetBalanceInFC = (balance = 0) => (costs = []) => cGetFC(getBalance(balance, costs));
+    ```
+4. replacing the `getBalance` using its curried version:
+
+    ```Javascript
+    const pfGetBalanceInFC = (balance = 0) => (costs = []) => cGetFC(cGetBalance(balance)(costs));
+    ```
+    
+5. Here we taking the advantage of curring that `cGetBalance(balance)` is a function! Let's say `cGetBalance(balance)` is equal to some function `f`, then the `cGetFC(cGetBalance(balance)(costs))` can be read as **`cGetFC` *after* `f` then *applied* with `costs`**, also by taking the advatage of declarativity of the functional programming:
+
+    ```Javascript
+    const pfGetBalanceInFC 
+        // = (balance = 0) => (costs = []) => after(cGetFC)(cGetBalance(balance))(costs);
+        = (balance = 0) => after(cGetFC)(cGetBalance(balance));
+    ```
+6. For the expression above, we find a rule that `f.g ≅ \x->(f.g)(x) ≅ \x->f(g(x))` (for simplicity I'm using `Haskell` notations here). Then let's apply this rule again by taking `after(cGetFC)` as some function `f` and `cGetBalance`  as some function `g` then we can see the expression matches the rule perfectly:
+
+    ```Javascript
+    const pfGetBalanceInFC 
+        // = (balance = 0) => after(after(cGetFC))(cGetBalance)(balance);
+        after(after(cGetFC))(cGetBalance);
+    ```
+
+So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! And for languages that has built-in `after` and `curry` like `Haskell` the issue unreadability gets even worse:
+
+```Haskell
+-- | Suppose we have implemented getBalance and getFC in Haskell
+getBalanceInFC = getBalance ... getFC
+```
 
 ## Conclusion
 
