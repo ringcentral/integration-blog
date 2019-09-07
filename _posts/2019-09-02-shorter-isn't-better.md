@@ -138,6 +138,7 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! And for languages that has built-in `after` and `curry` like `Haskell` the issue unreadability gets even worse:
 
 ```Haskell
+-- our black bird combinator
 (...) = (.).(.)
 
 getBalance:: Float -> [Float] -> Float
@@ -151,11 +152,12 @@ pfGetBalanceInFC = getFC...getBalance
 main = print $ pfGetBalanceInFC 1 [1, 2] 2
 ```
 
-Even though the point free style does has its advatages, if we extract the pattern into:
+Even though the point free style does has its advatages, if we extract this combinator:
 
 ```Javascript
-const blackBird = f => g => after(after(f))(g);
+const blackBird = f => g => after(after(f))(g); // (...) = (.).(.) in Haskell
 ```
+
 Then the `blackBird` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
 
 ```Javascript
