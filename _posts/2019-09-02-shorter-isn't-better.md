@@ -138,8 +138,17 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! And for languages that has built-in `after` and `curry` like `Haskell` the issue unreadability gets even worse:
 
 ```Haskell
--- | Suppose we have implemented getBalance and getFC in Haskell
-getBalanceInFC = getBalance ... getFC
+(...) = (.).(.)
+
+getBalance:: Float -> [Float] -> Float
+getBalance original costs = foldl (+) original costs
+
+getFC:: Float -> Float -> Float
+getFC balance exchangeRate = balance / exchangeRate
+
+pfGetBalanceInFC = getFC...getBalance
+
+main = print $ pfGetBalanceInFC 1 [1, 2] 2
 ```
 
 Even though the point free style does has its advatages, if we extract the pattern into:
