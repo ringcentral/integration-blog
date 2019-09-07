@@ -8,7 +8,7 @@ author: Lex Huang
 
 # Shorter functions aren't always better
 
-This is just a thought that came to me during day to day code reviews and I want to share the idea with you. My point is that for functions, readability, understandability and maintainability is much more important the length and the abstraction level.
+This is just a thought that came to me during day to day code reviews and I want to share the idea with you. My point is that for functions, readability, understandability and maintainability is much more important the length and the abstraction level.
 
 ## A Trivial Example
 
@@ -99,14 +99,19 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 1. writing a curried version of `getBalanceInFC`:
 
     ```Javascript
-    const pfGetBalanceInFC = (balance = 0) => (costs = []) => (exchangeRate = 1) => getFC(getBalance(balance, costs), exchangeRate)
-        // = (balance = 0) => (costs = []) => (exchangeRate = 1) => cGetFC(getBalance(balance, costs))(exchangeRate);
+    const pfGetBalanceInFC = (balance = 0) =>
+                                (costs = []) =>
+                                    (exchangeRate = 1) => 
+                                        getFC(getBalance(balance, costs), exchangeRate)
     ```
 
 2. replacing the `getFC` using its curried version:
 
     ```Javascript
-    const pfGetBalanceInFC = (balance = 0) => (costs = []) => (exchangeRate = 1) => cGetFC(getBalance(balance, costs))(exchangeRate);
+    const pfGetBalanceInFC = (balance = 0) =>
+                                (costs = []) =>
+                                    (exchangeRate = 1) =>
+                                        cGetFC(getBalance(balance, costs))(exchangeRate);
     ```
 
 3. cancelling the `exchangeRate` parameter using eta-conversion:
