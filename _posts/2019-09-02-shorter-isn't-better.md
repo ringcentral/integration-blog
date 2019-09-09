@@ -145,7 +145,7 @@ So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalan
 ```Javascript
 const owl 
     // = f => g => after(after(f))(g);
-    = after(after)(curry(after)); // applying the same rules above
+    = after(after)(curry(after)); // applying same rules above
 ```
 The Haskell version of it looks more terrifying:
 
