@@ -140,14 +140,15 @@ Now we are ready to go point-free, I will do this by equation reasoning:
         = after(after(cGetFC))(cGetBalance);
     ```
 
-So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! Even though the point free style does has its advatages, if we extract the combinator:
+So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! Even though the point free style does has its advatages, if we extract the pattern above into a combinator:
 
 ```Javascript
 const owl 
     // = f => g => after(after(f))(g);
     = after(after)(after); // applying same rules above
 ```
-The Haskell version of it looks much more terrifying:
+
+and its Haskell version of it looks much more terrifying:
 
 ```Haskell
 -- because it looks like an owl
