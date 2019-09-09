@@ -82,8 +82,11 @@ Here I will give a version of `curry` and `after`:
 const curry = f => {
     // Need to remove the default value for `f`
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length#Description
-	const subCurry = (args) => args.length === f.length ? f.apply(null, args) : (x) => subCurry([...args, x]);
-	return x => subCurry([x]);
+    const subCurry = (args) => 
+        args.length === f.length 
+            ? f.apply(null, args) 
+            : (x) => subCurry([...args, x]);
+    return x => subCurry([x]);
 }
 
 const after = f => g => x => f(g(x));
