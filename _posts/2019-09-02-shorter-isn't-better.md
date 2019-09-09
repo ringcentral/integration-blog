@@ -151,7 +151,7 @@ const owl
     = after(after)(after); // applying same rules above
 ```
 
-and its Haskell version of it looks much more terrifying:
+and its Haskell version looks much more terrifying:
 
 ```Haskell
 -- because it looks like an owl
