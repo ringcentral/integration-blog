@@ -150,7 +150,8 @@ const owl
 The Haskell version of it looks more terrifying:
 
 ```Haskell
-(owl) = (.).(.)
+-- because it looks like an owl
+owl = (.).(.)
 ```
 
 Then the `owl` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
@@ -170,7 +171,7 @@ Which means given same parameters, the execution result of `p` and `owlP` is alw
 For reference, here is the Haskell version:
 
 ```Haskell
--- our owl combinator
+-- because it looks like an owl
 owl = (.).(.)
 
 getBalance:: Float -> [Float] -> Float
