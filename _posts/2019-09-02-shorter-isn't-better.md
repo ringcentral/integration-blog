@@ -143,7 +143,9 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! Even though the point free style does has its advatages, if we extract the combinator:
 
 ```Javascript
-const owl = f => g => after(after(f))(g);
+const owl 
+    // = f => g => after(after(f))(g);
+    = after(after)(curry(after)); // applying the same rules above
 ```
 The Haskell version of it looks more terrifying:
 
@@ -157,7 +159,9 @@ Then the `owl` works for any number of parameters versions of function `f` given
 const f = (x, y, z) => x + y + z;
 const g = (x, y) => x / y;
 const p = (w, x, y, z) => f((g(w, x)), y, z);
-const owlP = owl(curry(f))(curry(p)); 
+const owlP = owl(curry(f))(curry(g)); 
+
+console.log(p(1,2,3,4) === owlP(1)(2)(3)(4)) //true
 ```
 Which means given same parameters, the execution result of `p` and `owlP` is always the same. This does provide maintanability but still, hard to read and understand.
 
