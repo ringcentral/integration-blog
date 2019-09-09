@@ -128,7 +128,7 @@ Now we are ready to go point-free, I will do this by equation reasoning:
     const pfGetBalanceInFC = (balance = 0) => (costs = []) => cGetFC(cGetBalance(balance)(costs));
     ```
     
-5. Here we taking the advantage of curring that `cGetBalance(balance)` is a function! Let's say `cGetBalance(balance)` is equal to some function `f`, then the `cGetFC(cGetBalance(balance)(costs))` can be read as **`cGetFC` *after* `f` then *applied* with `costs`**, also by taking the advatage of declarativity of the functional programming:
+5. Here we taking the advantage of curring that `cGetBalance(balance)` is a function! Let's say `cGetBalance(balance)` is equal to some function `f`, then the `cGetFC(cGetBalance(balance)(costs))` can be read as **`cGetFC` *after* `f` then *applied* with `costs`**, also by taking the advantage of the declarative side from functional programming paradigm:
 
     ```Javascript
     const pfGetBalanceInFC 
