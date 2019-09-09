@@ -167,7 +167,7 @@ For reference, here is the Haskell version:
 
 ```Haskell
 -- our owl combinator
-(owl) = (.).(.)
+owl = (.).(.)
 
 getBalance:: Float -> [Float] -> Float
 getBalance original costs = foldl (+) original costs
