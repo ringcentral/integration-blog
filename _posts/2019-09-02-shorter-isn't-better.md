@@ -143,31 +143,31 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! Even though the point free style does has its advatages, if we extract the combinator:
 
 ```Javascript
-const blackBird = f => g => after(after(f))(g);
+const owl = f => g => after(after(f))(g);
 ```
 The Haskell version of it looks more terrifying:
 
 ```Haskell
-(...) = (.).(.)
+(owl) = (.).(.)
 ```
 
-Then the `blackBird` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
+Then the `owl` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
 
 ```Javascript
 const f = (x, y, z) => x + y + z;
 const g = (x, y) => x / y;
 const p = (w, x, y, z) => f((g(w, x)), y, z);
-const blackBirdP = blackBird(curry(f))(curry(p)); 
+const owlP = owl(curry(f))(curry(p)); 
 ```
-Which means given same parameters, the execution result of `p` and `blackBirdP` is always the same. This does provide maintanability but still, hard to read and understand.
+Which means given same parameters, the execution result of `p` and `owlP` is always the same. This does provide maintanability but still, hard to read and understand.
 
-> The reason for the naming because it comes from a logic puzzle book [To Mock a Mockingbird](https://g.co/kgs/gQY4XL)
+> More info about `owl` can be found in the logic puzzle book [To Mock a Mockingbird](https://g.co/kgs/gQY4XL)
 
 For reference, here is the Haskell version:
 
 ```Haskell
--- our black bird combinator
-(...) = (.).(.)
+-- our owl combinator
+(owl) = (.).(.)
 
 getBalance:: Float -> [Float] -> Float
 getBalance original costs = foldl (+) original costs
@@ -176,7 +176,7 @@ getFC:: Float -> Float -> Float
 getFC balance exchangeRate = balance / exchangeRate
 
 -- main = print $ ((getFC.).getBalance) 1 [1, 2] 2
-main = print $ (getFC...getBalance) 1 [1, 2] 2
+main = print $ (getFC `owl` getBalance) 1 [1, 2] 2
 ```
 
 ## Conclusion
