@@ -201,14 +201,14 @@ Abstraction has its advantages over enforcing certain functionalities and robust
     ```
 3. Simple type proof for the our owl combinator:
     
-    ∵ Given:
-            (.):: (b → C) -> (a → b) -> (a → c)
+    Given:
+        (.):: (b → C) → (a → b) → (a → c)
+
+    we want to figure out the result of:
+
+        (.).(.)
             
-        we want to figure out the result of:
-        
-            (.).(.)
-            
-        Let's marking the 3 combinator as #1, #2 for the two `(.)`, and #3 for the `.`.
+    ∵ Let's marking the 3 combinator as #1, #2 for the two `(.)`, and #3 for the `.`.
         
         Then:
         
@@ -246,4 +246,4 @@ Abstraction has its advantages over enforcing certain functionalities and robust
         a2→c2 = (b1 → c1)→[a→(a1→b1)]->[a→(a1→c1)]
     
     Which is exactly what you would get in GHC with `type (.).(.)`.
-    So once you feed the `owl` with 2 functions and 2 parameters for the second function, the result is `c1` which is the type of (partial) evaluation result of your first input function.
+    So once you feed the `owl` with 2 functions and 2 parameters for the second function, the result is `c1` which is the type of (partial) evaluation result of your first input function. That's the reason why the number of parameters does not matter for the function.
