@@ -168,25 +168,7 @@ const owlP = owl(curry(f))(curry(g));
 
 console.log(p(1,2,3,4) === owlP(1)(2)(3)(4)) //true
 ```
-Which means given same parameters, the execution result of `p` and `owlP` is always the same. This does provide maintanability but still, hard to read and understand.
-
-> More info about `owl` can be found in the logic puzzle book [To Mock a Mockingbird](https://g.co/kgs/gQY4XL)
-
-For reference, here is the Haskell version:
-
-```Haskell
--- because it looks like an owl
-owl = (.).(.)
-
-getBalance:: Float -> [Float] -> Float
-getBalance original costs = foldl (+) original costs
-
-getFC:: Float -> Float -> Float
-getFC balance exchangeRate = balance / exchangeRate
-
--- main = print $ ((getFC.).getBalance) 1 [1, 2] 2
-main = print $ (getFC `owl` getBalance) 1 [1, 2] 2
-```
+Which means given same parameters, the execution result of `p` and `owlP` is always the same (one can prove the feature by the type signature of our `after` combinator). This does provide maintanability but still, hard to read and understand.
 
 ## Conclusion
 
@@ -197,3 +179,71 @@ Coding practice is a kind of social practice because it involves cooperations an
 I believe whenever after a person hearing this, the conversation ends. Because in order to understand the meaning of the sentence, the listener needs to understand a bunch of mathematical ideas like: `poset` and `monoid`, `category` connection between `category` and `poset`, `galois connection` and generalize it to `adjoint situation`, `functor` and `natrual transformations`, and `Kleisli Categories`, which if he does he won't even ask in the first place. But if I start with a simple commutative diagram, which I thought is the best part of the `category theory` that you can prove things by drawing strings and dots, and then proceed with the idea of `Kleisli Categories`, they might gain some understand about the intimidating idea.
 
 Abstraction has its advantages over enforcing certain functionalities and robustness for certain problem domain. But coders should choose their level of abstraction based on the knowledge background of their cooperators, especially when practicing in an enterprise scale. So a good smell of a function is the function that always readable, understandable and maintainable to each and every team members, the length of a function doesn't matter that much.
+
+## References
+
+1. More info about `owl` can be found in the logic puzzle book [To Mock a Mockingbird](https://g.co/kgs/gQY4XL)
+
+2. Here is a Haskell version:
+
+    ```Haskell
+    -- because it looks like an owl
+    owl = (.).(.)
+
+    getBalance:: Float -> [Float] -> Float
+    getBalance original costs = foldl (+) original costs
+
+    getFC:: Float -> Float -> Float
+    getFC balance exchangeRate = balance / exchangeRate
+
+    -- main = print $ ((getFC.).getBalance) 1 [1, 2] 2
+    main = print $ (getFC `owl` getBalance) 1 [1, 2] 2
+    ```
+3. Simple type proof for the our owl combinator:
+    
+    ∵ Given:
+            (.):: (b → C) -> (a → b) -> (a → c)
+            
+        we want to figure out the result of:
+        
+            (.).(.)
+            
+        Let's marking the 3 combinator as #1, #2 for the two `(.)`, and #3 for the `.`.
+        
+        Then:
+        
+            #1:: (b→c)→(a→b)→(a→c)
+            
+            #2:: (b1→c1)→(a1→b1)→(a1→c1)
+            
+            #3:: (b2→c2)→(a2→b2)→(a2→c2)
+            
+    ∴ We have:
+        #1:: b2→c2
+        
+        #2:: a2→b2
+        
+    ∴ We have:
+        b2= b→c
+        
+        c2=(a→b)→(a→c)
+        
+       And:
+        a2=b1→c1
+        
+        b2=(a1→b1)→(a1→c1))
+        
+       Which means:
+        b2 = b→c = (a1→b1)→(a1→c1)
+    ∴ We have:
+    
+        b=c1→b1
+        
+        c=a1→c1
+    
+    So the final reasult is:
+    
+        a2→c2 = (b1 → c1)→[a→(a1→b1)]->[a→(a1→c1)]
+    
+    Which is exactly what you would get in GHC with `type (.).(.)`.
+    So once you feed the `owl` with 2 functions and 2 parameters for the second function, the result is `c1` which is the type of (partial) evaluation result of your first input function.
