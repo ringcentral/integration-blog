@@ -208,9 +208,7 @@ Abstraction has its advantages over enforcing certain functionalities and robust
 
         (.).(.)
             
-    ∵ Let's marking the 3 combinator as #1, #2 for the two `(.)`, and #3 for the `.`.
-        
-        Then:
+    ∵ Let's marking the 3 combinator as #1, #2 for the two `(.)`, and #3 for the `.`, then:
         
             #1:: (b→c)→(a→b)→(a→c)
             
@@ -224,16 +222,19 @@ Abstraction has its advantages over enforcing certain functionalities and robust
         #2:: a2→b2
         
     ∴ We have:
+       
         b2= b→c
         
         c2=(a→b)→(a→c)
         
-       And:
+      And:
+      
         a2=b1→c1
         
         b2=(a1→b1)→(a1→c1))
         
-       Which means:
+      Which means:
+       
         b2 = b→c = (a1→b1)→(a1→c1)
     ∴ We have:
     
