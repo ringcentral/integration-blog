@@ -1,20 +1,20 @@
 ---
 layout: post
-title: "Shorter functions are't always better"
+title: "Shorter Functions Aren't Always Better"
 date: 2019-09-05 10:00:00 +0800
 categories: blog
 author: Lex Huang
 ---
 
-# Shorter functions aren't always better
+# Shorter Functions Aren't Always Better
 
-This is just a thought that came to me during day to day code reviews and I want to share the idea with you. My point is that for functions, readability, understandability and maintainability is much more important the length and the abstraction level.
+This is an idea that came to me during day to day code reviews that I want to share with you. A function's readability, understandability, and maintainability are more important than the length and abstraction level of the function.
 
 ## A Trivial Example
 
-Consider you want to implement a simple algorism that show the balance in foreign currency given a list of incomes and outcomes. I will do this in `Javascript`. For the sake of simplicity, I will **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
+Consider that you want to implement a simple algorism that show the balance in foreign currency, given a list of incomes and expenditures. For the sake of simplicity, I will do this in `Javascript` and **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
 
-So the algorism needs 3 arguments: a balance, list of numbers as income in positive number and outcome in negative number, and an exchange rate, consider both blance and the list are in the same currency. And the result is a number.
+The algorithm needs 3 arguments: the balance, the list of numbers containing incomes with positive values or expenditures with negative values, and the exchange rate, and return a number value.
 
 ### A Naive Solution
 
@@ -61,9 +61,9 @@ One way to achieve this is by using [eta-conversion](https://en.wikipedia.org/wi
 > itself.
 
 But we need one more ingredients since javascript lack of a build-in `combinator` we call `after` in `Haskell`:
-> Expression
+> Given any functions: `f` and `g`, the expression
 >
->> f(g(x))
+>> x => f(g(x))
 >
 > can be written as:
 >
