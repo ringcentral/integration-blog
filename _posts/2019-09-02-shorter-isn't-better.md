@@ -14,7 +14,7 @@ This is just a thought that came to me during day to day code reviews and I want
 
 Consider you want to implement a simple algorism that show the balance in foreign currency given a list of incomes and outcomes. I will do this in `Javascript`. For the sake of simplicity, I will **ignore** the `float point issue` of ECMAScript and `type/value validation` for the arguments.
 
-So the algorism needs 3 arguments: a balance, list of numbers as income in positive number and outcome in negative number, and an exchange rate. And the result is a number.
+So the algorism needs 3 arguments: a balance, list of numbers as income in positive number and outcome in negative number, and an exchange rate, consider both blance and the list are in the same currency. And the result is a number.
 
 ### A Naive Solution
 
@@ -22,7 +22,7 @@ So the algorism needs 3 arguments: a balance, list of numbers as income in posit
 function getBalanceInFC (
     balance = 0, costs = [], exchangeRate = 1
 ) {
-    return costs.reduce((acc, flow) => acc + flow, balance) / costs;
+    return costs.reduce((acc, flow) => acc + flow, balance) / exchangeRate;
 }
 ```
 
