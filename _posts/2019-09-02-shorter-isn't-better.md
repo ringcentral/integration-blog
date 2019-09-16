@@ -182,7 +182,7 @@ Abstraction has its advantages over enforcing certain functionalities and robust
 
 ## References
 
-1. More info about `owl` can be found in the logic puzzle book [To Mock a Mockingbird](https://g.co/kgs/gQY4XL)
+1. More info about `owl` can be found in the logic puzzle book [To Mock a Mockingbird](https://www.amazon.com/Mock-Mockingbird-Raymond-Smullyan/dp/0192801422)
 
 2. Here is a Haskell version:
 
