@@ -44,7 +44,7 @@ const getBalanceInFC = (
 
 ### Point-free Style
 
-The code above is readable, simple and maintainable enough since each of functions has only one responsibility and pure. But the abstraction can go higher: we can eliminate the arguments which called `point-free style`.
+The code above is readable, simple and maintainable enough since each of functions has only one responsibility and pure. But the abstraction can go higher: we can eliminate the arguments for the `getBalanceInFC`, this coding style is called `point-free style`.
 
 The `point-free style` comes from math, like in geometry it emphasis the surface/space over individual points. In programming, it simply means functions that never mentioning the actual arguments they will be applied to.
 
