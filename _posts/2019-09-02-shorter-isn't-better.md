@@ -95,6 +95,7 @@ const after = f => g => x => f(g(x));
 Then in order to do the eta-conversion, we also need curried version of `getBalance` and `getFC`:
 
 ```Javascript
+// the prefix `c` stands for `curry`
 const cGetBalance = curry(getBalance);
 const cGetFC = curry(getFC);
 ```
@@ -102,6 +103,7 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 1. writing a curried version of `getBalanceInFC`:
 
     ```Javascript
+    // the prefix `pf` stands for `point-free`
     const pfGetBalanceInFC = (balance = 0) =>
                                 (costs = []) =>
                                     (exchangeRate = 1) => 
