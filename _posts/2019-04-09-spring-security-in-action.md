@@ -118,9 +118,9 @@ public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
             .authenticationManager(authenticationManager);
 }
 ```
-Remember that the tokenService and authenticationManager must be the same one in token verication, so that the token can be decoded properly.
+Remember that the tokenService and authenticationManager must be the same one in token verification, so that the token can be decoded properly.
 
-5. The authenticationManager() function defines the token verification logic. This class will be use to check the user authentication when a token is refreshed.
+5. The authenticationManager() function defines the token verification logic. This class will be used to check the user authentication when a token is refreshed.
 
 ### IV. Optional: Custom Token Authorization Verification Logic
 If the default token manager does not meet your requirements, which is happening all the time, you could use your own authenticationProvider by using the code below:
