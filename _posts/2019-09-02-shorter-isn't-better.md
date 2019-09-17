@@ -204,6 +204,7 @@ Abstraction has its advantages over enforcing certain functionalities and robust
 3. Simple type proof for the our owl combinator:
     
     Given:
+
         (.):: (b → C) → (a → b) → (a → c)
 
     we want to figure out the result of:
