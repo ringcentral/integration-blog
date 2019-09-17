@@ -212,11 +212,11 @@ Abstraction has its advantages over enforcing certain functionalities and robust
             
     ∵ Let's marking the 3 combinators as #1, #2 for the two `(.)`, and #3 for the `.`, then:
         
-            #1:: (b→c)→(a→b)→(a→c)
-            
-            #2:: (b1→c1)→(a1→b1)→(a1→c1)
-            
-            #3:: (b2→c2)→(a2→b2)→(a2→c2)
+        #1:: (b→c)→(a→b)→(a→c)
+
+        #2:: (b1→c1)→(a1→b1)→(a1→c1)
+
+        #3:: (b2→c2)→(a2→b2)→(a2→c2)
             
     ∴ We have:
         #1:: b2→c2
@@ -225,28 +225,31 @@ Abstraction has its advantages over enforcing certain functionalities and robust
         
     ∴ We have:
        
-        b2= b→c
+        b2:: b→c
         
-        c2=(a→b)→(a→c)
+        c2:: (a→b)→(a→c)
         
       And:
       
-        a2=b1→c1
+        a2:: b1→c1
         
-        b2=(a1→b1)→(a1→c1))
+        b2:: (a1→b1)→(a1→c1)
         
       Which means:
-       
-        b2 = b→c = (a1→b1)→(a1→c1)
+
+        b2:: b→c
+          :: (a1→b1)→(a1→c1)
+
     ∴ We have:
-    
-        b=c1→b1
+
+        b:: c1→b1
         
-        c=a1→c1
+        c:: a1→c1
     
     So the final reasult is:
     
-        a2→c2 = (b1 → c1)→[a→(a1→b1)]->[a→(a1→c1)]
+        (.).(.):: a2→c2
+               :: (b1 → c1)→[a→(a1→b1)]->[a→(a1→c1)]
     
     Which is exactly what you would get in GHC with `:type (.).(.)`.
     So once you feed the `owl` with 2 functions and 2 parameters for the second function, the result is `c1` which is the type of (partial) evaluation result of your first input function. That's the reason why the number of parameters does not matter for the function.
