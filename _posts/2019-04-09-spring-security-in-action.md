@@ -27,7 +27,7 @@ In this example we will go through a very basic Spring-Security application. The
 Through the process of implementation, we will cover some fundamental principles of Spring-Security.
 
 ### I. Include Spring-Security Dependencies 
-```s
+```sh
 compile "org.springframework.boot:spring-boot-starter-security"
 ```
 
@@ -46,6 +46,7 @@ public void configure(ClientDetailsServiceConfigurer configurer) throws Exceptio
             .resourceIds(resourceIds);
 }
 ```
+
 Normally, we don't use in-memory client id and secret. In production, we can configure to read all clients from database as shown below:
 ```java
 configurer.jdbc()
@@ -57,34 +58,7 @@ After that, we need to configure token settings, including:
 3. Token manager 
 4. Enhancer chain. 
 
-In this example we are using JWT to manage our tokens. JWT provides convenient APIs that intergrated with Spring-Security closely. There is a converter to convert and decode tokens. All you need to do is to set a signing key and then set them in the config(AuthorizationServerEndpointsConfigurer endpoints) function.
-
-```java
-@Bean
-public JwtAccessTokenConverter accessTokenConverter() {
-    JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-    converter.setSigningKey(signingKey);
-    return converter;
-}
-
-@Bean
-public TokenStore tokenStore() {
-    return new JwtTokenStore(accessTokenConverter());
-}
-```
-
-```java
-@Override
-public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-    TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-    enhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter));
-    endpoints.tokenStore(tokenStore)
-            .accessTokenConverter(accessTokenConverter)
-            .tokenEnhancer(enhancerChain)
-            .authenticationManager(authenticationManager);
-}
-```
-Remember that the tokenService and authenticationManager must be the same one in token verication, so that the token can be decoded properly.
+In this example we are using JWT to manage our tokens.
 
 ### III. Token Verification
 Now you are able to implement your own security policy. A popular way is to extend WebSecurityConfigurerAdapter and rewrite security control functions based on customer's requirements. Listed below are the important functions:
@@ -117,7 +91,36 @@ public DefaultTokenServices tokenServices() {
 }
 ```
 
-4. The authenticationManager() function defines the token verification logic. This class will be use to check the user authentication when a token is refreshed.
+4. JWT provides convenient APIs that intergrated with Spring-Security closely. There is a converter to convert and decode tokens. All you need to do is to set a signing key and then set them in the config(AuthorizationServerEndpointsConfigurer endpoints) function.
+
+```java
+@Bean
+public JwtAccessTokenConverter accessTokenConverter() {
+    JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    converter.setSigningKey(signingKey);
+    return converter;
+}
+
+@Bean
+public TokenStore tokenStore() {
+    return new JwtTokenStore(accessTokenConverter());
+}
+```
+
+```java
+@Override
+public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+    TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+    enhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter));
+    endpoints.tokenStore(tokenStore)
+            .accessTokenConverter(accessTokenConverter)
+            .tokenEnhancer(enhancerChain)
+            .authenticationManager(authenticationManager);
+}
+```
+Remember that the tokenService and authenticationManager must be the same one in token verification, so that the token can be decoded properly.
+
+5. The authenticationManager() function defines the token verification logic. This class will be used to check the user authentication when a token is refreshed.
 
 ### IV. Optional: Custom Token Authorization Verification Logic
 If the default token manager does not meet your requirements, which is happening all the time, you could use your own authenticationProvider by using the code below:
@@ -213,7 +216,6 @@ It will return:
 Put your token and signing key in [jwt.io](https://jwt.io), you will get the following result.
 
 > ![jwt-verification.jpg](/integration-blog/assets/2019-04-09-spring-security-in-action/jwt-verification.jpg)
-
 
 Let's quickly go over what we have done: we have introduced what is Spring-Security and why we need to use it. We have also implemented a complete Spring-Security application that included token management, token distribution, and REST APIs that are required for web authorization.
 I hope this article is helpful.
