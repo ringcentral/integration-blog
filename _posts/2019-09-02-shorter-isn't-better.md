@@ -82,9 +82,9 @@ Here I will give a version of `curry` and `after`:
 const curry = f => {
     // Need to remove the default value for `f`
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length#Description
-    const subCurry = (args) => 
-        args.length === f.length 
-            ? f.apply(null, args) 
+    const subCurry = (args) =>
+        args.length === f.length
+            ? f.apply(null, args)
             : (x) => subCurry([...args, x]);
     return x => subCurry([x]);
 }
@@ -100,17 +100,17 @@ const cGetBalance = curry(getBalance);
 const cGetFC = curry(getFC);
 ```
 Now we are ready to go point-free, I will do this by equation reasoning:
-1. writing a curried version of `getBalanceInFC`:
+1. Writing a curried version of `getBalanceInFC`:
 
     ```Javascript
     // the prefix `pf` stands for `point-free`
     const pfGetBalanceInFC = (balance = 0) =>
                                 (costs = []) =>
-                                    (exchangeRate = 1) => 
+                                    (exchangeRate = 1) =>
                                         getFC(getBalance(balance, costs), exchangeRate)
     ```
 
-2. replacing the `getFC` using its curried version:
+2. Replacing the `getFC` using its curried version:
 
     ```Javascript
     const pfGetBalanceInFC = (balance = 0) =>
@@ -119,28 +119,28 @@ Now we are ready to go point-free, I will do this by equation reasoning:
                                         cGetFC(getBalance(balance, costs))(exchangeRate);
     ```
 
-3. cancelling the `exchangeRate` parameter using eta-conversion:
+3. Cancelling the `exchangeRate` parameter using eta-conversion:
 
     ```Javascript
     const pfGetBalanceInFC = (balance = 0) => (costs = []) => cGetFC(getBalance(balance, costs));
     ```
-4. replacing the `getBalance` using its curried version:
+4. Replacing the `getBalance` using its curried version:
 
     ```Javascript
     const pfGetBalanceInFC = (balance = 0) => (costs = []) => cGetFC(cGetBalance(balance)(costs));
     ```
-    
-5. Here we taking the advantage of curring that `cGetBalance(balance)` is a function! Let's say `cGetBalance(balance)` is equal to some function `f`, then the `cGetFC(cGetBalance(balance)(costs))` can be read as **`cGetFC` *after* `f` then *applied* with `costs`**, also by taking the advantage of the declarative side from functional programming paradigm:
+
+5. Here we are taking the advantage of curring that `cGetBalance(balance)` is a function! Let's say `cGetBalance(balance)` is equal to some function `f`, then the `cGetFC(cGetBalance(balance)(costs))` can be read as **`cGetFC` *after* `f` then *applied* with `costs`**, also by taking the advantage of the declarative side from functional programming paradigm:
 
     ```Javascript
-    const pfGetBalanceInFC 
+    const pfGetBalanceInFC
         // = (balance = 0) => (costs = []) => after(cGetFC)(cGetBalance(balance))(costs);
         = (balance = 0) => after(cGetFC)(cGetBalance(balance));
     ```
 6. For the expression above, we find a rule that `f.g ≅ \x->(f.g)(x) ≅ \x->f(g(x))` (for simplicity I'm using `Haskell` notations here). Then let's apply this rule again by taking `after(cGetFC)` as some function `f` and `cGetBalance`  as some function `g` then we can see the expression matches the rule perfectly:
 
     ```Javascript
-    const pfGetBalanceInFC 
+    const pfGetBalanceInFC
         // = (balance = 0) => after(after(cGetFC))(cGetBalance)(balance);
         = after(after(cGetFC))(cGetBalance);
     ```
@@ -148,7 +148,7 @@ Now we are ready to go point-free, I will do this by equation reasoning:
 So the point-free style `getBalanceInFC` is just `after(after(cGetFC))(cGetBalance)`. It's short and abstract but it's totally confusing! Even though the point free style does has its advatages, if we extract the pattern above into a combinator:
 
 ```Javascript
-const owl 
+const owl
     // = f => g => after(after(f))(g);
     = after(after)(after); // applying same rules above
 ```
@@ -160,25 +160,26 @@ and its Haskell version looks much more terrifying:
 owl = (.).(.)
 ```
 
-Then the `owl` works for any number of parameters versions of function `f` given any 2 parameter function like `getBalance` that has the same amount of parameters:
+Then the `owl` works for any versions of function `f` with any number of parameters. Given any 2 parameter function like `getBalance` that has the same amount of parameters:
 
 ```Javascript
 const f = (x, y, z) => x + y + z;
 const g = (x, y) => x / y;
 const p = (w, x, y, z) => f((g(w, x)), y, z);
-const owlP = owl(curry(f))(curry(g)); 
+const owlP = owl(curry(f))(curry(g));
 
 console.log(p(1,2,3,4) === owlP(1)(2)(3)(4)) //true
 ```
-Which means given same parameters, the execution result of `p` and `owlP` is always the same (one can prove the feature by the type signature of our `after` combinator). This does provide maintanability but still, hard to read and understand.
+
+Which means given the same parameters, the execution result of `p` and `owlP` is always the same (one can prove the feature by the type signature of our `after` combinator). This does provide maintanability but still, hard to read and understand.
 
 ## Conclusion
 
-Coding practice is a kind of social practice because it involves cooperations and communications. Communications require certain education background and intelligence between the participants. Here is an example when it comes to communications: Whenever it comes to a situation that people ask me to explain the idea of `monad`, the shortest and the best version is always the version comes from `James Iry`, from his highly entertaining [Brief, Incomplete and Mostly Wrong History of Programming Languages](http://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html):
+Coding practices are social practices because because it involves cooperations and communications. Communications require certain common knowledge between the participants. For example, whenever people ask me to explain the concept of `monad`, the shortest and the best version is always the version comes from `James Iry`, from his highly entertaining [Brief, Incomplete and Mostly Wrong History of Programming Languages](http://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html):
 
 > A monad is just a monoid in the category of endofunctors
 
-I believe whenever after a person hearing this, the conversation ends. Because in order to understand the meaning of the sentence, the listener needs to understand a bunch of mathematical ideas like: `poset` and `monoid`, `category` connection between `category` and `poset`, `galois connection` and generalize it to `adjoint situation`, `functor` and `natrual transformations`, and `Kleisli Categories`, which if he does he won't even ask in the first place. But if I start with a simple commutative diagram, which I thought is the best part of the `category theory` that you can prove things by drawing strings and dots, and then proceed with the idea of `Kleisli Categories`, they might gain some understand about the intimidating idea.
+I believe the conversation would end when most people hear this, because to understand the sentence, they need to understand a bunch of mathematical ideas like `poset`, `monoid`, category, and `endofunctors`, which would require knowledge of `Galois connection`, `adjoint situation`, `functor`, `natural transformations`. But if I started with simple a `commutative diagram`, which in my opinion is the best section of the category theory, I can walk them through the proof by just drawing lines and dots, then proceed to explain the concept of `Kleisli Categories`, then perhaps they can gain some understanding of these complex concepts.
 
 Abstraction has its advantages over enforcing certain functionalities and robustness for certain problem domain. But coders should choose their level of abstraction based on the knowledge background of their cooperators, especially when practicing in an enterprise scale. So a good smell of a function is the function that always readable, understandable and maintainable to each and every team members, the length of a function doesn't matter that much.
 
@@ -202,7 +203,7 @@ Abstraction has its advantages over enforcing certain functionalities and robust
     main = print $ (getFC `owl` getBalance) 1 [1, 2] 2
     ```
 3. Simple type proof for the our owl combinator:
-    
+
     Given:
 
         (.):: (b → C) → (a → b) → (a → c)
@@ -210,32 +211,32 @@ Abstraction has its advantages over enforcing certain functionalities and robust
     we want to figure out the result of:
 
         (.).(.)
-            
+
     ∵ Let's marking the 3 combinators as #1, #2 for the two `(.)`, and #3 for the `.`, then:
-        
+
         #1:: (b→c)→(a→b)→(a→c)
 
         #2:: (b1→c1)→(a1→b1)→(a1→c1)
 
         #3:: (b2→c2)→(a2→b2)→(a2→c2)
-            
+
     ∴ We have:
         #1:: b2→c2
-        
+
         #2:: a2→b2
-        
+
     ∴ We have:
-       
+
         b2:: b→c
-        
+
         c2:: (a→b)→(a→c)
-        
+
       And:
-      
+
         a2:: b1→c1
-        
+
         b2:: (a1→b1)→(a1→c1)
-        
+
       Which means:
 
         b2:: b→c
@@ -244,13 +245,13 @@ Abstraction has its advantages over enforcing certain functionalities and robust
     ∴ We have:
 
         b:: c1→b1
-        
+
         c:: a1→c1
-    
+
     So the final reasult is:
-    
+
         (.).(.):: a2→c2
                :: (b1 → c1)→[a→(a1→b1)]->[a→(a1→c1)]
-    
+
     Which is exactly what you would get in GHC with `:type (.).(.)`.
     So once you feed the `owl` with 2 functions and 2 parameters for the second function, the result is `c1` which is the type of (partial) evaluation result of your first input function. That's the reason why the number of parameters does not matter for the function.
