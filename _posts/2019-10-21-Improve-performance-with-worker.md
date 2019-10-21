@@ -239,7 +239,6 @@ function execTaskSync() {
 ```
 
 这个任务量其实不够大，只会产生一个和后面例子对比的效果。先运行一下看看结果：
-
 ![ui thread](../assets/2019-10-21-blog-improve-performance-with-worker/ui-thread.png)
 
 运行结果看起来很快，如果需要更慢一些只需要把字符串数量或者字符串的长度调大就可以。运行的结果基本都在 0.xx ms 的范围内，只有一个是 2.27 ms。这也许只是一个现象，也许就很值得深究了。
@@ -318,7 +317,7 @@ class Queue {
 这个是在 Queue 里添加 task 的方法，在添加的时候就会在 task 运行完成之后调用 Queue 的 next 方法来开始下一个 task。
 
 在数据量同样的情况下运行的结果：
-![In queue](./assets/2019-10-21-blog-improve-performance-with-worker/in-queue.png)
+![In queue](../assets/2019-10-21-blog-improve-performance-with-worker/in-queue.png)
 
 看起来和在主线程的运行结果相当的接近了。我们来把数据量加大看看会有什么结果。
 
@@ -353,8 +352,6 @@ const STR_LEN = 300;
 传递Buffer的时候是按照Transferable Object传递的。这种数据是实现了`Transferable`接口的数据。这个接口就是一个标记的作用，表明实现了这个接口的数据可以如引用一般传递。
 
 但是，此处的引用和C/C++的引用是两回事。Transferable object在完成不同的执行上下文（execution context）传输之后就不再可用了。H5委员会为了Worker可以普及，默默的解决了多少使用多线程可能会出现的问题。
-
-
 
 多次执行就不用说了，只执行一次的代码缓存起来也存粹是浪费空间。缓冲的命中率是说缓存的结果会被用到。如果缓存不会再被多次执行的某个功能用到，那么也是没有意义的。
 
