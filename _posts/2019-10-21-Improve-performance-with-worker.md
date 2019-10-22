@@ -14,7 +14,7 @@
 
 ## Web Worker
 
-使用 Web Worke 让阻塞代码在后台运行，自然不会阻塞 UI 线程（main thread）。
+使用 Web Worker 让阻塞代码在后台运行，自然不会阻塞 UI 线程（main thread）。
 
 ### 创建一个 Worker
 
@@ -97,8 +97,6 @@ self.onmessage = (event) => {
   self.close();
 };
 ```
-
-不过，**close**方法就要被废弃了，现在是在*deprecated*的状态。具体看 MDN 的[这里](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/close)
 
 要被废弃是因为，在一个 worker 出了作用域之后就会被回收。所以有没有`close`这个方法并没有太大的必要。
 
@@ -191,7 +189,7 @@ worker.postMessage(uInt8Array.buffer, [uInt8Array.buffer]);
 
 我们来把一个字符串反转多次来模拟 CPU “繁重”的任务。这个栗子分为三部分一个是运行在 UI thread 上看看会有多卡，一个是运行在`Promise`里，看看会有什么不同的结果。数据全部都是基于我们的栗子来得到，对于读者来说由于有些网络、硬件等情况不同或者不完全可控会有不同，定量分析不会那么准确，定性分析有一定的代表性。
 
-同时，这个试验和样本的数量关系十分密切。在样本足够打的时候，试验只会收到异常。
+同时，这个试验和样本的数量关系十分密切。在样本足够大的时候，试验只会收到异常。
 
 ### 测试数据是怎么来的
 
