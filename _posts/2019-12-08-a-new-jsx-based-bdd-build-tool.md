@@ -6,68 +6,88 @@ categories: blog
 author: Michael Lin
 ---
 
-> BDD(behavior-driven development) is an extension of TDD(test-driven development). BDD emphasizes the use of DSLs to express behavior and expected results to address the "problem space" complexity of the business.
+BDD (behavior-driven development) is an extension of TDD (test-driven development). It emphasizes on writing tests specifically to test the behaviors of the application before implementation process begins. DSLs are often used to fascilitate the expression of behaviors and expected results in a format that resembles natural languages. BDD is an affective development process in dealing with complex business requirements.
 
-## Motivation and Goal
-
-Since 2008, Cucumber has brought some innovations and practices on BDD. Most other BDD tools draw on some of Cucumber's strengths and models. String matching patterns through DSLs (Scenario, Given, When, and Then) are an important feature. In addition to some of the performance losses and matching uniqueness that result from a large number of regular matching, it is more important to re-engineer and encapsulate them when it emphasizes the more in-depth structure of testing. As the test complexity of developing application systems increases, both integration test and E2E test often require clearer and more concise test model designs to make it easier to practice more maintainable BDD.
+## Motivation
 
 ![BDD](/integration-blog/assets/2019-12-08-a-new-jsx-based-bdd-build-tool/bdd.png)
 
-From a typical BDD development process, most of them go from basic product requirements to Epic, then to User Story, and finally into Acceptance Criteria. The Feature file formed by Acceptance Criteria often defines the close relationship between testing and use functional. At the Acceptance Criteria layer, we're trying to create a better model to fit the more complex functional requirements and test validation.
+A typical BDD development process begins with Epics, these Epics are then broken down into User Stories to decribe the various features of the application. From User Stories, AC (Acceptance Criteria) will be listed to clearly define the behaviors and specifications of the feature. Because AC precisesly defined the behaviors and test conditions for all the features of the application, they are perfect for writing into automated tests.
 
-Through continuous trial and exploration, we find that behavior and validation descriptions in specific scenarios are appropriate for common concepts such as `Step`, and that Step's standardization and universal become very important. The standardized `Step` design will make it easy to build `Step` with its internal logic and state, then combine it to form a complex `Action`, and use `Action` for defined code of conduct descriptions (Scenario, Given, Then, and Then) with good readability.
+The emergence of Cucumber in 2008 popularized the use of BDD in software development, which had a lot of influence over other BDD tools the came after Cucumber. The core value of Cucumber is the DSL that provided a way to express behaviors and appliction features similar to natural languages, including the popular clauses of Given, When, and Then. However, the actual test code are often kept in "steps" files and are language agnostic. The implementation of the test driver relies heavily on string pattern matching to link the feature definitions implicitly to the steps, often leading to performance issues difficulties in managing the steps. As the complexity of the application grows, it is often increasingly difficult to define unique step names due to many steps sharing similar words.
 
-So the new BDD framework we're trying to build should meet the following goals:
+From our years of BDD practice, we had found several shortcomings of Cucumber that we need to address:
 
-* **Proper declarative Step design**
-* **Quickly build test behavior and validation logic**
-* **Define readable specification documents**
-* **Easy to cooperate with all parties involved**
-* **Increase collaboration and maintenance efficiency**
+1. String Pattern Matching
+2. Implicit link between features and steps
+3. Lacks simple ways to re-use scenarios or steps
+
+These shortcomings eventually led to the advent of Crius.
 
 ## What's Crius
 
-Crius is a Step-based BDD build tool. It is the primary expression of the DSLs with JSX, all behavior and expected results can be defined as Step, and the declarative Step design makes it easy to quickly build test logic.
-
-
-### Using Example
+Crius is our answer to Cucumber. Let's see some example code:
 
 ```jsx
 @autorun(test)
 @title('User add ${todo} item in todo list')
 class AddTodoItem extends Step {
+
+  // cucumber-like example table, with JavaScript literals
   @examples`
-    | todo       |
-    | 'learning' |
+    | todo       | object             |
+    | 'learning' | { obj: 'literal' } |
+    | 'crius'    | { obj: 'hello' }   |
   `
+
+  //which is equivalent to
+  @examples([{
+      todo: 'learning',
+      object: { obj: 'literal' }
+  }, {
+      todo: 'crius',
+      object: { obj: 'hello' }
+  }])
+
   run() {
+
+    // JSX-like declarative feature description
     return (
+      // explicit reference to actions
       <Scenario desc='User login website' action={Login}>
         <Given desc='User navigate to todo list' action={Navigate} />
-        <When desc='User type ${todo} in input field and click "add" button' aciton={AddTodo} />
+
+        // Allow Step class AddTodo to be used as an action to promote re-use
+        <When desc='User type ${todo} in input field and click "add" button' action={AddTodo} />
         <Then desc='User should see ${todo} item in todo list' action={CheckTodo} />
+
+        // action is optional
+        <Then desc='Just an description' />
       </Scenario>
     )
   }
 }
 
+// Functional Step definition similar to Functional Components in React
 const Login = async () => {
-  // user entry and login
+  // actual code to perform login
 };
 
 const Navigate = async () => {
   // navigate to todo list
 }
 
-const AddTodo = async (_, { example }) => {
-  return (
-    <>
-      <TypeTodoText text={example.todo} />
-      <SubmitTodo />
-    </>
-  );
-};
+// Step is similar to React Component class
+class AddTodo extends Step {
+  async run() {
+    return (
+      <>
+        <TypeTodoText text={this.context.example.todo} />
+        <SubmitTodo />
+      </>
+    );
+  };
+}
 
 const TypeTodoText = async (props) => {
   // `props.text` is the todo text.
@@ -77,32 +97,27 @@ const SubmitTodo = async () => {
   // click the "add" button
 };
 
-const CheckTodo = async () => {
+const CheckTodo = async (_, { example }) => {
   // check todo item
 };
 ```
 
-### Features
+### Features of Crius
+* **Declarative and Expressive DSL** - By combining DSL charateristics of Cucumber and React
+* **Re-usable Step definitions** - Provide better Step and Scenario composition
+* **Step lifecycle** - Provide lifecycle hooks to have more control over tests
+* **Plugin Support** - Allow more custom features to be easily added
+* **Test Runner Agnostic** - Compatible to Jest, Mocha and Jasmine out of the box
+* **Use JavaScript literals for examples** - Easily define complex object in examples
+* **Lightweight** - Core source code is less than 17k
 
-* **Specifications readable** - Feature file as JS/TS code
-* **Step** - Support Class Step and Function Step
-* **JSX** - Build and composition Step based on JSX
-* **Declarative** - Predictable and easy to debug
-* **Hooks** - Easy to logically decouple and reuse
-* **Test Runners** - Adapt to various test frameworks
+Compared to Cucumber, Crius offers the follow benefits:
 
-### Pros
+* **No string pattern matching** - An explicit relationship between feature definition and test steps exist via direct reference
+* **Syntax highlighting in IDE and Diff tools** - Since the feature definitions are written in TSX or JSX
+* **Extensible through lifecycle hooks and plugins** - So you can customize the test solution to fit the project needs
+* **Support static type checking (if using typescript)** - Helps you avoid typos and/or type errors with IDE support
 
-* **Lightweight Library** - Core source code is less than 17k.
-* **Easy to Understand** - Function Step and Class Step are concise for quick build.
-* **Not Regular/String Matching Pattern** - `Scenario`, `Given`, `When` and `Then` are based on JSX.
-* **Readable Feature File** - It facilitates collaboration in software development(Stakeholders, PM, QA, Dev, etc.).
-* **Feature File as JS/TS Code** - No additional tool checks are required, and IDEs that support JS/TS by default are with no configuration.
-* **Reusable Step** - JSX-based Step has composed multiplexing expressiveness (passed parameters by porps and context).
-* **Step Plug-in** - Encapsulating and using plug-ins can be used to track Step and analyze its logs, making it easy to debug bugs, performance analysis, and more.
-* **Adapted to Various Test Frameworks Runners** - Crius can be adapted to a variety of test frameworks, Jest, Mocha and Jasmine, etc.
-* **Flexible Example Parameter Form** - Examples API(`@examples`) supports Array and template literals。
-* **Good TypeScript Support** - Crius is based on TypeScript, which supports both JavaScript and TypeScript.
 
 ## Conclusion
 
