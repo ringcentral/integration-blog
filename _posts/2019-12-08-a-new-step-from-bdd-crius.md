@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A new Step-based BDD build tool - Crius"
+title:  "A new step from BDD - Crius"
 date:   2019-12-08 23:30:00 +0800
 categories: blog
 author: Michael Lin
@@ -10,7 +10,7 @@ BDD (behavior-driven development) is an extension of TDD (test-driven developmen
 
 ## Motivation
 
-![BDD](/integration-blog/assets/2019-12-08-a-new-jsx-based-bdd-build-tool/bdd.png)
+![BDD](/integration-blog/assets/2019-12-08-a-new-step-from-bdd-crius/bdd.png)
 
 A typical BDD development process begins with Epics, these Epics are then broken down into User Stories to decribe the various features of the application. From User Stories, AC (Acceptance Criteria) will be listed to clearly define the behaviors and specifications of the feature. Because AC precisesly defined the behaviors and test conditions for all the features of the application, they are perfect for writing into automated tests.
 
@@ -121,7 +121,7 @@ Compared to Cucumber, Crius offers the follow benefits:
 
 ## Conclusion
 
-Crius's declarative Step design enriches the combined reuse of BDD in behavioral logic, while JSX-based featrue specification documentation is both good readability and test execution code. It will help us significantly improve building efficiency and sustainability when making BDD, and it will be object-oriented analysis and design, providing development and management teams with shared TDD tools for better collaboration.
+Cucumber brought expressive DSL to BDD and popularized the practice. Crius aims to strengthen the current state of BDD by providing better composition, explicit and clear relationship between feature definitions and actions, better integration with current generation of development tools, and better extensibility for developers to customize their workflow to their needs. We believe the introduction of Crius into our toolset will greatly enhance our developer experience in improving the overall maintanability and quality of our application and increasing the efficiency of our communications between developers, QA, and our product managers. We will continue to iterate Crius to bring in more analytic and collaborative tools to further increase our productivity and quality of our aplications.
 
 Crius Repository:
 
