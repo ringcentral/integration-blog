@@ -108,7 +108,7 @@ const CheckTodo = async (_, { example }) => {
 * **Re-usable Step definitions** - Provide better Step and Scenario composition
 * **Step lifecycle** - Provide lifecycle hooks to have more control over tests
 * **Plugin Support** - Allow more custom features to be easily added
-* **Test Runner Agnostic** - Compatible to Jest, Mocha, and Jasmine out of the box
+* **Test Runner Agnostic** - Compatible to Jest, Mocha and Jasmine out of the box
 * **Use JavaScript literals for examples** - Easily define complex object in examples
 * **Lightweight** - Core source code is less than 17k
 
